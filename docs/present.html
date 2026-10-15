@@ -38,7 +38,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chips span{background:#ffffff26;border:1px solid #ffffff55;border-radius:99px;padding:6px 16px;font-weight:700;font-size:clamp(13px,1.5vw,18px);display:inline-flex;align-items:center;gap:8px}
 .grid{display:grid;gap:1.6vh 1.4vw}
-.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}
 .card{border:1px solid var(--line);border-radius:16px;padding:1.8vh 1.3vw;background:var(--bg);display:flex;flex-direction:column;gap:.8vh}
 .card p{font-size:clamp(13px,1.45vw,18px);line-height:1.45}
 .card.t-p{background:var(--p50);border-color:var(--p600)}.card.t-r{background:var(--red-t);border-color:var(--red)}.card.t-g{background:var(--green-t);border-color:var(--green)}
@@ -74,7 +74,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
 .nav .mid3{display:flex;align-items:center;gap:14px}
 .pbar{position:fixed;top:0;left:0;height:5px;background:var(--p600);transition:width .3s;z-index:6}
 .pg{color:var(--mute);font-size:15px}
-@media (max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}.live{grid-template-columns:1fr;grid-auto-rows:auto}.frame{height:70vh}.slide{overflow:auto}.logo-s{display:none}.head{padding-right:0}body{overflow:auto}}
+@media (max-width:900px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}.live{grid-template-columns:1fr;grid-auto-rows:auto}.frame{height:70vh}.slide{overflow:auto}.logo-s{display:none}.head{padding-right:0}body{overflow:auto}}
 @media print{.nav,.pbar{display:none}.slide{position:static;display:flex!important;page-break-after:always;height:100vh}.frame iframe{display:none}body{overflow:visible}}
 </style>
 </head>
@@ -113,7 +113,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
   <div class="chips">
     <span><svg class="ic"><use href="#i-box"/></svg>6 หมวดวัสดุ</span>
     <span><svg class="ic"><use href="#i-build"/></svg>12 สนาม / อาคาร</span>
-    <span><svg class="ic"><use href="#i-users"/></svg>4 บทบาท</span>
+    <span><svg class="ic"><use href="#i-users"/></svg>5 บทบาท</span>
     <span><svg class="ic"><use href="#i-cam"/></svg>หลักฐานด้วยรูปถ่าย</span>
     <span><svg class="ic"><use href="#i-spark"/></svg>AI อ่านใบส่งของ</span>
   </div>
@@ -137,12 +137,13 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
 
 <!-- 3 บทบาท + เส้นทางงาน -->
 <section class="slide mid">
-  <div class="head"><span class="ib c-p"><svg class="ic"><use href="#i-users"/></svg></span><div><span class="tag">ภาพรวม</span><h2>4 บทบาท 1 เส้นทางวัสดุ</h2></div></div>
-  <div class="grid g4">
+  <div class="head"><span class="ib c-p"><svg class="ic"><use href="#i-users"/></svg></span><div><span class="tag">ภาพรวม</span><h2>5 บทบาท 1 เส้นทางวัสดุ</h2></div></div>
+  <div class="grid g5">
     <div class="card t-p"><span class="ib c-p"><svg class="ic"><use href="#i-wrench"/></svg></span><h3>เจ้าหน้าที่ปฏิบัติงาน</h3><p>ดูคงเหลือ · เบิกวัสดุไปใช้ที่สนาม / อาคาร พร้อมรูป</p></div>
     <div class="card t-p"><span class="ib c-p"><svg class="ic"><use href="#i-shield"/></svg></span><h3>หัวหน้างาน</h3><p>เบิกวัสดุ · ดูแดชบอร์ดการใช้งานตามพื้นที่</p></div>
-    <div class="card t-p"><span class="ib c-d"><svg class="ic"><use href="#i-down"/></svg></span><h3>เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ</h3><p>รับวัสดุเข้า (AI อ่านใบส่งของ) · เพิ่ม / แก้ไขรายการวัสดุ</p></div>
+    <div class="card t-p"><span class="ib c-d"><svg class="ic"><use href="#i-down"/></svg></span><h3>เจ้าหน้าที่พัสดุ</h3><p>รับวัสดุเข้า (AI อ่านใบส่งของ) · เพิ่ม / แก้ไขรายการวัสดุ</p></div>
     <div class="card t-p"><span class="ib c-p"><svg class="ic"><use href="#i-chart"/></svg></span><h3>ผู้บริหาร / ผู้ตรวจสอบ</h3><p>ดูคงเหลือ แดชบอร์ด และประวัติ (ดูอย่างเดียว)</p></div>
+    <div class="card t-p"><span class="ib c-d"><svg class="ic"><use href="#i-lock"/></svg></span><h3>ผู้ดูแลระบบ</h3><p>อนุมัติบัญชี · เปิด / ปิดสิทธิ์ 12 สวิตช์ · ประวัติเข้าใช้</p></div>
   </div>
   <div class="flow">
     <span class="st dk"><svg class="ic"><use href="#i-down"/></svg>รับเข้า + รูปใบส่งของ</span><span class="arrow">→</span>
@@ -150,18 +151,18 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
     <span class="st dk"><svg class="ic"><use href="#i-up"/></svg>เบิกไปใช้ + รูป + พื้นที่</span><span class="arrow">→</span>
     <span class="st"><svg class="ic"><use href="#i-chart"/></svg>แดชบอร์ด / ประวัติ</span>
   </div>
-  <p class="mute">ผู้ดูแลระบบสร้างบัญชีให้ทุกคน · คงเหลือหักทันทีเมื่อเบิก และเบิกเกินคงเหลือไม่ได้</p>
+  <p class="mute">ลงทะเบียนเองแล้วผู้ดูแลระบบอนุมัติ (หรือผู้ดูแลสร้างบัญชีให้) · คงเหลือหักทันทีเมื่อเบิก และเบิกเกินคงเหลือไม่ได้</p>
 </section>
 
 <!-- 4 เข้าสู่ระบบ -->
 <section class="slide" data-src="mockup.html?embed=1&role=home" data-title="หน้าเข้าสู่ระบบ">
-  <div class="head"><span class="ib c-p"><svg class="ic"><use href="#i-phone"/></svg></span><div><span class="tag">หน้าใช้งานจริง 1</span><h2>เข้าสู่ระบบ</h2></div></div>
+  <div class="head"><span class="ib c-p"><svg class="ic"><use href="#i-phone"/></svg></span><div><span class="tag">หน้าใช้งานจริง 1</span><h2>เข้าสู่ระบบ / ลงทะเบียน</h2></div></div>
   <div class="live">
     <div class="side">
       <div class="lbl">ลองทำเลย</div>
-      <div class="step"><span class="n">1</span><p>กรอก <b>ชื่อผู้ใช้</b> และ <b>รหัสผ่าน</b> ที่ได้รับจากผู้ดูแลระบบ</p></div>
-      <div class="step"><span class="n">2</span><p>หรือแตะการ์ด <b>บัญชีทดลอง</b> ใต้ฟอร์ม เพื่อเข้าตามบทบาท</p></div>
-      <div class="step"><span class="n">3</span><p>เมนูด้านล่างจะแสดงตามสิทธิ์ของบทบาทนั้นโดยอัตโนมัติ</p></div>
+      <div class="step"><span class="n">1</span><p>กด <b>ลงทะเบียนใช้งานระบบ</b> — 2 ขั้น เลือกตำแหน่ง (เห็นที่นั่งที่เหลือ) แล้วกรอกข้อมูล รหัสผ่านอย่างน้อย <b>6 ตัว</b></p></div>
+      <div class="step"><span class="n">2</span><p>หรือแตะการ์ด <b>บัญชีทดลอง</b> ใต้ฟอร์ม (admin / staff / lead / store / viewer)</p></div>
+      <div class="step"><span class="n">3</span><p>เมนูด้านล่างแสดงตามตำแหน่ง <b>และสิทธิ์ที่ผู้ดูแลเปิดไว้</b> · ปุ่มกุญแจด้านบน = เปลี่ยนรหัสผ่าน</p></div>
       <div class="hint">ข้อมูลในหน้านี้เป็นข้อมูลทดลอง ไม่เชื่อมต่อระบบจริง</div>
     </div>
   </div>
@@ -234,7 +235,21 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
   </div>
 </section>
 
-<!-- 10 คุณค่า + ความปลอดภัย -->
+<!-- 10 จัดการสิทธิ์ -->
+<section class="slide" data-src="mockup.html?embed=1&role=admin&tab=admin" data-title="จัดการสิทธิ์">
+  <div class="head"><span class="ib c-d"><svg class="ic"><use href="#i-lock"/></svg></span><div><span class="tag">หน้าใช้งานจริง 7 · ผู้ดูแลระบบ</span><h2>อนุมัติบัญชี กำหนดสิทธิ์ และประวัติเข้าใช้</h2></div></div>
+  <div class="live">
+    <div class="side">
+      <div class="lbl">ลองทำเลย</div>
+      <div class="step"><span class="n">1</span><p>ผู้ลงทะเบียนใหม่อยู่บนสุด กด <b>อนุมัติ</b> หรือ <b>ไม่อนุมัติ</b> · การ์ดด้านบนบอกที่นั่งที่เหลือของแต่ละตำแหน่ง</p></div>
+      <div class="step"><span class="n">2</span><p><b>สร้างบัญชี</b> → ได้รหัสผ่านชั่วคราว ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าครั้งแรก · รีเซ็ตรหัส / ระงับ / ลบ ได้</p></div>
+      <div class="step"><span class="n">3</span><p>ตารางสิทธิ์ <b>12 สวิตช์</b> มีผลทันที — ลองปิด “เบิกวัสดุ” ของเจ้าหน้าที่ปฏิบัติงาน แล้วกลับไปสไลด์เบิก</p></div>
+      <div class="step"><span class="n">4</span><p>ประวัติการเข้าสู่ระบบและการเปลี่ยนสิทธิ์ ตรวจสอบย้อนหลังได้</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 คุณค่า + ความปลอดภัย -->
 <section class="slide mid">
   <div class="head"><span class="ib c-p"><svg class="ic"><use href="#i-leaf"/></svg></span><div><span class="tag">สรุป</span><h2>บริหารวัสดุอย่างคุ้มค่า โปร่งใส ตรวจสอบได้</h2></div></div>
   <div class="grid g3">
@@ -252,7 +267,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
   <div class="lg"><img src="https://vxfozsxudrkxrjphttxm.supabase.co/storage/v1/object/public/Photo/Thai_color01_0_0.png" alt="มหาวิทยาลัยศรีนครินทรวิโรฒ"></div>
   <h1>ขอบคุณครับ / ค่ะ</h1>
   <p>ระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</p>
-  <p style="font-size:17px"><a href="manual.html" target="_blank" rel="noopener" style="color:#fff;font-weight:700">คู่มือการใช้งาน</a> · <a href="mockup.html" target="_blank" rel="noopener" style="color:#fff;font-weight:700">ทดลองใช้ระบบ</a></p>
+  <p style="font-size:17px"><a href="manual-video/overview.mp4" target="_blank" rel="noopener" style="color:#fff;font-weight:700">▶ ดูวิดีโอนำเสนอระบบ (มีเสียงบรรยาย)</a> · <a href="manual.html" target="_blank" rel="noopener" style="color:#fff;font-weight:700">คู่มือการใช้งาน</a> · <a href="mockup.html" target="_blank" rel="noopener" style="color:#fff;font-weight:700">ทดลองใช้ระบบ</a></p>
 </section>
 
 </div>
@@ -282,7 +297,7 @@ const load=(s,force)=>{const fr=s&&s.querySelector('iframe');if(!fr)return;if(!f
 const go=n=>{const prev=i;i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,k)=>s.classList.toggle('on',k===i));load(S[i],prev!==i);load(S[i+1]);
   document.getElementById('pg').textContent=(i+1)+' / '+S.length;document.getElementById('pbar').style.width=((i+1)/S.length*100)+'%';try{history.replaceState(null,'','#'+(i+1))}catch(e){}};
 document.getElementById('next').onclick=()=>go(i+1);document.getElementById('prev').onclick=()=>go(i-1);
-document.getElementById('reset').onclick=()=>{try{sessionStorage.clear();localStorage.removeItem('pem_mock_v1')}catch(e){}document.querySelectorAll('iframe[src]').forEach(fr=>fr.contentWindow.location.reload())};
+document.getElementById('reset').onclick=()=>{try{sessionStorage.clear();localStorage.removeItem('pem_mock_v2')}catch(e){}document.querySelectorAll('iframe[src]').forEach(fr=>fr.contentWindow.location.reload())};
 addEventListener('keydown',e=>{if(['ArrowRight','PageDown'].includes(e.key)||(e.key===' '&&document.activeElement===document.body)){e.preventDefault();go(i+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
 let x0=null;document.querySelector('.deck').addEventListener('touchstart',e=>{if(!e.target.closest('.frame'))x0=e.touches[0].clientX});addEventListener('touchend',e=>{if(x0==null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)go(i+(d<0?1:-1));x0=null});
 go((parseInt(location.hash.slice(1),10)||1)-1);

@@ -52,6 +52,10 @@ h3{font-size:19px;font-weight:700;color:var(--p700);margin:0 0 6px}
 .step ul{padding-left:1.2em;font-size:16px;display:grid;gap:3px;margin-bottom:6px}
 .note{font-size:14.5px;border-radius:12px;padding:8px 12px;margin-top:6px}
 .note.tip{background:var(--green-t);color:#14562a}.note.warn{background:var(--amber-t);color:#5a4a10}
+.vid{display:grid;grid-template-columns:minmax(0,1.6fr) 1fr;gap:20px;align-items:center;background:#fff;border:2px solid var(--p600);border-radius:18px;padding:16px;margin-bottom:18px}
+.vid video{width:100%;border-radius:14px;background:#000;display:block}
+.vid h3{font-size:19px}.vid p{margin:4px 0 6px}.vid ul{padding-left:1.2em;font-size:15px;color:var(--mute);display:grid;gap:3px}
+@media (max-width:760px){.vid{grid-template-columns:1fr}}
 table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15.5px;margin-bottom:16px}
 table.t th,table.t td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
 table.t th{background:var(--p100);color:var(--p700)}
@@ -71,23 +75,30 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 <header class="top"><div class="wrap">
   <div class="lg"><img src="https://vxfozsxudrkxrjphttxm.supabase.co/storage/v1/object/public/Photo/Thai_color01_0_0.png" alt="ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ"></div>
   <h1>คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์<br>งานกายภาพและสิ่งแวดล้อม</h1>
-  <p>ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ · ทำตามทีละขั้น พร้อมภาพหน้าจอจริงของระบบ</p>
+  <p>ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ · ทำตามทีละขั้น พร้อมภาพหน้าจอจริงและวิดีโอสอนของระบบ</p>
 </div></header>
 <nav class="toc" aria-label="สารบัญ"><div class="wrap">
-  <a href="#overview">1. ภาพรวมและเข้าสู่ระบบ</a>
+  <a href="#overview">1. ภาพรวมและลงทะเบียน</a>
   <a href="#stock">2. ดูวัสดุคงเหลือ</a>
   <a href="#issue">3. เบิกวัสดุ</a>
   <a href="#dash">4. แดชบอร์ดและประวัติ</a>
   <a href="#receive">5. รับวัสดุเข้า</a>
-  <a href="#admin">6. ผู้ดูแลระบบ</a>
+  <a href="#admin">6. จัดการสิทธิ์ (ผู้ดูแลระบบ)</a>
   <a href="#faq">คำถามที่พบบ่อย</a>
 </div></nav>
 
 <main class="wrap">
 
+<section class="part" id="intro-video" style="padding-bottom:0">
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/overview.jpg" src="manual-video/overview.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอนำเสนอระบบ</h3><p>ที่มาและจุดประสงค์ 5 บทบาท และสาธิตฟังก์ชันหลักบนหน้าจอจริง ตั้งแต่ลงทะเบียน เบิก รับเข้าด้วย AI แดชบอร์ด จนถึงการจัดการสิทธิ์</p><ul><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ</li><li>ต้องการดูทีละขั้น เลื่อนลงไปที่วิดีโอสอนของแต่ละหัวข้อ</li></ul></div></div>
+</section>
+
 <!-- ===================== 1. ภาพรวม ===================== -->
 <section class="part" id="overview">
-  <div class="ph"><span class="no">1</span><div><h2>ภาพรวมของระบบ และการเข้าสู่ระบบ</h2><p>ใช้ได้ทั้งบนมือถือและคอมพิวเตอร์ ผ่านเว็บเบราว์เซอร์</p></div></div>
+  <div class="ph"><span class="no">1</span><div><h2>ภาพรวมของระบบ ลงทะเบียน และเข้าสู่ระบบ</h2><p>ใช้ได้ทั้งบนมือถือและคอมพิวเตอร์ ผ่านเว็บเบราว์เซอร์</p></div></div>
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/register.jpg" src="manual-video/register.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอสอนการใช้งาน</h3><p>ภาพรวมของระบบ การลงทะเบียน 2 ขั้น และการเข้าสู่ระบบ</p><ul><li>ทำตามขั้นตอนบนหน้าจอจริงของระบบ ตัวเลขในคำบรรยายตรงกับข้อด้านล่าง</li><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ · กดหยุด/เล่นซ้ำได้</li></ul></div></div>
 
   <div class="box info">
     <h3>ระบบนี้ใช้ทำอะไร</h3>
@@ -98,8 +109,9 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
   <div class="cols">
     <div class="role"><b>เจ้าหน้าที่ปฏิบัติงาน</b><p>ดูวัสดุคงเหลือ · <b>เบิก</b>วัสดุไปใช้ที่สนาม / อาคาร · ดูประวัติ</p></div>
     <div class="role"><b>หัวหน้างาน</b><p>ทำได้เหมือนเจ้าหน้าที่ปฏิบัติงาน และดู<b>แดชบอร์ด</b>การรับเข้า–เบิกออก</p></div>
-    <div class="role dk"><b>เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ</b><p><b>รับวัสดุเข้า</b> (ให้ AI ช่วยอ่านใบส่งของได้) · เพิ่ม / แก้ไขรายการวัสดุ · ดูแดชบอร์ด (เบิกไม่ได้)</p></div>
+    <div class="role dk"><b>เจ้าหน้าที่พัสดุ</b><p><b>รับวัสดุเข้า</b> (ให้ AI ช่วยอ่านใบส่งของได้) · เพิ่ม / แก้ไขรายการวัสดุ · ดูแดชบอร์ด (เบิกไม่ได้)</p></div>
     <div class="role"><b>ผู้บริหาร / ผู้ตรวจสอบ</b><p>ดูวัสดุคงเหลือ แดชบอร์ด และประวัติ (ดูอย่างเดียว)</p></div>
+    <div class="role dk"><b>ผู้ดูแลระบบ</b><p>ทำได้เหมือนเจ้าหน้าที่พัสดุ และ<b>อนุมัติบัญชี จัดการสิทธิ์</b> ดูประวัติเข้าใช้ (ไม่ถูกจำกัดสิทธิ์)</p></div>
   </div>
 
   <h3>เส้นทางของวัสดุ</h3>
@@ -112,11 +124,26 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
   <p class="legend">วงกลมสีแดง <span class="mk">1</span> ในภาพ = ตำแหน่งที่ต้องกด ตรงกับเลขในคำอธิบาย</p>
 
   <div class="steps">
+    <article class="step"><figure><img src="manual-img/login-reg.jpg" alt="ปุ่มลงทะเบียนใช้งานระบบ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>เปิดหน้าเข้าสู่ระบบ แล้วกด “ลงทะเบียนใช้งานระบบ”</h3></div>
+        <p>ยังไม่มีบัญชี กดปุ่ม <b>ลงทะเบียนใช้งานระบบ</b> <span class="mk">1</span> ใต้ฟอร์มเข้าสู่ระบบ — ลงทะเบียนแล้วรอผู้ดูแลระบบอนุมัติ</p>
+        <div class="note tip">ผู้ดูแลระบบสร้างบัญชีให้ก็ได้ — จะได้รับ ID และ<b>รหัสผ่านชั่วคราว</b> ข้ามไปข้อ 5</div></div></article>
+    <article class="step"><figure><img src="manual-img/reg1.jpg" alt="เลือกตำแหน่ง" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>เลือกตำแหน่งของคุณ</h3></div>
+        <ul><li><span class="mk">1</span> แตะการ์ดตำแหน่ง — ป้ายสีเขียวบอก<b>จำนวนที่นั่งที่เหลือ</b> ตำแหน่งที่เต็มแล้วจะเลือกไม่ได้</li><li><span class="mk">2</span> แถบขั้นตอน: 1 เลือกตำแหน่ง → 2 กรอกข้อมูล</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/reg2.jpg" alt="กรอกข้อมูลลงทะเบียน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">3</span><h3>กรอกข้อมูลให้ครบ</h3></div>
+        <ul><li><span class="mk">1</span> ชื่อ-นามสกุล</li><li><span class="mk">2</span> เบอร์โทร 10 หลัก (ระบบใส่ขีดให้เอง)</li><li><span class="mk">3</span> ID สำหรับเข้าสู่ระบบ — ตัวอักษรอังกฤษ ตัวเลข . _ - ยาว 4–30 ตัว</li><li><span class="mk">4</span> รหัสผ่านอย่างน้อย 6 ตัว (ไม่เหมือน ID ชื่อ หรือเบอร์โทร) และยืนยันรหัสผ่าน</li><li><span class="mk">5</span> กด <b>ส่งคำขอลงทะเบียน</b></li></ul>
+        <p>กด <b>‹ เปลี่ยนตำแหน่ง</b> เพื่อกลับไปเลือกตำแหน่งใหม่</p></div></article>
     <article class="step"><figure><img src="manual-img/login.jpg" alt="หน้าเข้าสู่ระบบ" loading="lazy"></figure>
-      <div><div class="t"><span class="n">1</span><h3>เข้าสู่ระบบ</h3></div>
-        <ul><li><span class="mk">1</span> กรอก<b>ชื่อผู้ใช้</b> ที่ได้รับจากผู้ดูแลระบบ</li><li><span class="mk">2</span> กรอก<b>รหัสผ่าน</b></li><li><span class="mk">3</span> กด <b>เข้าสู่ระบบ</b></li></ul>
-        <div class="note tip">ยังไม่มีบัญชี? ติดต่อผู้ดูแลระบบของงานกายภาพและสิ่งแวดล้อม — ระบบไม่มีการลงทะเบียนเอง บทบาทของคุณกำหนดโดยผู้ดูแลระบบ</div>
-        <div class="note warn">การเข้าสู่ระบบมีอายุ 6 ชั่วโมง หรือจนกว่าจะปิดแท็บ — เมื่อหมดอายุระบบจะพากลับมาหน้านี้</div></div></article>
+      <div><div class="t"><span class="n">4</span><h3>รอผู้ดูแลระบบอนุมัติ แล้วเข้าสู่ระบบ</h3></div>
+        <ul><li><span class="mk">1</span> กรอก<b>ID</b></li><li><span class="mk">2</span> กรอก<b>รหัสผ่าน</b></li><li><span class="mk">3</span> กด <b>เข้าสู่ระบบ</b> — เมนูด้านล่างแสดงตามสิทธิ์ของตำแหน่งคุณ</li></ul>
+        <div class="note warn">ถ้ายังไม่ได้รับอนุมัติ ระบบแจ้ง “รอผู้ดูแลระบบอนุมัติ” · การเข้าสู่ระบบมีอายุ 6 ชั่วโมง หรือจนกว่าจะปิดแท็บ</div></div></article>
+    <article class="step"><figure><img src="manual-img/chpw.jpg" alt="เปลี่ยนรหัสผ่าน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">5</span><h3>ตั้ง / เปลี่ยนรหัสผ่าน</h3></div>
+        <p>ได้<b>รหัสผ่านชั่วคราว</b>จากผู้ดูแลระบบ? หลังเข้าสู่ระบบครั้งแรก ระบบให้ตั้งรหัสใหม่ทันที (ยังใช้งานอื่นไม่ได้จนกว่าจะตั้งเสร็จ)</p>
+        <ul><li><span class="mk">1</span> รหัสผ่านเดิม / รหัสชั่วคราว</li><li><span class="mk">2</span> รหัสผ่านใหม่ และยืนยันอีกครั้ง</li><li><span class="mk">3</span> กด <b>บันทึกรหัสผ่านใหม่</b></li></ul>
+        <p>เปลี่ยนรหัสเองได้ทุกเมื่อ ที่ปุ่ม<b>รูปกุญแจ</b>บนแถบด้านบน</p></div></article>
   </div>
 </section>
 
@@ -137,6 +164,8 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 <!-- ===================== 3. เบิก ===================== -->
 <section class="part" id="issue">
   <div class="ph"><span class="no">3</span><div><h2>เบิกวัสดุไปใช้</h2><p>เจ้าหน้าที่ปฏิบัติงาน / หัวหน้างาน · แท็บ “เบิก”</p></div></div>
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/issue.jpg" src="manual-video/issue.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอสอนการใช้งาน</h3><p>ดูคงเหลือ เลือกสนาม / อาคาร เลือกวัสดุ ถ่ายรูป ส่งใบเบิก และตรวจดูที่ประวัติ</p><ul><li>ตัวเลขในคำบรรยายตรงกับข้อด้านล่าง</li><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ</li></ul></div></div>
   <div class="steps">
     <article class="step"><figure><img src="manual-img/out1.jpg" alt="เลือกพื้นที่และวัสดุที่เบิก" loading="lazy"></figure>
       <div><div class="t"><span class="n">1</span><h3>เลือกพื้นที่และวัสดุที่จะเบิก</h3></div>
@@ -155,6 +184,8 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 <!-- ===================== 4. แดชบอร์ด + ประวัติ ===================== -->
 <section class="part" id="dash">
   <div class="ph"><span class="no">4</span><div><h2>แดชบอร์ดและประวัติ</h2><p>แดชบอร์ด: หัวหน้างาน / เจ้าหน้าที่พัสดุ / ผู้บริหาร · ประวัติ: ทุกบทบาท</p></div></div>
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/dash.jpg" src="manual-video/dash.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอสอนการใช้งาน</h3><p>เลือกช่วงเวลาและพื้นที่ ดูกราฟ อันดับวัสดุที่เบิกมากที่สุด และประวัติย้อนหลัง</p><ul><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ</li></ul></div></div>
   <div class="steps">
     <article class="step"><figure><img src="manual-img/dash.jpg" alt="แดชบอร์ด" loading="lazy"></figure>
       <div><div class="t"><span class="n">1</span><h3>เลือกช่วงเวลาและพื้นที่</h3></div>
@@ -173,6 +204,8 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 <!-- ===================== 5. รับเข้า ===================== -->
 <section class="part" id="receive">
   <div class="ph"><span class="no">5</span><div><h2>รับวัสดุเข้า และเพิ่ม / แก้ไขรายการวัสดุ</h2><p>เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ · แท็บ “รับเข้า”</p></div></div>
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/receive.jpg" src="manual-video/receive.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอสอนการใช้งาน</h3><p>ถ่ายรูปใบส่งของ ให้ AI อ่าน ตรวจแถวแดง ใส่จำนวนรับจริง ยืนยันรับเข้า และเพิ่มวัสดุใหม่</p><ul><li>ตัวเลขในคำบรรยายตรงกับข้อด้านล่าง</li><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ</li></ul></div></div>
   <div class="steps">
     <article class="step"><figure><img src="manual-img/in1.jpg" alt="ใบรับสินค้าจาก Supplier" loading="lazy"></figure>
       <div><div class="t"><span class="n">1</span><h3>ถ่ายรูปใบส่งของ</h3></div>
@@ -198,42 +231,56 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 
 <!-- ===================== 6. ผู้ดูแลระบบ ===================== -->
 <section class="part" id="admin">
-  <div class="ph"><span class="no">6</span><div><h2>สำหรับผู้ดูแลระบบ: จัดการบัญชีผู้ใช้</h2><p>ทำใน Google Sheet ฐานข้อมูล และตัวแก้ไข Apps Script</p></div></div>
-  <div class="box">
-    <h3>เพิ่มผู้ใช้ / ตั้งรหัสผ่านใหม่</h3>
-    <ol>
-      <li>เปิด Google Sheet ของระบบ แท็บ <b>Users</b></li>
-      <li>เพิ่มแถว: <code>Username</code> (a–z, 0–9, . _ - อย่างน้อย 3 ตัว) · <code>DisplayName</code> (ชื่อที่แสดง) · <code>Role</code> · <code>Status</code> = <code>active</code></li>
-      <li>พิมพ์รหัสผ่านในช่อง <code>NewPassword</code> (อย่างน้อย 8 ตัว ไม่ใช่ตัวเลขล้วน)</li>
-      <li>เปิดตัวแก้ไข Apps Script เลือกฟังก์ชัน <b>syncUsers</b> แล้วกด <b>Run</b> — ระบบเข้ารหัสรหัสผ่านแล้ว<b>ล้างช่อง NewPassword ทันที</b> ดูผลที่ Execution log</li>
-    </ol>
+  <div class="ph"><span class="no">6</span><div><h2>ผู้ดูแลระบบ: อนุมัติบัญชี และจัดการสิทธิ์</h2><p>แท็บ “จัดการสิทธิ์” (ไอคอนโล่) — เห็นเฉพาะผู้ดูแลระบบ</p></div></div>
+  <div class="vid"><video controls preload="metadata" playsinline poster="manual-video/admin.jpg" src="manual-video/admin.mp4">เบราว์เซอร์นี้เล่นวิดีโอไม่ได้</video>
+    <div><h3>▶ วิดีโอสอนการใช้งาน</h3><p>อนุมัติผู้ลงทะเบียน สร้างบัญชีพร้อมรหัสชั่วคราว เปิด / ปิดสิทธิ์รายตำแหน่ง และดูประวัติเข้าสู่ระบบ</p><ul><li>ตัวเลขในคำบรรยายตรงกับข้อด้านล่าง</li><li>มีเสียงบรรยายภาษาไทยและคำบรรยายบนจอ</li></ul></div></div>
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/admin1.jpg" alt="ภาพรวมบุคลากรแต่ละตำแหน่ง" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>ภาพรวมบุคลากรและที่นั่ง</h3></div>
+        <ul><li><span class="mk">1</span> การ์ดแต่ละตำแหน่ง: จำนวนที่ใช้ / ที่นั่งสูงสุด ระงับ และ<b style="color:#9D0517">รออนุมัติ</b> · ป้าย “เปิดใช้ / ปิดระบบ” ตามสวิตช์ “เข้าใช้ระบบ”</li><li><span class="mk">2</span> กด <b>สร้างบัญชี</b> — เลือกตำแหน่ง ใส่ ID ชื่อ เบอร์โทร ระบบออก<b>รหัสผ่านชั่วคราว</b> (แสดงครั้งเดียว กดคัดลอกได้) ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าครั้งแรก</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/admin2.jpg" alt="อนุมัติผู้ลงทะเบียน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>อนุมัติ / จัดการบัญชี</h3></div>
+        <ul><li>ผู้ลงทะเบียนใหม่อยู่บนสุด — <span class="mk">1</span> <b>อนุมัติ</b> = เข้าสู่ระบบได้ทันที · <span class="mk">2</span> <b>ไม่อนุมัติ</b> = คืนที่นั่ง (อนุมัติภายหลังหรือลบได้)</li><li>บัญชีที่ใช้งานอยู่: <b>แก้ไข</b> ชื่อ / เบอร์ · <b>รีเซ็ตรหัสผ่าน</b> (ได้รหัสชั่วคราวใหม่) · <b>ระงับ</b> (หลุดจากระบบทันที)</li><li>บัญชีที่ระงับ: <b>เปิดใช้งาน</b> หรือ <b>ลบ</b> (ต้องระงับก่อนจึงลบได้)</li><li>กรองรายชื่อตามตำแหน่งได้ด้วยปุ่มด้านบนตาราง</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/admin3.jpg" alt="สวิตช์สิทธิ์ของแต่ละตำแหน่ง" loading="lazy"></figure>
+      <div><div class="t"><span class="n">3</span><h3>เปิด / ปิดสิทธิ์ของแต่ละตำแหน่ง</h3></div>
+        <ul><li><span class="mk">1</span> สิทธิ์แยกตามตำแหน่ง ใช้กับทุกคนในตำแหน่งนั้นเท่ากัน มีผลทันที</li><li><span class="mk">2</span> แตะสวิตช์เพื่อเปิด / ปิด (สีเทาเข้ม = เปิด) — ปิด “เข้าใช้ระบบ” ระบบจะถามยืนยันก่อน</li><li>ปุ่ม <b>คืนค่าเริ่มต้นสิทธิ์ทั้งหมด</b> มุมขวาบน</li></ul>
+        <div class="note tip">เซิร์ฟเวอร์ตรวจสิทธิ์ทุกคำสั่ง — ปิดแล้วผู้ใช้ทำรายการนั้นไม่ได้แม้เปิดหน้าเว็บค้างไว้ และเห็นข้อความแจ้งว่าสิทธิ์ถูกปิด</div></div></article>
+    <article class="step"><figure><img src="manual-img/admin4.jpg" alt="ประวัติการเข้าสู่ระบบ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">4</span><h3>ประวัติการเข้าสู่ระบบและการเปลี่ยนสิทธิ์</h3></div>
+        <ul><li><span class="mk">1</span> เลือกผู้ใช้เพื่อกรอง · เหตุการณ์: เข้าสู่ระบบ ออกจากระบบ รหัสผ่านผิด รออนุมัติ บัญชีถูกระงับ ระบบถูกปิด</li><li>ด้านล่างสุดคือการเปลี่ยนแปลงสิทธิ์ล่าสุด ว่าใครเปิด / ปิดสิทธิ์อะไร เมื่อไร</li></ul></div></article>
   </div>
   <div class="tw"><table class="t">
-    <thead><tr><th>Role</th><th>ชื่อบทบาท</th><th>ทำได้</th></tr></thead>
+    <thead><tr><th>สิทธิ์ (สวิตช์)</th><th>เจ้าหน้าที่ปฏิบัติงาน</th><th>หัวหน้างาน</th><th>เจ้าหน้าที่พัสดุ</th><th>ผู้บริหาร</th></tr></thead>
     <tbody>
-      <tr><td><code>staff</code></td><td>เจ้าหน้าที่ปฏิบัติงาน</td><td>ดูวัสดุ · เบิก · ประวัติ</td></tr>
-      <tr><td><code>lead</code></td><td>หัวหน้างาน</td><td>ดูวัสดุ · เบิก · แดชบอร์ด · ประวัติ</td></tr>
-      <tr><td><code>store</code></td><td>เจ้าหน้าที่พัสดุ</td><td>ดูวัสดุ · รับเข้า · เพิ่ม/แก้วัสดุ · แดชบอร์ด · ประวัติ</td></tr>
-      <tr><td><code>admin</code></td><td>ผู้ดูแลระบบ</td><td>เหมือน store</td></tr>
-      <tr><td><code>viewer</code></td><td>ผู้บริหาร / ผู้ตรวจสอบ</td><td>ดูวัสดุ · แดชบอร์ด · ประวัติ (ดูอย่างเดียว)</td></tr>
+      <tr><td>เข้าใช้ระบบ</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <tr><td>เบิกวัสดุ</td><td>✓</td><td>✓</td><td>–</td><td>–</td></tr>
+      <tr><td>รับวัสดุเข้า</td><td>–</td><td>–</td><td>✓</td><td>–</td></tr>
+      <tr><td>เพิ่ม / แก้ไขรายการวัสดุ</td><td>–</td><td>–</td><td>✓</td><td>–</td></tr>
+      <tr><td>อ่านใบส่งของด้วย AI</td><td>–</td><td>–</td><td>✓</td><td>–</td></tr>
+      <tr><td>ดูแดชบอร์ด</td><td>–</td><td>✓</td><td>✓</td><td>✓</td></tr>
     </tbody>
   </table></div>
+  <p class="legend">✓ = มีสวิตช์ให้เปิด / ปิด (ค่าเริ่มต้นเปิด) · – = ตำแหน่งนั้นไม่มีสิทธิ์นี้ · ผู้ดูแลระบบไม่ถูกจำกัดสิทธิ์ (แต่เบิกไม่ได้ เพื่อแยกหน้าที่รับเข้ากับเบิก)</p>
   <div class="box warn">
-    <ul>
-      <li><b>ระงับบัญชี</b>: เปลี่ยน Status เป็น <code>disabled</code> — ผู้ใช้หลุดจากระบบทันทีในคำสั่งถัดไป</li>
-      <li><b>ลืมรหัสผ่าน</b>: พิมพ์รหัสใหม่ในช่อง NewPassword แล้วรัน syncUsers อีกครั้ง (เซสชันเดิมของผู้ใช้นั้นใช้ไม่ได้ทันที)</li>
-      <li>อย่าแก้คอลัมน์ PasswordHash / Salt เอง · ประวัติการเข้าสู่ระบบอยู่ที่แท็บ <b>Login_Logs</b></li>
-      <li>เปิดการอ่านใบส่งของด้วย AI: ตั้ง Script Property <code>GEMINI_API_KEY</code> แล้วรันฟังก์ชัน <b>testGemini</b> หนึ่งครั้งก่อนเผยแพร่เว็บ</li>
-    </ul>
+    <h3>ผู้ดูแลระบบคนแรก (ตั้งค่าครั้งเดียว)</h3>
+    <ol>
+      <li>ในตัวแก้ไข Apps Script รัน <b>setupSheets</b> — สร้างชีตทั้งหมด</li>
+      <li>ชีต <b>Users</b>: เพิ่มแถว <code>Username</code> · <code>DisplayName</code> · <code>Role</code> = <code>admin</code> · <code>Status</code> = <code>active</code> และพิมพ์รหัสผ่านในช่อง <code>NewPassword</code></li>
+      <li>รัน <b>syncUsers</b> — ระบบเข้ารหัสรหัสผ่านแล้ว<b>ล้างช่อง NewPassword ทันที</b> · บัญชี admin แก้ / ระงับได้จากชีตเท่านั้น (กันล็อกตัวเองออก)</li>
+      <li>ไม่บังคับ: Script Property <code>REG_CODE</code> = รหัสลงทะเบียนที่แจกเฉพาะบุคลากร (ฟอร์มลงทะเบียนจะขอรหัสนี้) · <code>GEMINI_API_KEY</code> = เปิดการอ่านใบส่งของด้วย AI (รัน <b>testGemini</b> ก่อนเผยแพร่เว็บ)</li>
+    </ol>
   </div>
 </section>
 
 <!-- ===================== คำถามที่พบบ่อย ===================== -->
 <section class="part" id="faq">
   <div class="ph"><span class="no">?</span><div><h2>คำถามที่พบบ่อย</h2></div></div>
-  <details><summary>เข้าสู่ระบบไม่ได้</summary><p>ตรวจชื่อผู้ใช้ (ตัวพิมพ์เล็ก) และรหัสผ่าน ถ้าขึ้นว่าบัญชีถูกระงับหรือยังไม่ได้กำหนดบทบาท ให้ติดต่อผู้ดูแลระบบ</p></details>
-  <details><summary>ลืมรหัสผ่าน</summary><p>ติดต่อผู้ดูแลระบบเพื่อตั้งรหัสผ่านใหม่ให้</p></details>
-  <details><summary>ไม่มีแท็บ “เบิก” / เบิกไม่ได้</summary><p>การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน ต้องเลือกสนาม / อาคาร ใส่จำนวนไม่เกินคงเหลือ และถ่ายรูปอย่างน้อย 1 รูป ถ้าวัสดุหมด ให้แจ้งเจ้าหน้าที่พัสดุเพื่อรับเข้า</p></details>
+  <details><summary>เข้าสู่ระบบไม่ได้ ขึ้นว่ารออนุมัติ</summary><p>บัญชีที่ลงทะเบียนใหม่ต้องให้ผู้ดูแลระบบอนุมัติก่อน ติดต่อผู้ดูแลระบบให้ตรวจรายการลงทะเบียน</p></details>
+  <details><summary>เข้าสู่ระบบไม่ได้ ขึ้นว่าระบบถูกปิด / บัญชีถูกระงับ</summary><p>ผู้ดูแลระบบปิดการเข้าใช้ของตำแหน่งนั้นชั่วคราว หรือระงับบัญชีของคุณ — ติดต่อผู้ดูแลระบบ</p></details>
+  <details><summary>ลืมรหัสผ่าน</summary><p>ติดต่อผู้ดูแลระบบเพื่อรีเซ็ต ระบบจะให้รหัสชั่วคราว และให้ตั้งรหัสใหม่ของคุณเองตอนเข้าครั้งแรก</p></details>
+  <details><summary>รหัสผ่านต้องตั้งอย่างไร</summary><p>ยาวอย่างน้อย 6 ตัว จะเป็นตัวเลขหรือสัญลักษณ์ก็ได้ ขอแค่ไม่เหมือน ID ชื่อ หรือเบอร์โทรของคุณ</p></details>
+  <details><summary>ลงทะเบียนไม่ได้ ตำแหน่งเต็ม</summary><p>แต่ละตำแหน่งมีจำนวนที่นั่งสูงสุด (เจ้าหน้าที่ปฏิบัติงาน 30 · หัวหน้างาน 3 · เจ้าหน้าที่พัสดุ 5 · ผู้บริหาร 10) ติดต่อผู้ดูแลระบบให้ลบบัญชีที่ไม่ใช้แล้ว</p></details>
+  <details><summary>ไม่มีแท็บ “เบิก” / เบิกไม่ได้</summary><p>การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน และผู้ดูแลระบบต้องเปิดสิทธิ์ “เบิกวัสดุ” ไว้ ต้องเลือกสนาม / อาคาร ใส่จำนวนไม่เกินคงเหลือ และถ่ายรูปอย่างน้อย 1 รูป ถ้าวัสดุหมด ให้แจ้งเจ้าหน้าที่พัสดุเพื่อรับเข้า</p></details>
   <details><summary>เบิกผิดจำนวน ทำอย่างไร</summary><p>ใบเบิกที่ส่งแล้วแก้ไม่ได้ (เพื่อให้ประวัติเป็นหลักฐาน) หากคืนวัสดุ ให้เจ้าหน้าที่พัสดุบันทึกรับเข้าพร้อมหมายเหตุ “คืนจากใบเบิก …”</p></details>
   <details><summary>AI อ่านใบส่งของผิด / อ่านไม่ได้</summary><p>กดไอคอนครอปบนรูปเอกสารเพื่อซูมให้ตารางเต็มกรอบแล้วอ่านใหม่ หรือแก้ในตารางเอง · ตรวจแถวแดงเทียบกับเอกสารทุกครั้งก่อนยืนยัน</p></details>
   <details><summary>ส่งไม่ได้ ขึ้นให้ถ่ายรูป</summary><p>การรับเข้าและการเบิกต้องมีรูปวัสดุอย่างน้อย 1 รูป รองรับ JPG / PNG / WebP</p></details>
@@ -241,7 +288,7 @@ footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
 </section>
 </main>
 
-<footer><div class="wrap">คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม · ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ<br>ภาพประกอบเป็นหน้าจอตัวอย่างของระบบ (ข้อมูลและชื่อเป็นข้อมูลทดลอง) · ปรับปรุงล่าสุด 15 ต.ค. 2569</div></footer>
+<footer><div class="wrap">คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม · ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ<br>ภาพประกอบและวิดีโอเป็นหน้าจอตัวอย่างของระบบ (ข้อมูลและชื่อเป็นข้อมูลทดลอง) · ปรับปรุงล่าสุด 15 ต.ค. 2569</div></footer>
 
 <div class="lb" id="lb" role="dialog" aria-label="ดูภาพขยาย"><img alt=""></div>
 <script>

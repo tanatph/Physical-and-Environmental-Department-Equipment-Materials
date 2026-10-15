@@ -86,7 +86,7 @@
   .tabs button{flex:1;padding:8px 14px;border-radius:var(--r-sm);font-size:14px;font-weight:400;color:var(--muted);white-space:nowrap}
   .tabs button.on{background:#fff;color:var(--text);box-shadow:0 1px 2px rgba(23,23,23,.06)}
 
-  input[type=text],input[type=password],input[type=number],input[type=date],textarea,select{width:100%;height:40px;border:1px solid var(--neutral-100);border-radius:var(--r-md);padding:0 var(--s3);background:#fff;outline:none;font-size:14px;transition:150ms cubic-bezier(.2,.7,.2,1)}
+  input[type=text],input[type=password],input[type=number],input[type=date],input[type=tel],textarea,select{width:100%;height:40px;border:1px solid var(--neutral-100);border-radius:var(--r-md);padding:0 var(--s3);background:#fff;outline:none;font-size:14px;transition:150ms cubic-bezier(.2,.7,.2,1)}
   textarea{height:auto;min-height:70px;padding:10px var(--s3);line-height:1.6}
   input::placeholder,textarea::placeholder{color:var(--neutral-400)}
   input:focus,textarea:focus,select:focus{border:1.5px solid var(--brand-600)}
@@ -205,6 +205,51 @@
   .demo-acc{display:flex;align-items:center;gap:10px;text-align:left}
   .demo-acc .th{width:40px;height:40px}
   .demo-acc .th svg{width:20px;height:20px}
+  .reg-cta{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;border-top:1px solid var(--line);padding-top:14px}
+  .ic-btn{width:32px;padding:0}
+  .ic-btn svg{width:18px;height:18px}
+  .rdots{display:flex;align-items:center;gap:8px;margin:10px 0 14px;font-size:13px;color:var(--muted)}
+  .rdots span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .rdots b{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--neutral-100);font-size:12px}
+  .rdots .on{color:var(--text);font-weight:700}
+  .rdots .on b{background:var(--brand-600);color:var(--neutral-50)}
+  .rdots .done b{background:var(--brand-200)}
+  .rdots i{flex:1;height:2px;background:var(--neutral-200)}
+  .rcard{display:flex;gap:12px;align-items:flex-start;padding:14px}
+  .rcard:disabled{opacity:.55;cursor:not-allowed}
+  .rcard:disabled:hover{box-shadow:none;transform:none}
+  .sw{position:relative;width:44px;height:26px;border-radius:var(--r-pill);background:var(--neutral-300);transition:150ms cubic-bezier(.2,.7,.2,1);flex:none;display:inline-block;vertical-align:middle}
+  .sw::after{content:'';position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(23,23,23,.25);transition:150ms cubic-bezier(.2,.7,.2,1)}
+  .sw.on{background:var(--brand-600)}
+  .sw.on::after{left:21px}
+  .sw:disabled{opacity:.5}
+  .sw:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)}
+  .acts{display:flex;gap:6px;flex-wrap:wrap}
+  table.ut{min-width:720px}
+  .ut td{vertical-align:top;padding:8px}
+  table.pm{min-width:640px}
+  .pm th,.pm td{text-align:center;vertical-align:middle;padding:8px}
+  .pm th:first-child,.pm td:first-child{text-align:left}
+  .pmd{white-space:normal;max-width:300px;font-weight:400}
+  .role-off{border-color:var(--red-600)}
+  .m-only{display:none}
+  @media(max-width:640px){.m-only{display:inline-flex}.ut td.d-only{display:none}}
+  .pm-m{display:none}
+  .pm-m .grp+.grp{margin-top:14px}
+  .pm-m .it{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+  @media(max-width:640px){
+    table.ut{min-width:0}
+    .ut thead{display:none}
+    .ut,.ut tbody,.ut tr,.ut td{display:block}
+    .ut tr{border:1px solid var(--neutral-200);border-radius:var(--r-lg);padding:10px 12px;margin-bottom:8px}
+    .ut td{border:0;padding:2px 0}
+    .ut td[data-l]::before{content:attr(data-l) ' · ';color:var(--muted);font-size:12px}
+    .ut .acts{margin-top:6px}
+    .pm-d{display:none}
+    .pm-m{display:block}
+  }
+  .pw-box{font-size:24px;font-weight:700;letter-spacing:.08em;text-align:center;background:var(--neutral-100);border-radius:var(--r-md);padding:14px;margin:12px 0}
+  .mono{font-family:ui-monospace,Consolas,monospace}
 </style>
 </head>
 <body>
@@ -247,9 +292,58 @@ var CATIC = {
   'สิ่งแวดล้อมและจัดการขยะ': '<svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="M6 7l1 13h10l1-13"/><path d="M10 11v6M14 11v6"/></svg>',
   'อุปกรณ์ความปลอดภัย': '<svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>'
 };
-var ROLE_TXT = { staff: 'เจ้าหน้าที่ปฏิบัติงาน', lead: 'หัวหน้างานกายภาพและสิ่งแวดล้อม', store: 'เจ้าหน้าที่พัสดุ', admin: 'ผู้ดูแลระบบ', viewer: 'ผู้บริหาร / ผู้ตรวจสอบ' };
+IC.shield = '<svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>';
+IC.key = '<svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg>';
+IC.user = '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
+IC.copy = '<svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>';
+
+/* ---- บัญชีผู้ใช้ / ลงทะเบียน / สิทธิ์ — ต้องตรงกับ gas/00_Config.js, gas/03_Users.js, gas/04_Perms.js (check.mjs ตรวจ) ---- */
+var ROLE_NAME = { staff: 'เจ้าหน้าที่ปฏิบัติงาน', lead: 'หัวหน้างาน', store: 'เจ้าหน้าที่พัสดุ', admin: 'ผู้ดูแลระบบ', viewer: 'ผู้บริหาร / ผู้ตรวจสอบ' };
+var ROLE_TXT = ROLE_NAME;
+var ROLE_DESC = { staff: 'เบิกวัสดุไปใช้ที่สนาม / อาคาร พร้อมรูปถ่าย', lead: 'เบิกวัสดุ และดูแดชบอร์ดการใช้วัสดุ', store: 'รับวัสดุเข้า เพิ่ม / แก้ไขรายการวัสดุ', viewer: 'ดูคงเหลือ แดชบอร์ด และประวัติ (ดูอย่างเดียว)', admin: 'จัดการบัญชีและสิทธิ์ ทำได้ทุกอย่างเหมือนเจ้าหน้าที่พัสดุ' };
+var REG_ROLES = ['staff', 'lead', 'store', 'viewer'];
+var ROLE_LIMIT = { staff: 30, lead: 3, store: 5, viewer: 10 };
+var ROLE_IC = { staff: IC.up, lead: IC.shield, store: IC.down, viewer: IC.chart, admin: IC.key };
+var PERM_ROLES = ['staff', 'lead', 'store', 'viewer'];
+var PERM_DEFS = [   /* รวม 12 สวิตช์ = PERM_KEYS ใน gas/04_Perms.js */
+  { key: 'portal', label: 'เข้าใช้ระบบ', desc: 'ปิด = ผู้ใช้ตำแหน่งนี้เข้าสู่ระบบไม่ได้ (คนที่เข้าอยู่จะหลุดในคำสั่งถัดไป)', roles: ['staff', 'lead', 'store', 'viewer'] },
+  { key: 'issue', label: 'เบิกวัสดุ', desc: 'ปิด = ไม่มีแท็บ "เบิก" เบิกวัสดุไม่ได้', roles: ['staff', 'lead'] },
+  { key: 'receive', label: 'รับวัสดุเข้า', desc: 'ปิด = ไม่มีแท็บ "รับเข้า"', roles: ['store'] },
+  { key: 'item', label: 'เพิ่ม / แก้ไขรายการวัสดุ', desc: 'ปิด = ไม่มีปุ่มเพิ่มวัสดุ และแก้ไขรายการไม่ได้', roles: ['store'] },
+  { key: 'ai', label: 'อ่านใบส่งของด้วย AI', desc: 'ปิด = ไม่มีปุ่ม Gemini ต้องกรอกรายการเอง', roles: ['store'] },
+  { key: 'dash', label: 'ดูแดชบอร์ด', desc: 'ปิด = ไม่มีแท็บ "แดชบอร์ด"', roles: ['lead', 'store', 'viewer'] }
+];
+var PERM_LABEL = {}; PERM_DEFS.forEach(function (p) { PERM_LABEL[p.key] = p.label; });
+var LOGIN_RESULT = { ok: ['เข้าสู่ระบบ', 'green'], logout: ['ออกจากระบบ', 'gray'], badpw: ['รหัสผ่านผิด', 'red'], unknown: ['ไม่พบ ID', 'red'], pending: ['รออนุมัติ', 'blue'], rejected: ['ไม่อนุมัติ', 'red'], disabled: ['บัญชีถูกระงับ', 'red'], closed: ['ระบบถูกปิด', 'red'] };
+var USTATUS = { pending: ['รออนุมัติ', 'blue'], active: ['ใช้งานได้', 'green'], rejected: ['ไม่อนุมัติ', 'red'], disabled: ['ระงับ', 'gray'] };
 function uiRole(r) { return r === 'admin' ? 'store' : r; }
-var NAVIC = { stock: IC.box, dash: IC.chart, in: IC.down, out: IC.up, hist: IC.clock };
+/** สิทธิ์ของผู้ใช้ปัจจุบัน — S.perms มาจากเซิร์ฟเวอร์ (null = admin) · ก่อนโหลดข้อมูลใช้ค่าเริ่มต้นของบทบาท (เซิร์ฟเวอร์ตรวจซ้ำทุกคำสั่ง) */
+function canDo(key) {
+  if (S.realRole === 'admin') return true;
+  if (S.perms) return S.perms[key] === true;
+  var d = PERM_DEFS.filter(function (x) { return x.key === key; })[0];
+  return !!d && d.roles.indexOf(S.realRole) >= 0;
+}
+/** เบอร์โทร 10 หลัก → 000-000-0000 — กฎเดียวกับ phone_ ใน gas/03_Users.js */
+function phoneNorm(v, required) {
+  var s = String(v == null ? '' : v).trim();
+  if (!s) { if (required) throw new Error('กรุณากรอกเบอร์โทร (ตัวเลข 10 หลัก)'); return ''; }
+  var d = s.replace(/[\s-]/g, '');
+  if (!/^\d{10}$/.test(d)) throw new Error('เบอร์โทรต้องเป็นตัวเลข 10 หลัก รูปแบบ 000-000-0000');
+  return d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6);
+}
+function fmtPhone(v) { var d = String(v).replace(/\D/g, '').slice(0, 10); return d.length > 6 ? d.slice(0, 3) + '-' + d.slice(3, 6) + '-' + d.slice(6) : d.length > 3 ? d.slice(0, 3) + '-' + d.slice(3) : d; }
+/** รหัสผ่าน 6–64 ตัว ไม่เหมือน ID / ชื่อ / เบอร์ — กฎเดียวกับ checkPassword_ ใน gas/03_Users.js */
+function chkPw(pw, username, extras) {
+  pw = String(pw == null ? '' : pw);
+  if (pw.length < 6) throw new Error('รหัสผ่านต้องยาวอย่างน้อย 6 ตัว');
+  if (pw.length > 64) throw new Error('รหัสผ่านยาวเกินไป');
+  var low = pw.toLowerCase(), digits = function (s) { return String(s || '').replace(/\D/g, ''); };
+  if (low === String(username || '').toLowerCase()) throw new Error('รหัสผ่านต้องไม่เหมือน ID');
+  if ((extras || []).some(function (x) { return x && (low === String(x).trim().toLowerCase() || (digits(x).length >= 8 && digits(x) === digits(pw))); })) throw new Error('รหัสผ่านต้องไม่เหมือนชื่อหรือเบอร์โทรของคุณ');
+}
+var USER_ID_RX = /^[a-z0-9._-]{4,30}$/;
+var NAVIC = { stock: IC.box, dash: IC.chart, in: IC.down, out: IC.up, hist: IC.clock, admin: IC.shield };
 function catIc(c) { return CATIC[c] || IC.box; }
 function thumb(i, cls) {
   return i && i.img ? '<img class="th ' + (cls || '') + '" src="' + esc(photoSrc(i.img)) + '" alt="' + esc(i.name) + '">' : '<span class="th ' + (cls || '') + '">' + catIc(i ? i.cat : '') + '</span>';
@@ -262,7 +356,7 @@ function areaOpts(sel) {
   }).join('');
 }
 function catOpts(sel) { return CATS.map(function (c) { return '<option value="' + esc(c) + '"' + (c === sel ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join(''); }
-function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; if (typeof d.ai === 'boolean') S.ai = d.ai; }
+function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; if (typeof d.ai === 'boolean') S.ai = d.ai; if (d.perms !== undefined) S.perms = d.perms; }
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
@@ -368,31 +462,243 @@ function api(fn, payload) {
   if (typeof MOCK !== 'undefined') return MOCK.call(SERVER_FN[fn] || fn, S.tok, payload || {});
   return gasCall(SERVER_FN[fn] || fn, [S.tok, payload || {}]);
 }
-function apiLogin(user, pass) {
-  if (typeof MOCK !== 'undefined') return MOCK.call('apiLogin', user, pass);
-  return gasCall('apiLogin', [user, pass]);
+/** เรียกฟังก์ชันเซิร์ฟเวอร์ชื่อ name ด้วยอาร์กิวเมนต์ args (บัญชีผู้ใช้ / สิทธิ์ / ลงทะเบียน) */
+function rpc(name, args) {
+  if (typeof MOCK !== 'undefined') return MOCK.call.apply(null, [name].concat(args || []));
+  return gasCall(name, args || []);
 }
 function doLogin() {
   var u = document.getElementById('lu'), p = document.getElementById('lp');
   if (!u.value.trim() || !p.value) return toast('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน', 'err');
-  if (S.busy) return; S.busy = true; render();
-  apiLogin(u.value.trim(), p.value).then(function (r) {
+  if (S.busy) return; S.busy = true;
+  var b = document.querySelector('form[data-form="login"] button[type=submit]'); if (b) { b.disabled = true; b.innerHTML = '<span class="spin"></span> กำลังเข้าสู่ระบบ…'; }
+  rpc('apiLogin', [u.value.trim(), p.value]).then(function (r) {
     S.busy = false;
-    if (!r.ok) { render(); return toast(r.error, 'err'); }
+    if (!r.ok) { if (b) { b.disabled = false; b.textContent = 'เข้าสู่ระบบ'; } var er = document.getElementById('loginErr'); if (er) { er.textContent = r.error; er.style.display = 'block'; } return; }
     enter(r.data);
   });
 }
 function vLogin() {
   return (DEVHINT ? '<div class="dev">' + esc(DEVHINT) + '</div>' : '') + '<div class="wrap"><div class="login gap">' +
     '<div class="logo"><i>' + LOGO + '</i><div><b>สต็อกวัสดุอุปกรณ์</b><span>งานกายภาพและสิ่งแวดล้อม · ศูนย์กีฬาสิรินธร มศว</span></div></div>' +
-    '<form class="card gap" data-form="login" autocomplete="on"><h2>เข้าสู่ระบบ</h2>' +
-    '<div><label class="lbl" for="lu">ชื่อผู้ใช้</label><input type="text" id="lu" name="username" autocomplete="username"></div>' +
+    '<form class="card gap" data-form="login" autocomplete="on"><h2>เข้าสู่ระบบ</h2><div class="muted sm" style="margin-top:-6px">เจ้าหน้าที่ปฏิบัติงาน หัวหน้างาน เจ้าหน้าที่พัสดุ ผู้บริหาร และผู้ดูแลระบบ</div>' +
+    '<div><label class="lbl" for="lu">ชื่อผู้ใช้ / ID</label><input type="text" id="lu" name="username" autocomplete="username"></div>' +
     '<div><label class="lbl" for="lp">รหัสผ่าน</label><input type="password" id="lp" name="password" autocomplete="current-password"></div>' +
-    '<button class="btn primary block" type="submit"' + (S.busy ? ' disabled' : '') + '>' + (S.busy ? '<span class="spin"></span> กำลังเข้าสู่ระบบ…' : 'เข้าสู่ระบบ') + '</button>' +
-    '<div class="muted xs">บัญชีผู้ใช้สร้างโดยผู้ดูแลระบบ — ติดต่องานกายภาพและสิ่งแวดล้อมหากยังไม่มีบัญชี</div></form>' +
+    '<div id="loginErr" class="alert" style="display:none"></div>' +
+    '<button class="btn primary block" type="submit">เข้าสู่ระบบ</button>' +
+    '<div class="reg-cta"><span class="muted sm">ยังไม่มีบัญชี? ลงทะเบียนแล้วรอผู้ดูแลระบบอนุมัติ</span><button class="btn ghost sm" type="button" data-act="register">' + IC.user + ' ลงทะเบียนใช้งานระบบ</button></div></form>' +
     (typeof MOCK !== 'undefined' ? MOCK.loginCards() : '') + '</div></div>';
 }
-document.addEventListener('submit', function (e) { if (e.target.getAttribute('data-form') === 'login') { e.preventDefault(); doLogin(); } });
+
+/* ---- ลงทะเบียน 2 ขั้น: 1) เลือกตำแหน่ง → 2) กรอกข้อมูล (แบบเดียวกับระบบตรวจความสะอาด) ---- */
+function openRegister() {
+  S.reg = { info: null, role: '', d: {} }; regSheet();
+  rpc('apiRegInfo', []).then(function (r) { if (S.reg) { S.reg.info = r.ok ? r.data : {}; if (!S.reg.role) regSheet(); } });
+}
+function regDots(step) { return '<div class="rdots" aria-label="ขั้นตอน"><span class="' + (step === 1 ? 'on' : 'done') + '"><b>1</b>เลือกตำแหน่ง</span><i></i><span class="' + (step === 2 ? 'on' : '') + '"><b>2</b>กรอกข้อมูล</span></div>'; }
+function regSheet() {
+  var R = S.reg, info = R.info, head = '<div class="row"><h2>ลงทะเบียนใช้งานระบบ</h2><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div>';
+  if (!R.role) {
+    openSheet(head + regDots(1) + '<p class="muted sm" style="margin-bottom:12px">คุณคือใคร? เลือกตำแหน่งของคุณ — ผู้ดูแลระบบจะอนุมัติก่อนจึงเข้าสู่ระบบได้</p>' +
+      (!info ? '<div class="muted" style="text-align:center;padding:16px"><span class="spin" style="display:inline-block"></span></div>' : '<div class="gap">' + REG_ROLES.map(function (r) {
+        var i = info[r] || { used: 0, max: ROLE_LIMIT[r] }, full = i.used >= i.max;
+        return '<button type="button" class="card rcard" data-act="regrole" data-r="' + r + '"' + (full ? ' disabled' : '') + '><span class="th sm">' + ROLE_IC[r] + '</span><span><b>' + esc(ROLE_NAME[r]) + '</b><br><span class="muted sm">' + esc(ROLE_DESC[r]) + '</span><br>' +
+          '<span class="chip ' + (full ? 'c-red' : 'c-green') + '" style="margin-top:6px">' + (full ? 'เต็มแล้ว (' + i.max + '/' + i.max + ' คน)' : 'เหลือ ' + (i.max - i.used) + ' จาก ' + i.max + ' ที่นั่ง') + '</span></span></button>';
+      }).join('') + '</div>'));
+    return;
+  }
+  var d = R.d, fld = function (k, label, attrs, hint) { return '<div><label class="lbl" for="rg-' + k + '">' + label + '</label><input id="rg-' + k + '" ' + attrs + ' data-b="reg.d.' + k + '"' + (/password/.test(attrs) ? '' : ' value="' + esc(d[k] || '') + '"') + '>' + (hint ? '<div class="xs muted" style="margin-top:2px">' + hint + '</div>' : '') + '</div>'; };
+  openSheet(head + regDots(2) + '<div class="row" style="margin-bottom:12px"><span class="chip c-brand">' + esc(ROLE_NAME[R.role]) + '</span><button type="button" class="btn sm ghost" data-act="regback">‹ เปลี่ยนตำแหน่ง</button></div>' +
+    '<form class="gap" data-form="register" autocomplete="off">' +
+    (info && info.codeRequired ? fld('code', 'รหัสลงทะเบียน (ขอจากผู้ดูแลระบบ)', 'type="text" maxlength="40"') : '') +
+    fld('n', 'ชื่อ-นามสกุล', 'type="text" maxlength="80" autocomplete="name"') +
+    fld('ph', 'เบอร์โทร', 'type="tel" inputmode="numeric" maxlength="12" data-phone="1" placeholder="081-234-5678"', 'ตัวเลข 10 หลัก เช่น 081-234-5678') +
+    fld('u', 'ID สำหรับเข้าสู่ระบบ', 'type="text" maxlength="30" autocapitalize="none" placeholder="ตั้งชื่อ ID ของคุณ"', 'ตัวอักษรอังกฤษ ตัวเลข . _ - ยาว 4–30 ตัว') +
+    fld('pw', 'รหัสผ่าน (อย่างน้อย 6 ตัว ตัวเลขหรือสัญลักษณ์ก็ได้)', 'type="password" maxlength="64" autocomplete="new-password"') +
+    fld('pw2', 'ยืนยันรหัสผ่าน', 'type="password" maxlength="64" autocomplete="new-password"') +
+    '<div id="regErr" class="alert" style="display:none"></div><button class="btn primary block" type="submit">ส่งคำขอลงทะเบียน</button></form>');
+}
+function formErr(id, msg) { var e = document.getElementById(id); if (e) { e.textContent = msg; e.style.display = 'block'; } }
+function btnBusy(form, on, label) { var b = form.querySelector('button[type=submit]'); if (!b) return; b.disabled = on; if (on) { b.setAttribute('data-l', b.textContent); b.innerHTML = '<span class="spin"></span> ' + esc(label || 'กำลังบันทึก…'); } else b.textContent = b.getAttribute('data-l') || 'บันทึก'; }
+function submitRegister(form) {
+  var R = S.reg, d = R.d, ph, u;
+  try {
+    if (R.info && R.info.codeRequired && !String(d.code || '').trim()) throw new Error('กรุณากรอกรหัสลงทะเบียน');
+    if (!String(d.n || '').trim()) throw new Error('กรุณากรอกชื่อ-นามสกุล');
+    ph = phoneNorm(d.ph, true);
+    u = String(d.u || '').trim().toLowerCase();
+    if (!USER_ID_RX.test(u)) throw new Error('ID ต้องเป็นตัวอักษรอังกฤษ/ตัวเลข/. _ - ยาว 4–30 ตัว');
+    chkPw(d.pw, u, [d.n, ph]);
+    if (d.pw !== d.pw2) throw new Error('ยืนยันรหัสผ่านไม่ตรงกัน');
+  } catch (e) { return formErr('regErr', e.message); }
+  btnBusy(form, true, 'กำลังส่ง…');
+  rpc('apiRegister', [{ role: R.role, displayName: String(d.n).trim(), phone: ph, username: u, password: d.pw, code: d.code || '' }]).then(function (r) {
+    if (!r.ok) { btnBusy(form, false); return formErr('regErr', r.error); }
+    var role = R.role; S.reg = null;
+    openSheet('<div style="text-align:center"><div class="ask-ic">' + IC.check + '</div><h2>ส่งคำขอลงทะเบียนแล้ว</h2><p class="muted" style="margin:6px 0 16px">ID <b>' + esc(u) + '</b> · ' + esc(ROLE_NAME[role]) + '<br>รอผู้ดูแลระบบอนุมัติ แล้วเข้าสู่ระบบด้วย ID และรหัสผ่านที่ตั้งไว้</p><button class="btn primary block" data-act="close">เข้าใจแล้ว</button></div>');
+  });
+}
+
+/* ---- เปลี่ยนรหัสผ่าน (บังคับเมื่อใช้รหัสชั่วคราว) ---- */
+function pwInput(name, label, ac) { return '<div><label class="lbl" for="cp-' + name + '">' + label + '</label><input type="password" id="cp-' + name + '" name="' + name + '" maxlength="64" autocomplete="' + ac + '"></div>'; }
+function chpwSheet(forced) {
+  openSheet('<div class="row"><h2>' + (forced ? 'ตั้งรหัสผ่านใหม่' : 'เปลี่ยนรหัสผ่าน') + '</h2>' + (forced ? '' : '<button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button>') + '</div>' +
+    '<p class="muted sm" style="margin:4px 0 12px">' + (forced ? 'ก่อนเริ่มใช้งาน กรุณาตั้งรหัสผ่านใหม่ของคุณเอง (รหัสชั่วคราวที่ได้รับใช้ได้ครั้งเดียว)' : 'ตั้งรหัสผ่านใหม่อย่างน้อย 6 ตัว (ตัวเลขหรือสัญลักษณ์ก็ได้)') + '</p>' +
+    '<form class="gap" data-form="chpw" autocomplete="off">' + pwInput('o', forced ? 'รหัสผ่านชั่วคราวที่ได้รับ' : 'รหัสผ่านเดิม', 'current-password') + pwInput('n', 'รหัสผ่านใหม่', 'new-password') + pwInput('n2', 'ยืนยันรหัสผ่านใหม่', 'new-password') +
+    '<div id="cpErr" class="alert" style="display:none"></div><button class="btn primary block" type="submit">บันทึกรหัสผ่านใหม่</button>' + (forced ? '<button type="button" class="btn block" data-act="logout">ออกจากระบบ</button>' : '') + '</form>', forced);
+}
+function submitChpw(form) {
+  var o = form.o.value, n = form.n.value;
+  try { if (!o) throw new Error('กรุณากรอกรหัสผ่านเดิม'); chkPw(n, S.user, [S.name]); if (n !== form.n2.value) throw new Error('ยืนยันรหัสผ่านใหม่ไม่ตรงกัน'); if (n === o) throw new Error('รหัสผ่านใหม่ต้องต่างจากรหัสเดิม'); } catch (e) { return formErr('cpErr', e.message); }
+  btnBusy(form, true);
+  rpc('apiChangePassword', [S.tok, o, n]).then(function (r) {
+    if (!r.ok) { btnBusy(form, false); return formErr('cpErr', r.error); }
+    var was = S.mustChange; S.tok = r.data.token; S.mustChange = false; saveSes(); closeSheet(); toast('เปลี่ยนรหัสผ่านแล้ว');
+    if (was) load(); else render();
+  });
+}
+
+/* ---- ผู้ดูแลระบบ: แท็บ "จัดการสิทธิ์" — บุคลากร + สถานะ + สิทธิ์ของแต่ละบทบาท + ประวัติเข้าใช้ ---- */
+function loadAdmin() {
+  if (S.realRole !== 'admin' || S.admLoading) return;
+  S.admLoading = true;
+  Promise.all([rpc('apiListUsers', [S.tok]), rpc('apiListLoginLogs', [S.tok]), rpc('apiListPerms', [S.tok])]).then(function (rs) {
+    S.admLoading = false;
+    var bad = rs.filter(function (x) { return !x.ok; })[0];
+    if (bad) { toast(bad.error, 'err'); return; }
+    var old = S.adm || {};
+    S.adm = { users: rs[0].data.users, limits: rs[0].data.limits, logs: rs[1].data, perms: rs[2].data.perms, plog: rs[2].data.log, f: old.f || 'all', lf: old.lf || '', busy: false };
+    if (S.tab === 'admin') render();
+  });
+}
+function vAdmin() {
+  var A = S.adm;
+  if (!A) { loadAdmin(); return '<div class="card muted" style="text-align:center"><span class="spin" style="display:inline-block;vertical-align:-3px"></span> กำลังโหลดข้อมูลผู้ใช้…</div>'; }
+  var off = function (r) { return A.perms[r] && A.perms[r].portal === false; };
+  var users = A.users, f = A.f || 'all';
+  var cards = PERM_ROLES.map(function (r) {
+    var L = users.filter(function (u) { return u.role === r; }), lim = A.limits[r] || { used: 0, max: ROLE_LIMIT[r] }, full = lim.used >= lim.max;
+    var n = function (st) { return L.filter(function (u) { return u.status === st; }).length; };
+    return '<div class="card stat' + (off(r) ? ' role-off' : '') + '"><div class="row" style="align-items:flex-start"><b class="sm">' + esc(ROLE_NAME[r]) + '</b><span class="chip ' + (off(r) ? 'c-red' : 'c-green') + '">' + (off(r) ? 'ปิดระบบ' : 'เปิดใช้') + '</span></div>' +
+      '<div class="v">' + lim.used + '<span class="sm muted" style="font-weight:400"> / ' + lim.max + ' คน</span>' + (full ? ' <span class="chip c-red">เต็ม</span>' : '') + '</div><div class="bar"><i class="' + (full ? 'out' : '') + '" style="width:' + (lim.max ? Math.min(100, Math.round(lim.used / lim.max * 100)) : 0) + '%"></i></div>' +
+      '<div class="xs muted">ใช้งานได้ ' + n('active') + (n('disabled') ? ' · ระงับ ' + n('disabled') : '') + (n('pending') ? ' · <b style="color:var(--red)">รออนุมัติ ' + n('pending') + '</b>' : '') + ' · ว่าง ' + Math.max(0, lim.max - lim.used) + '</div></div>';
+  }).join('');
+  var rank = function (u) { return u.status === 'pending' ? 0 : { admin: 1, store: 2, lead: 3, staff: 4, viewer: 5 }[u.role] || 6; };
+  var rows = users.filter(function (u) { return f === 'all' || u.role === f; }).slice().sort(function (a, b) { return rank(a) - rank(b) || String(a.displayName).localeCompare(String(b.displayName), 'th'); });
+  var b = function (op, u, label, cls) { return '<button class="btn sm ' + (cls || '') + '" data-act="uop" data-op="' + op + '" data-u="' + esc(u) + '">' + label + '</button>'; };
+  var acts = function (u) {
+    if (u.role === 'admin') return '<span class="xs muted">จัดการจากชีต Users</span>';
+    var k = u.username;
+    return ({ pending: b('approve', k, 'อนุมัติ', 'primary') + b('reject', k, 'ไม่อนุมัติ', 'ghost danger'),
+      rejected: b('approve', k, 'อนุมัติ', 'ghost') + b('del', k, 'ลบ', 'ghost danger'),
+      active: b('edit', k, 'แก้ไข', 'ghost') + b('reset', k, 'รีเซ็ตรหัสผ่าน', 'ghost') + b('disable', k, 'ระงับ', 'ghost danger'),
+      disabled: b('enable', k, 'เปิดใช้งาน') + b('reset', k, 'รีเซ็ตรหัสผ่าน', 'ghost') + b('del', k, 'ลบ', 'ghost danger') })[u.status] || '';
+  };
+  var cnt = function (r) { return users.filter(function (u) { return r === 'all' || u.role === r; }).length; };
+  var flt = ['all', 'staff', 'lead', 'store', 'viewer', 'admin'].map(function (r) { return '<button class="' + (f === r ? 'on' : '') + '" data-act="ufilter" data-r="' + r + '">' + (r === 'all' ? 'ทั้งหมด' : esc(ROLE_NAME[r])) + ' (' + cnt(r) + ')</button>'; }).join('');
+  var sw = function (r, p) { var on = A.perms[r] && A.perms[r][p.key] !== false; return '<button type="button" class="sw' + (on ? ' on' : '') + '" role="switch" aria-checked="' + on + '" aria-label="' + esc(ROLE_NAME[r] + ': ' + p.label) + '" data-act="perm" data-r="' + r + '" data-k="' + p.key + '"' + (A.busy ? ' disabled' : '') + '></button>'; };
+  var ids = []; A.logs.forEach(function (x) { if (ids.indexOf(x.username) < 0) ids.push(x.username); }); ids.sort();
+  var logs = A.logs.filter(function (x) { return !A.lf || x.username === A.lf; }).slice(0, 100);
+  var nOk = logs.filter(function (x) { return x.result === 'ok'; }).length, nBad = logs.filter(function (x) { return x.result !== 'ok' && x.result !== 'logout'; }).length;
+  return '<div class="row" style="flex-wrap:wrap;align-items:flex-start"><div><h2>จัดการสิทธิ์การใช้งาน</h2><div class="muted sm">อนุมัติผู้ลงทะเบียน · จัดการบัญชี · กำหนดสิทธิ์ของแต่ละบทบาท (มีผลทันที) · ผู้ดูแลระบบไม่ถูกจำกัดสิทธิ์</div></div>' +
+      '<button class="btn sm ghost danger" data-act="permreset">คืนค่าเริ่มต้นสิทธิ์ทั้งหมด</button></div>' +
+    '<div class="stats">' + cards + '</div>' +
+    '<div class="card"><div class="row" style="flex-wrap:wrap;margin-bottom:10px"><h3>บุคลากร</h3><button class="btn sm primary" data-act="ucreate">' + IC.plus + ' สร้างบัญชี</button></div>' +
+      '<div class="fil" role="group" aria-label="กรองตามตำแหน่ง">' + flt + '</div>' +
+      (!rows.length ? '<div class="muted sm" style="padding:12px 0">ยังไม่มีผู้ใช้ในตำแหน่งนี้ — ผู้ใช้ลงทะเบียนเองจากหน้าเข้าสู่ระบบ หรือกด “สร้างบัญชี”</div>' :
+      '<div class="tbl" style="margin-top:8px"><table class="ut"><thead><tr><th>ชื่อ</th><th>ตำแหน่ง</th><th>สถานะ</th><th>รายละเอียด</th><th>จัดการ</th></tr></thead><tbody>' + rows.map(function (u) {
+        var st = USTATUS[u.status] || [u.status, 'gray'];
+        return '<tr><td><b>' + esc(u.displayName || u.username) + '</b><div class="xs muted">ID ' + esc(u.username) + (u.phone ? ' · ' + esc(u.phone) : '') + '</div></td><td><span class="chip c-gray">' + esc(ROLE_NAME[u.role] || u.role) + '</span> <span class="chip c-' + st[1] + ' m-only">' + st[0] + '</span></td>' +
+          '<td class="d-only"><span class="chip c-' + st[1] + '">' + st[0] + '</span>' + (u.mustChange ? '<div class="xs muted">รอเปลี่ยนรหัส</div>' : '') + '</td>' +
+          '<td class="xs muted">' + (u.status === 'pending' ? 'ลงทะเบียน ' + esc(String(u.createdAt).slice(0, 16)) : 'เข้าล่าสุด ' + esc(String(u.lastLogin || '–').slice(0, 16))) + (u.createdBy === 'self-register' ? ' · ลงทะเบียนเอง' : u.createdBy && u.createdBy !== 'sheet' ? ' · สร้างโดย ' + esc(u.createdBy) : '') + '</td>' +
+          '<td><div class="acts">' + acts(u) + '</div></td></tr>';
+      }).join('') + '</tbody></table></div>') + '</div>' +
+    '<div class="card"><h3>สิทธิ์ของแต่ละบทบาท</h3><div class="xs muted">ใช้กับทุกคนในตำแหน่งนั้นเท่ากัน · เซิร์ฟเวอร์ตรวจสิทธิ์ทุกคำสั่ง</div>' +
+      '<div class="pm-m" style="margin-top:8px">' + PERM_ROLES.map(function (r) { return '<div class="grp"><b>' + esc(ROLE_NAME[r]) + '</b>' + PERM_DEFS.filter(function (p) { return p.roles.indexOf(r) >= 0; }).map(function (p) { return '<div class="it"><span class="sm">' + esc(p.label) + '<br><span class="xs muted">' + esc(p.desc) + '</span></span>' + sw(r, p) + '</div>'; }).join('') + '</div>'; }).join('') + '</div>' +
+      '<div class="tbl pm-d" style="margin-top:8px"><table class="pm"><thead><tr><th>สิทธิ์</th>' + PERM_ROLES.map(function (r) { return '<th>' + esc(ROLE_NAME[r]) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      PERM_DEFS.map(function (p) { return '<tr><td><b>' + esc(p.label) + '</b><div class="xs muted pmd">' + esc(p.desc) + '</div></td>' + PERM_ROLES.map(function (r) { return '<td>' + (p.roles.indexOf(r) >= 0 ? sw(r, p) : '<span class="muted">–</span>') + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div></div>' +
+    '<div class="card"><div class="row" style="flex-wrap:wrap;align-items:flex-start"><div><h3>ประวัติการเข้าสู่ระบบ</h3><div class="xs muted">ทุกตำแหน่ง · เข้าสำเร็จ ' + nOk + ' · ผิดปกติ <b style="color:' + (nBad ? 'var(--red)' : 'inherit') + '">' + nBad + '</b> · เก็บในชีต Login_Logs</div></div>' +
+      '<select data-b="adm.lf" data-r="1" aria-label="กรองผู้ใช้" style="max-width:220px"><option value="">ผู้ใช้ทุกคน</option>' + ids.map(function (i) { return '<option' + (i === A.lf ? ' selected' : '') + '>' + esc(i) + '</option>'; }).join('') + '</select></div>' +
+      (!logs.length ? '<div class="muted sm" style="padding:12px 0">ยังไม่มีประวัติ</div>' : '<div class="tbl" style="margin-top:8px"><table class="ut"><thead><tr><th>เวลา</th><th>ID</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>เหตุการณ์</th></tr></thead><tbody>' + logs.map(function (x) {
+        var r = LOGIN_RESULT[x.result] || [x.result, 'gray'];
+        return '<tr><td class="xs">' + esc(x.time) + '</td><td class="mono xs">' + esc(x.username) + '</td><td>' + (esc(x.displayName) || '–') + '</td><td class="xs">' + esc(ROLE_NAME[x.role] || '–') + '</td><td><span class="chip c-' + r[1] + '">' + r[0] + '</span></td></tr>';
+      }).join('') + '</tbody></table></div>') + '</div>' +
+    '<div class="card"><h3>การเปลี่ยนแปลงสิทธิ์ล่าสุด</h3>' + (!A.plog.length ? '<div class="muted sm" style="padding:8px 0">ยังไม่มีการเปลี่ยนแปลง</div>' : A.plog.map(function (x) {
+      return '<div class="row sm" style="justify-content:flex-start;padding:5px 0;border-top:1px solid var(--line)"><span class="muted xs" style="min-width:132px">' + esc(x.time) + '</span><span><b>' + esc(x.by) + '</b> ' + (x.key === 'reset' ? 'คืนค่าเริ่มต้นทุกสิทธิ์' : (x.value ? 'เปิด' : 'ปิด') + 'สิทธิ์ “' + esc(PERM_LABEL[x.key] || x.key) + '” ของ' + esc(ROLE_NAME[x.role] || x.role)) + '</span></div>';
+    }).join('')) + '</div>';
+}
+function admRun(name, args, okMsg) {
+  return rpc(name, [S.tok].concat(args)).then(function (r) {
+    if (!r.ok) { toast(r.error, 'err'); return null; }
+    if (r.data && r.data.tempPassword) tempPwSheet(r.data, name === 'apiCreateUser' ? 'สร้างบัญชีแล้ว' : 'รหัสผ่านชั่วคราวใหม่');
+    else if (okMsg) toast(okMsg);
+    loadAdmin(); return r.data;
+  });
+}
+function userOp(op, uname) {
+  var m = S.adm.users.filter(function (x) { return x.username === uname; })[0]; if (!m) return;
+  var who = '<b>' + esc(m.displayName) + '</b> (ID ' + esc(m.username) + ') · ' + esc(ROLE_NAME[m.role]);
+  if (op === 'approve') return admRun('apiReviewUser', [uname, 'approve'], 'อนุมัติแล้ว — ' + m.displayName + ' เข้าสู่ระบบได้ทันที');
+  if (op === 'enable') return admRun('apiSetUserStatus', [uname, 'active'], 'เปิดใช้งานบัญชีแล้ว');
+  if (op === 'edit') return userEditSheet(m);
+  var q = { reject: ['ไม่อนุมัติคำขอ?', who, 'danger', 'ไม่อนุมัติ', 'apiReviewUser', [uname, 'reject'], 'ไม่อนุมัติแล้ว'],
+    disable: ['ระงับบัญชี?', who + '<br>ผู้ใช้จะหลุดจากระบบทันที', 'danger', 'ระงับ', 'apiSetUserStatus', [uname, 'disabled'], 'ระงับบัญชีแล้ว'],
+    reset: ['รีเซ็ตรหัสผ่าน?', who + '<br>ระบบจะออกรหัสชั่วคราวใหม่ ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าครั้งถัดไป', 'warn', 'รีเซ็ต', 'apiResetUserPassword', [uname], ''],
+    del: ['ลบบัญชี?', who + '<br>ลบถาวรและคืนที่นั่ง — ประวัติการรับ / เบิกยังอยู่', 'danger', 'ลบบัญชี', 'apiDeleteUser', [uname], 'ลบบัญชีแล้ว'] }[op];
+  if (q) ask(q[0], q[1], q[2], q[3]).then(function (ok) { if (ok) admRun(q[4], q[5], q[6]); });
+}
+function setPerm(r, k) {
+  var A = S.adm, v = !(A.perms[r] && A.perms[r][k] !== false);
+  var go = function () {
+    A.busy = true; render();
+    rpc('apiSetPermission', [S.tok, r, k, v]).then(function (x) { A.busy = false; if (!x.ok) { render(); return toast(x.error, 'err'); } toast((v ? 'เปิด' : 'ปิด') + 'สิทธิ์ “' + PERM_LABEL[k] + '” ของ' + ROLE_NAME[r] + 'แล้ว'); loadAdmin(); });
+  };
+  if (k === 'portal' && !v) return ask('ปิดระบบสำหรับ' + ROLE_NAME[r] + '?', 'ผู้ใช้ตำแหน่งนี้จะเข้าสู่ระบบไม่ได้ทันทีจนกว่าจะเปิดกลับ', 'danger', 'ปิดระบบ').then(function (ok) { if (ok) go(); });
+  go();
+}
+function ucreateSheet() {
+  var lim = S.adm.limits || {};
+  openSheet('<div class="row"><h2>สร้างบัญชีผู้ใช้</h2><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div><p class="muted sm" style="margin:4px 0 12px">ระบบออกรหัสผ่านชั่วคราวให้ ผู้ใช้ต้องตั้งรหัสใหม่เองตอนเข้าครั้งแรก · บัญชีที่ผู้ดูแลสร้างใช้งานได้ทันที</p>' +
+    '<form class="gap" data-form="ucreate" autocomplete="off"><div><label class="lbl" for="uc-role">ตำแหน่ง</label><select id="uc-role" name="role">' + REG_ROLES.map(function (r) { var i = lim[r] || { used: 0, max: ROLE_LIMIT[r] }, full = i.used >= i.max; return '<option value="' + r + '"' + (full ? ' disabled' : '') + '>' + esc(ROLE_NAME[r]) + ' — ' + (full ? 'เต็มแล้ว' : 'ว่าง ' + (i.max - i.used) + '/' + i.max) + '</option>'; }).join('') + '</select></div>' +
+    '<div><label class="lbl" for="uc-u">ID</label><input type="text" id="uc-u" name="u" maxlength="30" autocapitalize="none" placeholder="a-z 0-9 . _ - (4–30 ตัว)"></div>' +
+    '<div><label class="lbl" for="uc-n">ชื่อ-นามสกุล</label><input type="text" id="uc-n" name="n" maxlength="80"></div>' +
+    '<div><label class="lbl" for="uc-ph">เบอร์โทร (ไม่บังคับ)</label><input type="tel" id="uc-ph" name="ph" inputmode="numeric" maxlength="12" data-phone="1" placeholder="081-234-5678"></div>' +
+    '<div id="ucErr" class="alert" style="display:none"></div><button class="btn primary block" type="submit">สร้างบัญชี</button></form>');
+}
+function submitUcreate(form) {
+  var p = { role: form.role.value, username: form.u.value.trim().toLowerCase(), displayName: form.n.value.trim(), phone: '' };
+  try { if (!USER_ID_RX.test(p.username)) throw new Error('ID ต้องเป็นตัวอักษรอังกฤษ/ตัวเลข/. _ - ยาว 4–30 ตัว'); if (!p.displayName) throw new Error('กรุณากรอกชื่อ-นามสกุล'); p.phone = phoneNorm(form.ph.value, false); } catch (e) { return formErr('ucErr', e.message); }
+  btnBusy(form, true);
+  rpc('apiCreateUser', [S.tok, p]).then(function (r) { if (!r.ok) { btnBusy(form, false); return formErr('ucErr', r.error); } tempPwSheet(r.data, 'สร้างบัญชีแล้ว'); loadAdmin(); });
+}
+function userEditSheet(m) {
+  openSheet('<div class="row"><h2>แก้ไขข้อมูลผู้ใช้</h2><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div><p class="muted sm" style="margin:4px 0 12px"><span class="chip c-gray">' + esc(ROLE_NAME[m.role]) + '</span> ID <b>' + esc(m.username) + '</b></p>' +
+    '<form class="gap" data-form="uedit" data-u="' + esc(m.username) + '" autocomplete="off"><div><label class="lbl" for="ue-n">ชื่อ-นามสกุล</label><input type="text" id="ue-n" name="n" maxlength="80" value="' + esc(m.displayName) + '"></div>' +
+    '<div><label class="lbl" for="ue-ph">เบอร์โทร</label><input type="tel" id="ue-ph" name="ph" inputmode="numeric" maxlength="12" data-phone="1" value="' + esc(m.phone || '') + '"></div>' +
+    '<div id="ueErr" class="alert" style="display:none"></div><button class="btn primary block" type="submit">บันทึก</button></form>');
+}
+function submitUedit(form) {
+  var p = { username: form.getAttribute('data-u'), displayName: form.n.value.trim(), phone: '' };
+  try { if (!p.displayName) throw new Error('กรุณากรอกชื่อ-นามสกุล'); p.phone = phoneNorm(form.ph.value, false); } catch (e) { return formErr('ueErr', e.message); }
+  btnBusy(form, true);
+  rpc('apiSaveUser', [S.tok, p]).then(function (r) { if (!r.ok) { btnBusy(form, false); return formErr('ueErr', r.error); } closeSheet(); toast('บันทึกข้อมูลแล้ว'); loadAdmin(); });
+}
+function tempPwSheet(d, title) {
+  S.lastTemp = d.tempPassword;
+  openSheet('<div class="row"><h2>' + esc(title) + '</h2><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div><p class="muted sm" style="margin-top:6px">ID: <b style="color:var(--text)">' + esc(d.username) + '</b> · รหัสผ่านชั่วคราว</p>' +
+    '<div class="pw-box mono">' + esc(d.tempPassword) + '</div><div class="alert" style="margin-bottom:14px">แสดงครั้งเดียวเท่านั้น — ส่งให้ผู้ใช้ทางช่องทางส่วนตัว ผู้ใช้ต้องตั้งรหัสใหม่ตอนเข้าครั้งแรก</div>' +
+    '<div class="f2"><button class="btn" data-act="copypw">' + IC.copy + ' คัดลอก</button><button class="btn primary" data-act="close">เสร็จสิ้น</button></div>');
+}
+
+document.addEventListener('submit', function (e) {
+  var f = e.target.getAttribute('data-form'); if (!f) return;
+  e.preventDefault();
+  if (f === 'login') doLogin();
+  else if (f === 'register') submitRegister(e.target);
+  else if (f === 'chpw') submitChpw(e.target);
+  else if (f === 'ucreate') submitUcreate(e.target);
+  else if (f === 'uedit') submitUedit(e.target);
+});
 
 function readImg(file, max) {
   return new Promise(function (ok, bad) {
@@ -422,9 +728,9 @@ function toast(msg, kind) {
   var t = document.createElement('div'); t.className = 'toast ' + (kind || 'ok'); t.textContent = msg;
   document.body.appendChild(t); setTimeout(function () { t.remove(); }, 3200);
 }
-function openSheet(html) {
+function openSheet(html, locked) {
   var l = document.getElementById('layer');
-  l.innerHTML = '<div class="ov" data-act="ovclose"><div class="sheet" role="dialog" aria-modal="true">' + html + '</div></div>';
+  l.innerHTML = '<div class="ov"' + (locked ? '' : ' data-act="ovclose"') + '><div class="sheet" role="dialog" aria-modal="true">' + html + '</div></div>';
   hydrate();
 }
 function closeSheet() { document.getElementById('layer').innerHTML = ''; }
@@ -444,24 +750,30 @@ function photoBox(path, label) {
   }).join('') + '<label class="ph add">' + IC.cam + '<span>' + esc(label || 'ถ่ายรูป / เลือกรูป') + '</span><input type="file" accept="image/jpeg,image/png,image/webp" capture="environment" multiple data-ph="' + path + '"></label></div>';
 }
 
+/** แท็บตามบทบาท + สิทธิ์ที่ผู้ดูแลเปิดอยู่ (เซิร์ฟเวอร์ตรวจซ้ำทุกคำสั่ง) */
 function tabsFor() {
-  if (S.role === 'store') return [['stock', 'วัสดุอุปกรณ์'], ['dash', 'แดชบอร์ด'], ['in', 'รับเข้า'], ['hist', 'ประวัติ']];
-  if (S.role === 'viewer') return [['stock', 'วัสดุอุปกรณ์'], ['dash', 'แดชบอร์ด'], ['hist', 'ประวัติ']];
-  if (S.role === 'lead') return [['stock', 'วัสดุอุปกรณ์'], ['dash', 'แดชบอร์ด'], ['out', 'เบิก'], ['hist', 'ประวัติ']];
-  return [['stock', 'วัสดุอุปกรณ์'], ['out', 'เบิก'], ['hist', 'ประวัติ']];
+  var r = S.role, t = [['stock', 'วัสดุอุปกรณ์']];
+  if ((r === 'lead' || r === 'store' || r === 'viewer') && canDo('dash')) t.push(['dash', 'แดชบอร์ด']);
+  if (r === 'store' && canDo('receive')) t.push(['in', 'รับเข้า']);
+  if ((r === 'staff' || r === 'lead') && canDo('issue')) t.push(['out', 'เบิก']);
+  t.push(['hist', 'ประวัติ']);
+  if (S.realRole === 'admin') t.push(['admin', 'จัดการสิทธิ์']);
+  return t;
 }
 function roleNote() {
-  var t = S.role === 'store' ? 'เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ: รับวัสดุอุปกรณ์เข้า เพิ่มและแก้ไขรายการได้ — การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน'
+  var t = S.realRole === 'admin' ? 'ผู้ดูแลระบบ: ทำได้เหมือนเจ้าหน้าที่พัสดุ และจัดการบัญชี / สิทธิ์ของทุกตำแหน่งที่แท็บ "จัดการสิทธิ์" — การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน'
+    : S.role === 'store' ? 'เจ้าหน้าที่พัสดุ: รับวัสดุอุปกรณ์เข้า เพิ่มและแก้ไขรายการได้ — การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน'
     : S.role === 'viewer' ? 'ดูวัสดุอุปกรณ์ แดชบอร์ด และประวัติได้ — การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน'
     : S.role === 'lead' ? 'หัวหน้างาน: ดูสต็อกและแดชบอร์ด และเบิกวัสดุไปใช้ที่แต่ละสนาม / อาคารได้ที่แท็บ "เบิก" (ต้องถ่ายรูปประกอบ)'
     : 'เจ้าหน้าที่ปฏิบัติงาน: เบิกวัสดุไปใช้ที่แต่ละสนาม / อาคารได้ที่แท็บ "เบิก" (ต้องถ่ายรูปประกอบ)';
-  return '<div class="note xs">' + esc(t) + ' · ' + esc(S.name) + '</div>';
+  var offs = PERM_DEFS.filter(function (p) { return p.key !== 'portal' && p.roles.indexOf(S.realRole) >= 0 && !canDo(p.key); }).map(function (p) { return p.label; });
+  return '<div class="note xs">' + esc(t) + ' · ' + esc(S.name) + '</div>' + (offs.length ? '<div class="alert xs">ผู้ดูแลระบบปิดสิทธิ์ชั่วคราว: ' + esc(offs.join(', ')) + '</div>' : '');
 }
 var LOGO = '<svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L3 17.7 6.3 21l6.3-6.3a4 4 0 0 0 5.1-5.4l-2.5 2.5-2.6-.7-.7-2.6z"/></svg>';
 function topbar() {
   return (DEVHINT ? '<div class="dev">' + esc(DEVHINT) + '</div>' : '') +
     '<header class="top"><div class="wrap"><div class="logo"><i>' + LOGO + '</i><div style="min-width:0"><b>สต็อกวัสดุอุปกรณ์</b><span>งานกายภาพและสิ่งแวดล้อม<em class="hide-m"> · ศูนย์กีฬาสิรินธร มศว</em></span></div></div>' +
-    '<div class="actions"><span class="xs top-who">' + esc(S.name) + '<br>' + esc(ROLE_TXT[S.realRole] || '') + '</span><button class="btn sm ghost" data-act="logout">ออกจากระบบ</button></div></div></header>';
+    '<div class="actions"><span class="xs top-who">' + esc(S.name) + '<br>' + esc(ROLE_TXT[S.realRole] || '') + '</span><button class="btn sm ghost ic-btn" data-act="chpw" aria-label="เปลี่ยนรหัสผ่าน" title="เปลี่ยนรหัสผ่าน">' + IC.key + '</button><button class="btn sm ghost" data-act="logout">ออกจากระบบ</button></div></div></header>';
 }
 function shell(body) {
   var tabs = tabsFor();
@@ -478,7 +790,7 @@ function vStock() {
     '<div class="card stat"><div class="muted sm">หมดสต็อก</div><div class="v" style="color:var(--red)">' + out.length + '</div></div></div>' +
     '<div class="fil" role="group" aria-label="หมวดหมู่">' + [''].concat(CATS).map(function (c) { return '<button class="' + (S.cat === c ? 'on' : '') + '" data-act="catf" data-c="' + esc(c) + '">' + (c || 'ทั้งหมด') + ' (' + cnt(c) + ')</button>'; }).join('') + '</div>' +
     '<div class="row" style="flex-wrap:wrap"><input type="text" id="q" placeholder="ค้นหาวัสดุ" value="' + esc(S.q) + '" data-b="q" style="max-width:340px">' +
-    '<div class="row" style="gap:6px"><button class="btn ' + (S.low ? 'primary' : 'ghost') + ' sm" data-act="lowtgl">เฉพาะใกล้หมด/หมด</button>' + (S.role === 'store' ? '<button class="btn sm" data-act="additem">' + IC.plus + ' เพิ่มวัสดุ</button>' : '') + '</div></div>' +
+    '<div class="row" style="gap:6px"><button class="btn ' + (S.low ? 'primary' : 'ghost') + ' sm" data-act="lowtgl">เฉพาะใกล้หมด/หมด</button>' + (S.role === 'store' && canDo('item') ? '<button class="btn sm" data-act="additem">' + IC.plus + ' เพิ่มวัสดุ</button>' : '') + '</div></div>' +
     (list.length ? '<div class="grid">' + list.map(function (i) {
       var pct = i.min > 0 ? Math.min(100, Math.round(i.qty / (i.min * 2) * 100)) : (i.qty > 0 ? 100 : 0);
       return '<button class="card" data-act="itemdet" data-id="' + esc(i.id) + '"><div class="row" style="align-items:flex-start;justify-content:flex-start;gap:12px">' + thumb(i) +
@@ -629,9 +941,10 @@ function vHist() {
 function render() {
   var app = document.getElementById('app'), y = window.scrollY;
   if (!S.tok) { app.innerHTML = vLogin(); return; }
+  if (S.mustChange) { app.innerHTML = topbar() + '<div class="wrap"><div class="card muted" style="text-align:center">กรุณาตั้งรหัสผ่านใหม่ก่อนเริ่มใช้งาน</div></div>'; return; }
   if (!S.loaded) { app.innerHTML = topbar() + '<div class="wrap"><div class="card muted" style="text-align:center">กำลังโหลดสต็อก…</div></div>'; return; }
   if (tabsFor().map(function (t) { return t[0]; }).indexOf(S.tab) < 0) S.tab = 'stock';
-  var body = S.tab === 'stock' ? vStock() : S.tab === 'dash' ? vDash() : S.tab === 'in' ? vIn() : S.tab === 'out' ? vOut() : vHist();
+  var body = S.tab === 'stock' ? vStock() : S.tab === 'dash' ? vDash() : S.tab === 'in' ? vIn() : S.tab === 'out' ? vOut() : S.tab === 'admin' ? vAdmin() : vHist();
   app.innerHTML = shell(body);
   window.scrollTo(0, y);
   hydrate();
@@ -645,13 +958,16 @@ function load(then) {
 }
 function logout() {
   var t = S.tok;
-  if (t) { if (typeof MOCK !== 'undefined') MOCK.call('apiLogout', t); else gasCall('apiLogout', [t]); }
-  S.tok = ''; S.role = ''; S.realRole = ''; S.name = ''; S.loaded = false; S.dIn = null; S.dOut = null; ssSet('pem_ses', ''); render();
+  if (t) rpc('apiLogout', [t]);
+  S.tok = ''; S.role = ''; S.realRole = ''; S.name = ''; S.user = ''; S.mustChange = false; S.perms = undefined; S.adm = null; S.loaded = false; S.dIn = null; S.dOut = null;
+  ssSet('pem_ses', ''); closeSheet(); render();
 }
+function saveSes() { ssSet('pem_ses', JSON.stringify({ token: S.tok, role: S.realRole, name: S.name, user: S.user, mustChange: !!S.mustChange })); }
 function enter(d) {
-  S.tok = d.token; S.realRole = d.role; S.role = uiRole(d.role); S.name = d.name; S.tab = 'stock'; S.loaded = false; S.dIn = newIn(); S.dOut = newOut();
-  ssSet('pem_ses', JSON.stringify({ token: d.token, role: d.role, name: d.name }));
-  render(); load();
+  S.tok = d.token; S.realRole = d.role; S.role = uiRole(d.role); S.name = d.name; S.user = d.user || ''; S.mustChange = !!d.mustChange;
+  S.perms = undefined; S.adm = null; S.tab = 'stock'; S.loaded = false; S.dIn = newIn(); S.dOut = newOut();
+  saveSes(); render();
+  if (S.mustChange) chpwSheet(true); else load();
 }
 
 function sendWrite(fn, payload, okMsg, reset) {
@@ -676,7 +992,17 @@ document.addEventListener('click', function (e) {
   if (a === 'cropok') return cropOk();
   if (a === 'close') return closeSheet();
   if (a === 'logout') return logout();
-  if (a === 'tab') { S.tab = el.getAttribute('data-t'); render(); return; }
+  if (a === 'register') return openRegister();
+  if (a === 'regrole') { S.reg.role = el.getAttribute('data-r'); regSheet(); return; }
+  if (a === 'regback') { S.reg.role = ''; regSheet(); return; }
+  if (a === 'chpw') return chpwSheet(false);
+  if (a === 'uop') return userOp(el.getAttribute('data-op'), el.getAttribute('data-u'));
+  if (a === 'ufilter') { S.adm.f = el.getAttribute('data-r'); render(); return; }
+  if (a === 'perm') return setPerm(el.getAttribute('data-r'), el.getAttribute('data-k'));
+  if (a === 'permreset') { ask('คืนค่าเริ่มต้นสิทธิ์ทั้งหมด?', 'เปิดสิทธิ์ทุกข้อของทุกตำแหน่งกลับเป็นค่าเริ่มต้น', 'warn', 'คืนค่าเริ่มต้น').then(function (ok) { if (ok) admRun('apiResetPerms', [], 'คืนค่าเริ่มต้นสิทธิ์แล้ว'); }); return; }
+  if (a === 'ucreate') return ucreateSheet();
+  if (a === 'copypw') { try { navigator.clipboard.writeText(S.lastTemp || '').then(function () { toast('คัดลอกรหัสผ่านแล้ว'); }, function () { toast('คัดลอกไม่ได้ — จดรหัสจากหน้าจอ', 'err'); }); } catch (x) { toast('คัดลอกไม่ได้ — จดรหัสจากหน้าจอ', 'err'); } return; }
+  if (a === 'tab') { S.tab = el.getAttribute('data-t'); if (S.tab === 'admin') loadAdmin(); render(); return; }
   if (a === 'lowtgl') { S.low = !S.low; render(); return; }
   if (a === 'addline') { var w = el.getAttribute('data-w'); S[w].lines.push(w === 'dIn' ? { itemId: '', name: '', unit: '', cat: 'อื่น ๆ', docQty: '', qty: '' } : { itemId: '', qty: '' }); render(); return; }
   if (a === 'rmline') { S[el.getAttribute('data-w')].lines.splice(Number(el.getAttribute('data-i')), 1); render(); return; }
@@ -717,7 +1043,9 @@ function touched(p, el) {
   if (h && S.dIn.hf[h[1]] && S.dIn.hf[h[1]] !== 'user') { S.dIn.hf[h[1]] = 'user'; el.classList.remove('fok', 'fbad'); }
 }
 document.addEventListener('input', function (e) {
-  var el = e.target; if (!el.hasAttribute || !el.hasAttribute('data-b')) return;
+  var el = e.target;
+  if (el.hasAttribute && el.hasAttribute('data-phone')) { var fp = fmtPhone(el.value); if (fp !== el.value) el.value = fp; }
+  if (!el.hasAttribute || !el.hasAttribute('data-b')) return;
   touched(el.getAttribute('data-b'), el);
   if (el.hasAttribute('data-r')) return;
   var p = el.getAttribute('data-b');
@@ -933,7 +1261,7 @@ function itemEditor() {
   S.txs.forEach(function (t) { t.lines.forEach(function (l) { if (l.itemId === id) mv.push({ at: t.at, type: t.type, qty: l.qty, area: t.area }); }); });
   openSheet('<div class="row" style="margin-bottom:8px"><h2>' + esc(i.name) + '</h2><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div>' + thumb(i, 'lg') +
     '<div style="margin-top:10px"><span class="chip c-brand">' + esc(i.cat) + '</span> ' + stChip(i) + '</div><div style="margin:10px 0"><span class="qty">' + fmt(i.qty) + '</span> <span class="muted">' + esc(i.unit) + ' · ขั้นต่ำ ' + fmt(i.min) + '</span></div>' +
-    (S.role === 'store' ? '<button class="btn block" data-act="edititem" data-id="' + esc(i.id) + '">' + IC.edit + ' แก้ไขวัสดุ / เปลี่ยนรูป</button>' : '') +
+    (S.role === 'store' && canDo('item') ? '<button class="btn block" data-act="edititem" data-id="' + esc(i.id) + '">' + IC.edit + ' แก้ไขวัสดุ / เปลี่ยนรูป</button>' : '') +
     '<h3 style="margin-top:14px">ความเคลื่อนไหวล่าสุด</h3>' +
     (mv.length ? mv.slice(0, 10).map(function (m) { return '<div class="row sm" style="padding:4px 0"><span class="muted">' + esc(m.at) + (m.area ? ' · ' + esc(m.area) : '') + '</span><b style="color:' + (m.type === 'in' ? 'var(--in)' : 'var(--brand)') + '">' + (m.type === 'in' ? '+' : '-') + fmt(m.qty) + '</b></div>'; }).join('') : '<div class="muted sm">ยังไม่มี</div>'));
 }
@@ -944,14 +1272,20 @@ function itemEditor() {
 /* ---- MOCK backend: เปิดไฟล์นี้ตรง ๆ ในเบราว์เซอร์ได้ (ข้อมูลจำลองเก็บใน localStorage ของเบราว์เซอร์นี้) · build.mjs ตัดบล็อกนี้ออกจากเว็บจริง ---- */
 DEVHINT = 'โหมดทดลอง — ข้อมูลจำลองเก็บในเบราว์เซอร์นี้เท่านั้น ไม่เชื่อมกับ Google Sheet';
 var MOCK = (function () {
-  var KEY = 'pem_mock_v1';
-  var USERS = [
-    { u: 'staff', name: 'เจ้าหน้าที่ปฏิบัติงาน (ทดลอง)', role: 'staff' },
-    { u: 'lead', name: 'หัวหน้างาน (ทดลอง)', role: 'lead' },
-    { u: 'store', name: 'เจ้าหน้าที่พัสดุ (ทดลอง)', role: 'store' },
-    { u: 'viewer', name: 'ผู้บริหาร (ทดลอง)', role: 'viewer' }
-  ];
+  var KEY = 'pem_mock_v2';
   var PW = 'demo1234';
+  /* [ID, ชื่อ, ตำแหน่ง, สถานะ, เบอร์] — บัญชีทดลองทั้งหมด (รหัสผ่าน demo1234) */
+  var SEED_USERS = [
+    ['admin', 'ผู้ดูแลระบบ (ทดลอง)', 'admin', 'active', '081-000-0001'],
+    ['staff', 'ช่างไฟฟ้า (ทดลอง)', 'staff', 'active', '081-000-0002'],
+    ['plumber', 'ช่างประปา (ทดลอง)', 'staff', 'active', '081-000-0003'],
+    ['garden', 'เจ้าหน้าที่ภูมิทัศน์ (ทดลอง)', 'staff', 'active', '081-000-0004'],
+    ['lead', 'หัวหน้างาน (ทดลอง)', 'lead', 'active', '081-000-0005'],
+    ['store', 'เจ้าหน้าที่พัสดุ (ทดลอง)', 'store', 'active', '081-000-0006'],
+    ['viewer', 'ผู้บริหาร (ทดลอง)', 'viewer', 'active', '081-000-0007'],
+    ['newstaff', 'ผู้ลงทะเบียนใหม่ (ทดลอง)', 'staff', 'pending', '081-000-0008'],
+    ['oldstaff', 'เจ้าหน้าที่ย้ายงาน (ทดลอง)', 'staff', 'disabled', '081-000-0009']
+  ];
   var SEED_ITEMS = [
     ['หลอดไฟ LED T8 18W', 0, 'หลอด', 20, 60], ['สายไฟ VCT 2x1.5 ตร.มม.', 0, 'ม้วน', 3, 8], ['เบรกเกอร์ลูกย่อย 16A', 0, 'ตัว', 4, 12], ['ปลั๊กพ่วง 5 ช่อง', 0, 'อัน', 4, 10],
     ['ก๊อกน้ำสนาม ½ นิ้ว', 1, 'ตัว', 5, 15], ['ท่อ PVC 1 นิ้ว', 1, 'เส้น', 6, 20], ['เทปพันเกลียว', 1, 'ม้วน', 10, 40], ['ชุดฟลัชวาล์วชักโครก', 1, 'ชุด', 3, 8],
@@ -960,16 +1294,23 @@ var MOCK = (function () {
     ['ถุงขยะดำ 30x40 นิ้ว', 4, 'แพ็ค', 20, 80], ['ถุงขยะรีไซเคิล (สีเหลือง)', 4, 'แพ็ค', 10, 40], ['จุลินทรีย์บำบัดน้ำเสีย', 4, 'แกลลอน', 3, 10], ['ป้ายแยกประเภทขยะ', 4, 'ป้าย', 5, 15],
     ['ถุงมือผ้าเคลือบยาง', 5, 'คู่', 30, 100], ['หน้ากากกันฝุ่น N95', 5, 'กล่อง', 5, 20], ['แว่นตานิรภัย', 5, 'อัน', 6, 20], ['รองเท้าบูทยาง', 5, 'คู่', 4, 10]
   ];
+  function nowStr(d) { d = d || new Date(); return ymd(d) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2); }
   function seed() {
     var r = 7, rnd = function () { r = (r * 9301 + 49297) % 233280; return r / 233280; };
+    var base = new Date(), daysAgo = function (k, h) { var d = new Date(base.getFullYear(), base.getMonth(), base.getDate() - k, h || 9, Math.floor(rnd() * 60)); return nowStr(d); };
+    var users = SEED_USERS.map(function (x, i) {
+      return { username: x[0], displayName: x[1], role: x[2], status: x[3], phone: x[4], password: PW, ver: 1, mustChange: false,
+        createdAt: daysAgo(x[3] === 'pending' ? 1 : 130 - i), createdBy: x[3] === 'pending' ? 'self-register' : i ? 'admin' : 'sheet', reviewedAt: x[3] === 'pending' ? '' : daysAgo(129 - i), reviewedBy: x[3] === 'pending' ? '' : 'admin', lastLogin: x[3] === 'active' ? daysAgo(i % 3, 8) : '' };
+    });
+    var name = function (u) { return users.filter(function (x) { return x.username === u; })[0].displayName; };
     var items = SEED_ITEMS.map(function (x, i) { return { id: 'I' + (100 + i), name: x[0], cat: CATS[x[1]], unit: x[2], min: x[3], qty: 0, img: '', re: x[4] }; });
-    var txs = [], n = 0, base = new Date();
+    var txs = [], n = 0, staffs = ['staff', 'plumber', 'garden', 'lead'];
     for (var k = 120; k >= 0; k--) {
       var day = new Date(base.getFullYear(), base.getMonth(), base.getDate() - k), d = ymd(day), at = thDate(d);
       if (k === 120 || k % 21 === 3) {
         var pick = k === 120 ? items : items.filter(function (it) { return it.qty <= it.re * 0.6; });
         if (pick.length) {
-          txs.push({ id: 'T' + (++n), type: 'in', d: d, at: at + ' 09:' + ('0' + (10 + n % 40)).slice(-2), by: USERS[2].name, area: '', supplier: n % 2 ? 'หจก. ช่างไทยวัสดุ (ทดลอง)' : 'บจก. กรีนแลนด์สเคป (ทดลอง)', docNo: 'IV' + (6900 + n), docDate: d, note: '', photos: [], docImgs: [],
+          txs.push({ id: 'T' + (++n), type: 'in', d: d, at: at + ' 09:' + ('0' + (10 + n % 40)).slice(-2), by: name('store'), area: '', supplier: n % 2 ? 'หจก. ช่างไทยวัสดุ (ทดลอง)' : 'บจก. กรีนแลนด์สเคป (ทดลอง)', docNo: 'IV' + (6900 + n), docDate: d, note: '', photos: [], docImgs: [],
             lines: pick.map(function (it) { var q = it.re - it.qty; it.qty += q; return { itemId: it.id, name: it.name, unit: it.unit, qty: q, docQty: q }; }) });
         }
       }
@@ -979,50 +1320,149 @@ var MOCK = (function () {
         var it = items[Math.floor(rnd() * items.length)], q = Math.max(1, Math.round(it.re * (0.05 + rnd() * 0.12)));
         if (it.qty >= q && !lines.some(function (l) { return l.itemId === it.id; })) { it.qty -= q; lines.push({ itemId: it.id, name: it.name, unit: it.unit, qty: q, docQty: null }); }
       }
-      if (lines.length) txs.push({ id: 'T' + (++n), type: 'out', d: d, at: at + ' 1' + (n % 6) + ':' + ('0' + (n * 7 % 60)).slice(-2), by: rnd() < 0.5 ? USERS[0].name : USERS[1].name, area: AREAS[Math.floor(rnd() * AREAS.length)], supplier: '', docNo: '', docDate: '', note: '', photos: [], docImgs: [], lines: lines });
+      if (lines.length) txs.push({ id: 'T' + (++n), type: 'out', d: d, at: at + ' 1' + (n % 6) + ':' + ('0' + (n * 7 % 60)).slice(-2), by: name(staffs[Math.floor(rnd() * staffs.length)]), area: AREAS[Math.floor(rnd() * AREAS.length)], supplier: '', docNo: '', docDate: '', note: '', photos: [], docImgs: [], lines: lines });
     }
     items.forEach(function (it) { delete it.re; });
     items[5].qty = 0; items[21].qty = Math.min(items[21].qty, 3);
-    return { items: items, txs: txs, ses: {}, n: n };
+    var logs = [];
+    [[6, 'staff', 'ok'], [6, 'staff', 'logout'], [5, 'lead', 'ok'], [4, 'store', 'badpw'], [4, 'store', 'ok'], [3, 'plumber', 'ok'], [2, 'oldstaff', 'disabled'], [1, 'newstaff', 'pending'], [1, 'viewer', 'ok'], [0, 'admin', 'ok'], [0, 'garden', 'ok']].forEach(function (x) {
+      var u = users.filter(function (z) { return z.username === x[1]; })[0];
+      logs.unshift({ time: daysAgo(x[0], 8 + logs.length % 9), username: x[1], result: x[2], displayName: u.displayName, role: u.role });
+    });
+    var plog = [{ time: daysAgo(10, 14), by: 'admin', role: 'store', key: 'ai', value: false }, { time: daysAgo(9, 10), by: 'admin', role: 'store', key: 'ai', value: true }];
+    return { items: items, txs: txs, ses: {}, n: n, users: users, perms: {}, logs: logs, plog: plog };
   }
   var db;
   try { db = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { db = null; }
-  if (!db || !db.items) db = seed();
+  if (!db || !db.items || !db.users) db = seed();
   function save() { try { localStorage.setItem(KEY, JSON.stringify(db)); } catch (e) {} }
-  function view() {
-    var flow = [];
-    db.txs.forEach(function (t) { t.lines.forEach(function (l) { flow.push({ d: t.d, t: t.type, i: l.itemId, q: l.qty, x: t.id, a: t.area || '' }); }); });
-    return JSON.parse(JSON.stringify({ items: db.items, txs: db.txs.slice().reverse().slice(0, 300), flow: flow, ai: true }));
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function perms() {
+    var p = {};
+    PERM_ROLES.forEach(function (r) { p[r] = {}; PERM_DEFS.forEach(function (d) { if (d.roles.indexOf(r) >= 0) p[r][d.key] = !(db.perms[r] && db.perms[r][d.key] === false); }); });
+    return p;
   }
-  function who(tok, roles) {
-    var s = db.ses[tok];
+  function can(role, key) { if (role === 'admin') return true; var p = perms()[role]; return !!p && p[key] === true; }
+  function need(s, key) { if (!can(s.role, key)) throw new Error('สิทธิ์ "' + PERM_LABEL[key] + '" ของตำแหน่ง' + ROLE_NAME[s.role] + 'ถูกปิดอยู่ — ติดต่อผู้ดูแลระบบ'); }
+  function findU(u) { u = String(u || '').trim().toLowerCase(); return db.users.filter(function (x) { return x.username === u; })[0]; }
+  function mustU(u) { var m = findU(u); if (!m) throw new Error('ไม่พบบัญชีผู้ใช้'); return m; }
+  function manageable(m) { if (REG_ROLES.indexOf(m.role) < 0) throw new Error('บัญชีผู้ดูแลระบบจัดการได้จากชีต Users + syncUsers() เท่านั้น'); return m; }
+  function seat() { var o = {}; REG_ROLES.forEach(function (r) { o[r] = { used: db.users.filter(function (u) { return u.role === r && u.status !== 'rejected'; }).length, max: ROLE_LIMIT[r] }; }); return o; }
+  function checkSlot(role) { var i = seat()[role]; if (i.used >= i.max) throw new Error('ตำแหน่ง' + ROLE_NAME[role] + 'เต็มแล้ว (สูงสุด ' + i.max + ' คน)'); }
+  function validateNew(username, displayName) {
+    if (!USER_ID_RX.test(username)) throw new Error('ID ต้องเป็นตัวอักษรอังกฤษ/ตัวเลข/. _ - ยาว 4–30 ตัว');
+    if (!displayName) throw new Error('กรุณากรอกชื่อ-นามสกุล');
+    if (findU(username)) throw new Error('ID นี้ถูกใช้แล้ว');
+  }
+  function pub(m) { var o = clone(m); delete o.password; delete o.ver; return o; }
+  function temp() { var c = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789', o = ''; for (var i = 0; i < 10; i++) o += c[Math.floor(Math.random() * c.length)]; return o; }
+  function log(u, result, m) { db.logs.unshift({ time: nowStr(), username: u, result: result, displayName: m ? m.displayName : '', role: m ? m.role : '' }); db.logs = db.logs.slice(0, 300); }
+  function who(tok, roles, allowMust) {
+    var s = db.ses[tok], u = s && findU(s.user);
     if (!s) throw new Error('กรุณาเข้าสู่ระบบใหม่ (เซสชันหมดอายุ)');
-    if (roles && roles.indexOf(s.role) < 0) throw new Error('คุณไม่มีสิทธิ์ทำรายการนี้');
-    return s;
+    if (!u || u.status !== 'active' || u.ver !== s.ver) throw new Error('กรุณาเข้าสู่ระบบใหม่ (บัญชีถูกเปลี่ยนแปลง)');
+    if (!can(u.role, 'portal')) throw new Error('ระบบสำหรับตำแหน่ง' + ROLE_NAME[u.role] + 'ถูกปิดชั่วคราว — ติดต่อผู้ดูแลระบบ (กรุณาเข้าสู่ระบบใหม่ภายหลัง)');
+    if (u.mustChange && !allowMust) throw new Error('กรุณาเปลี่ยนรหัสผ่านก่อนใช้งาน');
+    if (roles && roles.indexOf(u.role) < 0) throw new Error('คุณไม่มีสิทธิ์ทำรายการนี้');
+    return { user: u.username, name: u.displayName, role: u.role, tok: tok };
+  }
+  function mgr(tok, what, key) {
+    var s = who(tok);
+    if (s.role !== 'store' && s.role !== 'admin') throw new Error('เฉพาะเจ้าหน้าที่พัสดุและผู้ดูแลระบบเท่านั้นที่' + what + 'ได้');
+    need(s, key); return s;
+  }
+  function session(u) { var tok = 'm' + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2); db.ses[tok] = { user: u.username, ver: u.ver }; return tok; }
+  function view(s) {
+    var flow = [];
+    if (can(s.role, 'dash')) db.txs.forEach(function (t) { t.lines.forEach(function (l) { flow.push({ d: t.d, t: t.type, i: l.itemId, q: l.qty, x: t.id, a: t.area || '' }); }); });
+    return clone({ items: db.items, txs: db.txs.slice().reverse().slice(0, 300), flow: flow, ai: can(s.role, 'ai'), perms: s.role === 'admin' ? null : perms()[s.role] });
   }
   function stamp() { var d = new Date(); return { d: ymd(d), at: thDate(ymd(d)) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) }; }
   var F = {
     apiLogin: function (u, p) {
-      var x = USERS.filter(function (z) { return z.u === String(u).toLowerCase(); })[0];
-      if (!x || p !== PW) throw new Error('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
-      var tok = 'm' + Math.random().toString(36).slice(2);
-      db.ses[tok] = { user: x.u, name: x.name, role: x.role }; save();
-      return { token: tok, role: x.role, name: x.name };
+      var name = String(u || '').trim().toLowerCase(), x = findU(name);
+      if (!name || !p) throw new Error('กรุณากรอกชื่อผู้ใช้และรหัสผ่าน');
+      if (!x) { log(name, 'unknown'); save(); throw new Error('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'); }
+      if (p !== x.password) { log(name, 'badpw', x); save(); throw new Error('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'); }
+      if (x.status === 'pending') { log(name, 'pending', x); save(); throw new Error('บัญชีนี้รอผู้ดูแลระบบอนุมัติ — กรุณารอการอนุมัติแล้วลองใหม่'); }
+      if (x.status === 'rejected') { log(name, 'rejected', x); save(); throw new Error('คำขอลงทะเบียนนี้ไม่ได้รับการอนุมัติ — ติดต่อผู้ดูแลระบบ'); }
+      if (x.status !== 'active') { log(name, 'disabled', x); save(); throw new Error('บัญชีนี้ถูกระงับ — ติดต่อผู้ดูแลระบบ'); }
+      if (!can(x.role, 'portal')) { log(name, 'closed', x); save(); throw new Error('ระบบสำหรับตำแหน่ง' + ROLE_NAME[x.role] + 'ถูกปิดชั่วคราว — ติดต่อผู้ดูแลระบบ'); }
+      var tok = session(x); x.lastLogin = nowStr(); log(name, 'ok', x); save();
+      return { token: tok, role: x.role, name: x.displayName, user: x.username, mustChange: x.mustChange };
     },
-    apiLogout: function (tok) { delete db.ses[tok]; save(); return true; },
-    apiStockData: function (tok) { who(tok); return view(); },
+    apiLogout: function (tok) { var s = db.ses[tok]; delete db.ses[tok]; if (s) log(s.user, 'logout', findU(s.user)); save(); return true; },
+    apiRegInfo: function () { var o = seat(); o.codeRequired = false; return o; },
+    apiRegister: function (p) {
+      p = p || {};
+      var role = String(p.role || ''), username = String(p.username || '').trim().toLowerCase(), displayName = String(p.displayName || '').trim().slice(0, 80), phone = phoneNorm(p.phone, true);
+      if (REG_ROLES.indexOf(role) < 0) throw new Error('กรุณาเลือกตำแหน่ง');
+      validateNew(username, displayName); chkPw(p.password, username, [displayName, phone]); checkSlot(role);
+      db.users.push({ username: username, displayName: displayName, role: role, status: 'pending', phone: phone, password: String(p.password), ver: 1, mustChange: false, createdAt: nowStr(), createdBy: 'self-register', reviewedAt: '', reviewedBy: '', lastLogin: '' });
+      save(); return true;
+    },
+    apiListUsers: function (tok) { who(tok, ['admin']); return { users: db.users.map(pub), limits: seat() }; },
+    apiCreateUser: function (tok, p) {
+      var s = who(tok, ['admin']); p = p || {};
+      var role = String(p.role || ''), username = String(p.username || '').trim().toLowerCase(), displayName = String(p.displayName || '').trim().slice(0, 80);
+      if (REG_ROLES.indexOf(role) < 0) throw new Error('กรุณาเลือกตำแหน่ง');
+      validateNew(username, displayName); checkSlot(role);
+      var t = temp();
+      db.users.push({ username: username, displayName: displayName, role: role, status: 'active', phone: phoneNorm(p.phone, false), password: t, ver: 1, mustChange: true, createdAt: nowStr(), createdBy: s.user, reviewedAt: nowStr(), reviewedBy: s.user, lastLogin: '' });
+      save(); return { username: username, tempPassword: t };
+    },
+    apiReviewUser: function (tok, u, dec) {
+      var s = who(tok, ['admin']), m = manageable(mustU(u));
+      if (m.status !== 'pending' && m.status !== 'rejected') throw new Error('บัญชีนี้ไม่ได้อยู่ในสถานะรออนุมัติ');
+      if (dec !== 'approve' && dec !== 'reject') throw new Error('คำสั่งไม่ถูกต้อง');
+      if (dec === 'approve' && m.status === 'rejected') checkSlot(m.role);
+      m.status = dec === 'approve' ? 'active' : 'rejected'; m.reviewedAt = nowStr(); m.reviewedBy = s.user; save(); return true;
+    },
+    apiSetUserStatus: function (tok, u, st) {
+      var s = who(tok, ['admin']), m = manageable(mustU(u));
+      if (st === 'disabled' && m.status === 'active') m.status = 'disabled';
+      else if (st === 'active' && m.status === 'disabled') m.status = 'active';
+      else throw new Error('เปลี่ยนสถานะไม่ได้');
+      m.reviewedAt = nowStr(); m.reviewedBy = s.user; save(); return true;
+    },
+    apiResetUserPassword: function (tok, u) { who(tok, ['admin']); var m = manageable(mustU(u)), t = temp(); m.password = t; m.ver++; m.mustChange = true; save(); return { username: m.username, tempPassword: t }; },
+    apiDeleteUser: function (tok, u) { who(tok, ['admin']); var m = manageable(mustU(u)); if (m.status === 'active') throw new Error('ต้องระงับบัญชีก่อนจึงจะลบได้'); db.users = db.users.filter(function (x) { return x !== m; }); save(); return true; },
+    apiSaveUser: function (tok, p) {
+      who(tok, ['admin']); p = p || {};
+      var m = manageable(mustU(p.username)), nm = String(p.displayName || '').trim().slice(0, 80);
+      if (!nm) throw new Error('กรุณากรอกชื่อ-นามสกุล');
+      m.displayName = nm; m.phone = phoneNorm(p.phone, false); save(); return true;
+    },
+    apiChangePassword: function (tok, o, n) {
+      var s = who(tok, null, true), m = mustU(s.user);
+      if (o !== m.password) throw new Error('รหัสผ่านเดิมไม่ถูกต้อง');
+      chkPw(n, m.username, [m.displayName, m.phone]);
+      if (n === o) throw new Error('รหัสผ่านใหม่ต้องต่างจากรหัสเดิม');
+      m.password = String(n); m.ver++; m.mustChange = false; delete db.ses[tok];
+      var t = session(m); save(); return { token: t };
+    },
+    apiListLoginLogs: function (tok) { who(tok, ['admin']); return clone(db.logs.slice(0, 200)); },
+    apiListPerms: function (tok) { who(tok, ['admin']); return { perms: perms(), log: clone(db.plog.slice().reverse().slice(0, 20)) }; },
+    apiSetPermission: function (tok, role, key, value) {
+      var s = who(tok, ['admin']), d = PERM_DEFS.filter(function (x) { return x.key === key; })[0];
+      if (!d || d.roles.indexOf(role) < 0) throw new Error('ไม่มีสิทธิ์นี้ในบทบาทที่เลือก');
+      db.perms[role] = db.perms[role] || {}; db.perms[role][key] = !!value;
+      db.plog.push({ time: nowStr(), by: s.user, role: role, key: key, value: !!value }); save(); return { perms: perms() };
+    },
+    apiResetPerms: function (tok) { var s = who(tok, ['admin']); db.perms = {}; db.plog.push({ time: nowStr(), by: s.user, role: 'all', key: 'reset', value: true }); save(); return { perms: perms() }; },
+    apiStockData: function (tok) { return view(who(tok)); },
     apiStockPhotos: function (tok, p) { who(tok); var o = {}; (p.ids || []).forEach(function (id) { if (String(id).indexOf('data:') === 0) o[id] = id; }); return o; },
     apiStockAddItem: function (tok, p) {
-      who(tok, ['store', 'admin']); var v = checkItem(p);
-      db.items.push({ id: 'I' + Date.now(), name: v.name, cat: v.cat, unit: v.unit, min: v.min, qty: 0, img: v.img }); save(); return view();
+      var s = mgr(tok, 'เพิ่มวัสดุ', 'item'), v = checkItem(p);
+      db.items.push({ id: 'I' + Date.now(), name: v.name, cat: v.cat, unit: v.unit, min: v.min, qty: 0, img: v.img }); save(); return view(s);
     },
     apiStockUpdateItem: function (tok, p) {
-      who(tok, ['store', 'admin']); var v = checkItem(p), it = db.items.filter(function (x) { return x.id === p.id; })[0];
+      var s = mgr(tok, 'แก้ไขวัสดุ', 'item'), v = checkItem(p), it = db.items.filter(function (x) { return x.id === p.id; })[0];
       if (!it) throw new Error('ไม่พบวัสดุ');
-      it.name = v.name; it.cat = v.cat; it.unit = v.unit; it.min = v.min; if (v.img) it.img = v.img; save(); return view();
+      it.name = v.name; it.cat = v.cat; it.unit = v.unit; it.min = v.min; if (v.img) it.img = v.img; save(); return view(s);
     },
     apiStockReceive: function (tok, p) {
-      var s = who(tok, ['store', 'admin']), v = checkReceive(p), t = stamp();
+      var s = mgr(tok, 'รับวัสดุเข้า', 'receive'), v = checkReceive(p), t = stamp();
       var lines = v.lines.map(function (l) {
         var it = db.items.filter(function (x) { return x.id === l.itemId; })[0];
         if (!it) { if (!l.unit) throw new Error('กรุณากรอกหน่วยนับของวัสดุใหม่ "' + l.name + '"'); it = { id: 'I' + Date.now() + Math.floor(Math.random() * 1000), name: l.name, cat: l.cat, unit: l.unit, min: 0, qty: 0, img: '' }; db.items.push(it); }
@@ -1030,10 +1470,13 @@ var MOCK = (function () {
         return { itemId: it.id, name: it.name, unit: it.unit, qty: l.qty, docQty: l.docQty };
       });
       db.txs.push({ id: 'T' + (++db.n), type: 'in', d: t.d, at: t.at, by: s.name, area: '', supplier: v.supplier, docNo: v.docNo, docDate: v.date, note: v.note, photos: p.photos.slice(0, 10), docImgs: (p.docs || []).slice(0, 6), lines: lines });
-      save(); return view();
+      save(); return view(s);
     },
     apiStockIssue: function (tok, p) {
-      var s = who(tok, ['staff', 'lead']), v = checkIssue(p), t = stamp();
+      var s = who(tok);
+      if (s.role !== 'staff' && s.role !== 'lead') throw new Error('เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างานเท่านั้นที่เบิกวัสดุจากสต็อกได้');
+      need(s, 'issue');
+      var v = checkIssue(p), t = stamp();
       var lines = v.lines.map(function (l) {
         var it = db.items.filter(function (x) { return x.id === l.itemId; })[0];
         if (!it) throw new Error('มีรายการที่ยังไม่ได้เลือกวัสดุ');
@@ -1043,10 +1486,10 @@ var MOCK = (function () {
       lines.forEach(function (l) { l.it.qty = Math.round((l.it.qty - l.qty) * 100) / 100; });
       db.txs.push({ id: 'T' + (++db.n), type: 'out', d: t.d, at: t.at, by: s.name, area: v.area, supplier: '', docNo: '', docDate: '', note: v.note, photos: p.photos.slice(0, 10), docImgs: [],
         lines: lines.map(function (l) { return { itemId: l.it.id, name: l.it.name, unit: l.it.unit, qty: l.qty, docQty: null }; }) });
-      save(); return view();
+      save(); return view(s);
     },
     apiStockScan: function (tok, p) {
-      who(tok, ['store', 'admin']);
+      mgr(tok, 'อ่านใบส่งของ', 'ai');
       return { demo: true, supplier: 'หจก. ช่างไทยวัสดุ (ทดลอง)', docNo: 'IV7001', date: TODAY, unclear: ['docNo'], lines: [
         { row: '1', name: 'หลอดไฟ LED T8 18W', qty: 24, unit: 'หลอด', legible: true },
         { row: '2', name: 'เทปพันเกลียว', qty: 20, unit: 'ม้วน', legible: true },
@@ -1054,10 +1497,11 @@ var MOCK = (function () {
         { row: '4', name: 'กาวยาแนวกระเบื้อง', qty: 6, unit: 'ถุง', legible: true }] };
     }
   };
+  var DEMO = ['admin', 'staff', 'lead', 'store', 'viewer'];
   return {
     call: function (name) {
       var args = Array.prototype.slice.call(arguments, 1);
-      try { var fresh = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh && fresh.items) db = fresh; } catch (e) {}
+      try { var fresh = JSON.parse(localStorage.getItem(KEY) || 'null'); if (fresh && fresh.items && fresh.users) db = fresh; } catch (e) {}
       return new Promise(function (res) {
         setTimeout(function () {
           try { if (!F[name]) throw new Error('ไม่มีฟังก์ชัน ' + name); res({ ok: true, data: F[name].apply(null, args) }); }
@@ -1066,18 +1510,19 @@ var MOCK = (function () {
       });
     },
     loginCards: function () {
-      return '<div class="card gap"><h3>บัญชีทดลอง</h3><div class="muted xs">แตะเพื่อเข้าสู่ระบบตามบทบาท (รหัสผ่าน ' + PW + ')</div>' + USERS.map(function (x) {
-        return '<button class="btn block demo-acc" style="justify-content:flex-start;height:auto;padding:10px 12px" data-act="demologin" data-u="' + x.u + '"><span class="th">' + (x.role === 'store' ? IC.down : x.role === 'viewer' ? IC.chart : IC.up) + '</span><span><b>' + esc(ROLE_TXT[x.role]) + '</b><br><span class="muted xs" style="font-weight:400">' + esc(x.u) + '</span></span></button>';
+      return '<div class="card gap"><h3>บัญชีทดลอง</h3><div class="muted xs">แตะเพื่อเข้าสู่ระบบตามบทบาท (รหัสผ่าน ' + PW + ') · ลองลงทะเบียนบัญชีใหม่ แล้วเข้าเป็น admin เพื่ออนุมัติได้</div>' + DEMO.map(function (u) {
+        var x = findU(u) || { role: u };
+        return '<button class="btn block demo-acc" style="justify-content:flex-start;height:auto;padding:10px 12px" data-act="demologin" data-u="' + u + '"><span class="th">' + ROLE_IC[x.role] + '</span><span><b>' + esc(ROLE_NAME[x.role]) + '</b><br><span class="muted xs" style="font-weight:400">' + esc(u) + '</span></span></button>';
       }).join('') + '<button class="btn ghost danger sm" data-act="mockreset">ล้างข้อมูลจำลองแล้วเริ่มใหม่</button></div>';
     },
     reset: function () { db = seed(); save(); }
   };
 })();
-/* mockup.html?embed=1&role=staff|lead|store|viewer&tab=stock|dash|in|out|hist — present.html ฝังหน้านี้ใน iframe แล้วเข้าสู่ระบบตามบทบาทให้เลย */
+/* mockup.html?embed=1&role=admin|staff|lead|store|viewer&tab=stock|dash|in|out|hist|admin — present.html ฝังหน้านี้ใน iframe แล้วเข้าสู่ระบบตามบทบาทให้เลย */
 function devAuto() {
   var q = {}; location.search.replace(/^\?/, '').split('&').forEach(function (kv) { var p = kv.split('='); if (p[0]) q[p[0]] = decodeURIComponent(p[1] || ''); });
   if (q.role === 'home' || !q.role) return q.embed === '1' ? (render(), true) : false;
-  if (['staff', 'lead', 'store', 'viewer'].indexOf(q.role) < 0) return false;
+  if (['admin', 'staff', 'lead', 'store', 'viewer'].indexOf(q.role) < 0) return false;
   MOCK.call('apiLogin', q.role, 'demo1234').then(function (r) {
     if (!r.ok) return render();
     enter(r.data); ssSet('pem_ses', '');
