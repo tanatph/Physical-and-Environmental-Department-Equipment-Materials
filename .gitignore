@@ -1,0 +1,6 @@
+# GitHub repo นี้ใช้เผยแพร่คู่มือ + present ผ่าน GitHub Pages เท่านั้น (Settings → Pages → main /docs)
+# whitelist: ขึ้นเฉพาะ docs/ — gas/ (Sheet ID, Script ID), tools/, .clasp.json ห้ามขึ้น
+# อัปเดต: node tools/publish-docs.mjs แล้ว commit + push
+/*
+!/.gitignore
+!/docs/

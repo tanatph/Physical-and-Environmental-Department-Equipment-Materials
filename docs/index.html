@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p700:#383838;--p600:#4D4D4D;--p100:#E8E8E8;--p50:#F4F4F4;--ink:#1F1F1F;--mute:#616161;--line:#D9D9D9;--bg:#fff;--red:#E11D48;--red-t:#FFF4F3;--green:#006E42;--green-t:#F0FAF6;--amber:#66551A;--amber-t:#FFF7D6}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:'Noto Sans Thai',system-ui,sans-serif;font-weight:400;color:var(--ink);background:var(--p50);line-height:1.65;font-size:17px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{background:var(--p600);color:#fff;padding:26px 0 30px}
+header.top .lg{background:#fff;border-radius:14px;padding:8px 16px;width:max-content;max-width:100%;margin-bottom:16px}
+header.top .lg img{height:54px;display:block}
+header.top h1{font-size:clamp(26px,4.2vw,40px);font-weight:700;line-height:1.3}
+header.top p{opacity:.92;margin-top:6px}
+nav.toc{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
+nav.toc .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav.toc a{flex:none;text-decoration:none;color:var(--p700);font-weight:700;border-radius:99px;padding:6px 14px;font-size:15px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+nav.toc a:hover,nav.toc a:focus-visible{background:var(--p100);outline:none}
+section.part{padding:34px 0 8px}
+.ph{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ph .no{flex:none;width:46px;height:46px;border-radius:14px;background:var(--p700);color:#fff;font-weight:700;font-size:22px;display:grid;place-items:center}
+.ph h2{font-size:clamp(22px,3vw,30px);font-weight:700;color:var(--p700);line-height:1.3}
+.ph p{color:var(--mute);font-size:15px}
+h3{font-size:19px;font-weight:700;color:var(--p700);margin:0 0 6px}
+.box{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:16px}
+.box.info{background:var(--p100);border-color:var(--p600)}.box.tip{background:var(--green-t);border-color:var(--green)}.box.warn{background:var(--amber-t);border-color:var(--amber)}
+.box ul,.box ol{padding-left:1.3em;display:grid;gap:4px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-bottom:16px}
+.role{border-radius:16px;padding:14px 16px;border:1px solid var(--line);background:#fff;color:var(--p700)}
+.role.dk{background:var(--p700);border-color:var(--p700);color:#fff}.role.dk p{color:#EDEDED}
+.role>b{display:block;font-size:18px;margin-bottom:2px}
+.role p{color:var(--ink);font-size:15px;line-height:1.5}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 10px}
+.st{border-radius:12px;padding:6px 14px;font-weight:700;font-size:15px;border:2px solid var(--p600);color:var(--p700);background:#fff}
+.st.dk{background:var(--p700);color:#fff;border-color:var(--p700)}
+.arrow{color:var(--mute);font-size:20px}
+.legend{display:flex;gap:10px;align-items:center;font-size:15px;color:var(--mute);margin-bottom:14px}
+.mk{display:inline-grid;place-items:center;width:1.5em;height:1.5em;border-radius:50%;background:var(--red);color:#fff;font-weight:700;font-size:.85em;vertical-align:.05em;line-height:1}
+.steps{display:grid;grid-template-columns:1fr;gap:16px}
+.step{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start;break-inside:avoid}
+.step figure{margin:0}
+.step img{width:100%;display:block;border-radius:14px;border:2px solid var(--p600);cursor:zoom-in;box-shadow:0 6px 18px #38383822;background:var(--p100)}
+.step .t{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
+.step .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--p700);color:#fff;font-weight:700;display:grid;place-items:center}
+.step h3{margin:0;line-height:1.35;padding-top:3px}
+.step p{font-size:16px;margin-bottom:6px}
+.step ul{padding-left:1.2em;font-size:16px;display:grid;gap:3px;margin-bottom:6px}
+.note{font-size:14.5px;border-radius:12px;padding:8px 12px;margin-top:6px}
+.note.tip{background:var(--green-t);color:#14562a}.note.warn{background:var(--amber-t);color:#5a4a10}
+table.t{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:15.5px;margin-bottom:16px}
+table.t th,table.t td{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+table.t th{background:var(--p100);color:var(--p700)}
+.tw{overflow-x:auto}
+code{background:var(--p100);border-radius:6px;padding:1px 6px;font-size:.92em}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 16px;margin-bottom:10px}
+summary{font-weight:700;color:var(--p700);cursor:pointer}
+details p{margin-top:6px;font-size:16px}
+footer{padding:30px 0 50px;color:var(--mute);font-size:14px;text-align:center}
+.lb{position:fixed;inset:0;background:#000c;display:none;align-items:center;justify-content:center;z-index:50;padding:16px;cursor:zoom-out}
+.lb.on{display:flex}.lb img{max-height:94vh;max-width:min(94vw,520px);border-radius:14px;background:#fff}
+@media (max-width:560px){.step{grid-template-columns:1fr}.step figure{max-width:260px}}
+@media print{nav.toc,.lb{display:none}body{background:#fff;font-size:15px}.step{page-break-inside:avoid}section.part{page-break-before:always}header.top{print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="lg"><img src="https://vxfozsxudrkxrjphttxm.supabase.co/storage/v1/object/public/Photo/Thai_color01_0_0.png" alt="ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ"></div>
+  <h1>คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์<br>งานกายภาพและสิ่งแวดล้อม</h1>
+  <p>ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ · ทำตามทีละขั้น พร้อมภาพหน้าจอจริงของระบบ</p>
+</div></header>
+<nav class="toc" aria-label="สารบัญ"><div class="wrap">
+  <a href="#overview">1. ภาพรวมและเข้าสู่ระบบ</a>
+  <a href="#stock">2. ดูวัสดุคงเหลือ</a>
+  <a href="#issue">3. เบิกวัสดุ</a>
+  <a href="#dash">4. แดชบอร์ดและประวัติ</a>
+  <a href="#receive">5. รับวัสดุเข้า</a>
+  <a href="#admin">6. ผู้ดูแลระบบ</a>
+  <a href="#faq">คำถามที่พบบ่อย</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ===================== 1. ภาพรวม ===================== -->
+<section class="part" id="overview">
+  <div class="ph"><span class="no">1</span><div><h2>ภาพรวมของระบบ และการเข้าสู่ระบบ</h2><p>ใช้ได้ทั้งบนมือถือและคอมพิวเตอร์ ผ่านเว็บเบราว์เซอร์</p></div></div>
+
+  <div class="box info">
+    <h3>ระบบนี้ใช้ทำอะไร</h3>
+    <p>ใช้บริหารสต็อก <b>วัสดุอุปกรณ์ของงานกายภาพและสิ่งแวดล้อม</b> — วัสดุไฟฟ้า วัสดุประปาและสุขภัณฑ์ วัสดุซ่อมบำรุงและก่อสร้าง สนามและภูมิทัศน์ สิ่งแวดล้อมและจัดการขยะ และอุปกรณ์ความปลอดภัย · บันทึกการ<b>รับเข้า</b>พร้อมรูปใบส่งของ และการ<b>เบิก</b>ไปใช้ที่ <b>12 สนาม / อาคาร</b> ของศูนย์กีฬา ทุกครั้งมีรูปถ่าย ผู้ทำรายการ และวันเวลาเป็นหลักฐาน</p>
+  </div>
+
+  <h3>ใครทำอะไรในระบบ</h3>
+  <div class="cols">
+    <div class="role"><b>เจ้าหน้าที่ปฏิบัติงาน</b><p>ดูวัสดุคงเหลือ · <b>เบิก</b>วัสดุไปใช้ที่สนาม / อาคาร · ดูประวัติ</p></div>
+    <div class="role"><b>หัวหน้างาน</b><p>ทำได้เหมือนเจ้าหน้าที่ปฏิบัติงาน และดู<b>แดชบอร์ด</b>การรับเข้า–เบิกออก</p></div>
+    <div class="role dk"><b>เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ</b><p><b>รับวัสดุเข้า</b> (ให้ AI ช่วยอ่านใบส่งของได้) · เพิ่ม / แก้ไขรายการวัสดุ · ดูแดชบอร์ด (เบิกไม่ได้)</p></div>
+    <div class="role"><b>ผู้บริหาร / ผู้ตรวจสอบ</b><p>ดูวัสดุคงเหลือ แดชบอร์ด และประวัติ (ดูอย่างเดียว)</p></div>
+  </div>
+
+  <h3>เส้นทางของวัสดุ</h3>
+  <div class="flow">
+    <span class="st dk">รับเข้า + รูปใบส่งของ</span><span class="arrow">→</span>
+    <span class="st">คงเหลือในสต็อก</span><span class="arrow">→</span>
+    <span class="st dk">เบิกไปใช้ + รูป + พื้นที่</span><span class="arrow">→</span>
+    <span class="st">แดชบอร์ด / ประวัติ</span>
+  </div>
+  <p class="legend">วงกลมสีแดง <span class="mk">1</span> ในภาพ = ตำแหน่งที่ต้องกด ตรงกับเลขในคำอธิบาย</p>
+
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/login.jpg" alt="หน้าเข้าสู่ระบบ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>เข้าสู่ระบบ</h3></div>
+        <ul><li><span class="mk">1</span> กรอก<b>ชื่อผู้ใช้</b> ที่ได้รับจากผู้ดูแลระบบ</li><li><span class="mk">2</span> กรอก<b>รหัสผ่าน</b></li><li><span class="mk">3</span> กด <b>เข้าสู่ระบบ</b></li></ul>
+        <div class="note tip">ยังไม่มีบัญชี? ติดต่อผู้ดูแลระบบของงานกายภาพและสิ่งแวดล้อม — ระบบไม่มีการลงทะเบียนเอง บทบาทของคุณกำหนดโดยผู้ดูแลระบบ</div>
+        <div class="note warn">การเข้าสู่ระบบมีอายุ 6 ชั่วโมง หรือจนกว่าจะปิดแท็บ — เมื่อหมดอายุระบบจะพากลับมาหน้านี้</div></div></article>
+  </div>
+</section>
+
+<!-- ===================== 2. ดูวัสดุคงเหลือ ===================== -->
+<section class="part" id="stock">
+  <div class="ph"><span class="no">2</span><div><h2>ดูวัสดุอุปกรณ์และจำนวนคงเหลือ</h2><p>ทุกบทบาท · แท็บ “วัสดุอุปกรณ์”</p></div></div>
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/stock.jpg" alt="รายการวัสดุและคงเหลือ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>ภาพรวมคงเหลือ</h3></div>
+        <ul><li><span class="mk">1</span> สรุปจำนวนรายการวัสดุ ใกล้หมด และหมดสต็อก</li><li><span class="mk">2</span> แตะ<b>หมวดหมู่</b>เพื่อกรอง (เลื่อนซ้าย–ขวาได้) หรือพิมพ์ค้นหาชื่อวัสดุ · กด <b>เฉพาะใกล้หมด/หมด</b> เพื่อดูรายการที่ต้องจัดซื้อ</li><li><span class="mk">3</span> ป้ายสถานะ: <b>ปกติ</b> / <b>ใกล้หมด</b> (เหลือไม่เกินจำนวนขั้นต่ำ) / <b>หมด</b></li><li><span class="mk">4</span> เมนูด้านล่าง — แท็บที่เห็นขึ้นกับบทบาทของคุณ</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/item.jpg" alt="รายละเอียดวัสดุ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>แตะการ์ดเพื่อดูรายละเอียด</h3></div>
+        <ul><li><span class="mk">1</span> จำนวนคงเหลือ และจำนวนขั้นต่ำที่ตั้งไว้</li><li><span class="mk">2</span> ความเคลื่อนไหวล่าสุด — รับเข้า (+) / เบิกออก (−) พร้อมวันเวลาและพื้นที่</li></ul>
+        <p>กดปุ่ม ✕ มุมขวาบน หรือแตะพื้นที่นอกหน้าต่างเพื่อปิด</p></div></article>
+  </div>
+</section>
+
+<!-- ===================== 3. เบิก ===================== -->
+<section class="part" id="issue">
+  <div class="ph"><span class="no">3</span><div><h2>เบิกวัสดุไปใช้</h2><p>เจ้าหน้าที่ปฏิบัติงาน / หัวหน้างาน · แท็บ “เบิก”</p></div></div>
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/out1.jpg" alt="เลือกพื้นที่และวัสดุที่เบิก" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>เลือกพื้นที่และวัสดุที่จะเบิก</h3></div>
+        <ul><li><span class="mk">1</span> เลือก<b>สนาม / อาคาร</b>ที่นำวัสดุไปใช้ (จำเป็น)</li><li><span class="mk">2</span> เลือกวัสดุ (ในวงเล็บคือจำนวนคงเหลือ — วัสดุที่หมดเลือกไม่ได้)</li><li><span class="mk">3</span> กด <b>เพิ่มรายการ</b> ถ้าเบิกหลายอย่างในครั้งเดียว</li><li><span class="mk">4</span> ใส่จำนวนที่เบิก (หน่วยแสดงในวงเล็บ)</li></ul>
+        <div class="note tip">เบิกเกินจำนวนคงเหลือไม่ได้ — ระบบเตือนทันทีใต้ช่องจำนวน</div></div></article>
+    <article class="step"><figure><img src="manual-img/out2.jpg" alt="ถ่ายรูปและส่งใบเบิก" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>ถ่ายรูปวัสดุที่รับ แล้วส่งใบเบิก</h3></div>
+        <ul><li><span class="mk">1</span> ถ่ายรูปวัสดุที่เบิกตามจำนวนจริงอย่างน้อย 1 รูป (จำเป็น สูงสุด 10 รูป) · แตะ ✕ บนรูปเพื่อลบ</li><li><span class="mk">2</span> พิมพ์หมายเหตุ เช่น งานที่นำไปใช้ (ไม่บังคับ)</li><li><span class="mk">3</span> กด <b>ส่งใบเบิก</b></li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/out3.jpg" alt="ยืนยันส่งใบเบิก" loading="lazy"></figure>
+      <div><div class="t"><span class="n">3</span><h3>ยืนยันการเบิก</h3></div>
+        <p>ตรวจสรุปจำนวนรายการ พื้นที่ และจำนวนรูป แล้วกด <b>ส่งใบเบิก</b> <span class="mk">1</span> — จำนวนคงเหลือถูกหักทันที แล้วระบบพาไปที่แท็บ “ประวัติ”</p>
+        <div class="note warn">ใบเบิกที่ส่งแล้วแก้ไขไม่ได้ (เพื่อให้ประวัติเป็นหลักฐาน) — ตรวจให้ถูกต้องก่อนยืนยัน</div></div></article>
+  </div>
+</section>
+
+<!-- ===================== 4. แดชบอร์ด + ประวัติ ===================== -->
+<section class="part" id="dash">
+  <div class="ph"><span class="no">4</span><div><h2>แดชบอร์ดและประวัติ</h2><p>แดชบอร์ด: หัวหน้างาน / เจ้าหน้าที่พัสดุ / ผู้บริหาร · ประวัติ: ทุกบทบาท</p></div></div>
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/dash.jpg" alt="แดชบอร์ด" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>เลือกช่วงเวลาและพื้นที่</h3></div>
+        <ul><li><span class="mk">1</span> ดูเป็นราย<b>สัปดาห์ / เดือน / ปี</b> · ลูกศรซ้าย–ขวาเลื่อนช่วงเวลา กด <b>ปัจจุบัน</b> เพื่อกลับ</li><li><span class="mk">2</span> กรองเฉพาะสนาม / อาคาร (แสดงเฉพาะการเบิก — การรับเข้าไม่ผูกกับพื้นที่)</li><li><span class="mk">3</span> จำนวนใบรับเข้า / ใบเบิก และปริมาณรวม</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/dash2.jpg" alt="กราฟและอันดับวัสดุที่เบิก" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>กราฟและอันดับการเบิก</h3></div>
+        <ul><li><span class="mk">1</span> กราฟรับเข้า (เทาอ่อน) – เบิกออก (เทาเข้ม) แตะแท่งเพื่อดูตัวเลข หรือกด “ดูเป็นตาราง”</li><li><span class="mk">2</span> อันดับวัสดุที่เบิกมากที่สุด เลือกหมวดหมู่ได้ · ด้านล่างมีสรุปการเบิกตามสนาม / อาคาร และตามหมวดหมู่</li></ul>
+        <div class="note tip">ใช้วางแผนจัดซื้อและงบประมาณ: ดูรายปีเพื่อเทียบปริมาณการใช้แต่ละหมวด</div></div></article>
+    <article class="step"><figure><img src="manual-img/hist.jpg" alt="ประวัติการรับเข้าและเบิกออก" loading="lazy"></figure>
+      <div><div class="t"><span class="n">3</span><h3>ตรวจดูที่แท็บ “ประวัติ”</h3></div>
+        <ul><li><span class="mk">1</span> ทุกรายการแสดงประเภท (รับเข้า / เบิกออก) พื้นที่ วันเวลา ชื่อผู้ทำรายการ จำนวน และรูป — แตะรูปเพื่อดูภาพใหญ่</li><li><span class="mk">2</span> แท็บ <b>ประวัติ</b> ที่เมนูด้านล่าง</li></ul>
+        <p>ป้าย <b>รับขาด</b> แสดงเมื่อรับจริงน้อยกว่าที่ระบุในเอกสาร</p></div></article>
+  </div>
+</section>
+
+<!-- ===================== 5. รับเข้า ===================== -->
+<section class="part" id="receive">
+  <div class="ph"><span class="no">5</span><div><h2>รับวัสดุเข้า และเพิ่ม / แก้ไขรายการวัสดุ</h2><p>เจ้าหน้าที่พัสดุ / ผู้ดูแลระบบ · แท็บ “รับเข้า”</p></div></div>
+  <div class="steps">
+    <article class="step"><figure><img src="manual-img/in1.jpg" alt="ใบรับสินค้าจาก Supplier" loading="lazy"></figure>
+      <div><div class="t"><span class="n">1</span><h3>ถ่ายรูปใบส่งของ</h3></div>
+        <ul><li><span class="mk">1</span> ถ่าย / เลือกรูปใบส่งของได้หลายหน้า (สูงสุด 6) — ระบบเปิดหน้าครอป / ซูม / หมุน ให้ตัวอักษรชัดก่อนบันทึก</li><li><span class="mk">2</span> กด <b>อ่านเอกสารด้วย Gemini</b> ให้ AI กรอกชื่อผู้ขาย เลขที่เอกสาร วันที่ และรายการวัสดุให้ (มีเมื่อผู้ดูแลระบบเปิดใช้ AI)</li><li><span class="mk">3</span> ตรวจ / แก้ <b>Supplier</b> เลขที่เอกสาร และวันที่ — ช่องเขียว = AI อ่านได้ · ช่องแดง = ไม่แน่ใจ</li></ul>
+        <div class="note tip">ไม่มีปุ่ม AI ก็ใช้งานได้ปกติ — กด <b>เพิ่มรายการ</b> แล้วกรอกเองในตาราง</div></div></article>
+    <article class="step"><figure><img src="manual-img/in2.jpg" alt="ตารางรายการวัสดุหลัง AI อ่าน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">2</span><h3>ตรวจรายการวัสดุ</h3></div>
+        <ul><li><span class="mk">1</span> <b>แถวเขียว</b> = AI อ่านได้ชัด</li><li><span class="mk">2</span> <b>แถวแดง</b> = อ่านไม่ชัด — เทียบกับเอกสารแล้วแก้ในช่อง หรือกด <b>ตรวจแล้ว ถูกต้อง</b> (แถวจะเปลี่ยนเป็นกรอบเทา “ตรวจแก้แล้ว”)</li><li>ช่อง <b>ตรงกับวัสดุในสต็อก</b>: ระบบจับคู่ให้ ถ้าเป็นของใหม่เลือก “+ สร้างเป็นวัสดุใหม่” แล้วเลือกหมวดหมู่และใส่หน่วยนับ</li><li>ใส่จำนวน <b>ตามเอกสาร</b> และ <b>รับจริง</b> — ถ้าไม่ตรงกันระบบแสดงป้าย ขาด / เกิน</li></ul>
+        <div class="note warn">บนมือถือ ตารางเลื่อนซ้าย–ขวาได้ เพื่อดูช่องจำนวนและสถานะ</div></div></article>
+    <article class="step"><figure><img src="manual-img/in3.jpg" alt="ถ่ายรูปและยืนยันรับเข้า" loading="lazy"></figure>
+      <div><div class="t"><span class="n">3</span><h3>ถ่ายรูปวัสดุที่ได้รับ แล้วยืนยัน</h3></div>
+        <ul><li><span class="mk">1</span> ถ่ายรูปวัสดุที่ได้รับจริงอย่างน้อย 1 รูป (จำเป็น)</li><li><span class="mk">2</span> กด <b>ยืนยันรับเข้าสต็อก</b> แล้วยืนยันอีกครั้ง — จำนวนคงเหลือเพิ่มทันที</li></ul>
+        <p>ถ้ามีแถวแดงที่ยังไม่ได้ตรวจ หรือรับจริงน้อยกว่าเอกสาร หน้าต่างยืนยันจะเตือนเป็นตัวหนาสีแดง</p></div></article>
+    <article class="step"><figure><img src="manual-img/additem-btn.jpg" alt="ปุ่มเพิ่มวัสดุ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">4</span><h3>เพิ่มวัสดุใหม่ (ไม่ต้องรับเข้า)</h3></div>
+        <ul><li><span class="mk">1</span> ที่แท็บ <b>วัสดุอุปกรณ์</b> กด <b>เพิ่มวัสดุ</b> — หรือแตะการ์ดวัสดุแล้วกด <b>แก้ไขวัสดุ / เปลี่ยนรูป</b></li><li><span class="mk">2</span> แท็บ <b>รับเข้า</b> อยู่ที่เมนูด้านล่าง</li></ul></div></article>
+    <article class="step"><figure><img src="manual-img/additem.jpg" alt="ฟอร์มเพิ่มวัสดุ" loading="lazy"></figure>
+      <div><div class="t"><span class="n">5</span><h3>กรอกข้อมูลวัสดุ</h3></div>
+        <ul><li>เพิ่มรูปวัสดุ (ไม่บังคับ)</li><li><span class="mk">1</span> ชื่อวัสดุ</li><li><span class="mk">2</span> หมวดหมู่</li><li><span class="mk">3</span> หน่วยนับ และ <b>แจ้งเตือนเมื่อเหลือ ≤</b> (จำนวนขั้นต่ำที่จะขึ้นป้ายใกล้หมด)</li><li><span class="mk">4</span> กด <b>บันทึก</b></li></ul>
+        <div class="note tip">วัสดุใหม่เริ่มที่คงเหลือ 0 — เพิ่มจำนวนด้วยการรับเข้า</div></div></article>
+  </div>
+</section>
+
+<!-- ===================== 6. ผู้ดูแลระบบ ===================== -->
+<section class="part" id="admin">
+  <div class="ph"><span class="no">6</span><div><h2>สำหรับผู้ดูแลระบบ: จัดการบัญชีผู้ใช้</h2><p>ทำใน Google Sheet ฐานข้อมูล และตัวแก้ไข Apps Script</p></div></div>
+  <div class="box">
+    <h3>เพิ่มผู้ใช้ / ตั้งรหัสผ่านใหม่</h3>
+    <ol>
+      <li>เปิด Google Sheet ของระบบ แท็บ <b>Users</b></li>
+      <li>เพิ่มแถว: <code>Username</code> (a–z, 0–9, . _ - อย่างน้อย 3 ตัว) · <code>DisplayName</code> (ชื่อที่แสดง) · <code>Role</code> · <code>Status</code> = <code>active</code></li>
+      <li>พิมพ์รหัสผ่านในช่อง <code>NewPassword</code> (อย่างน้อย 8 ตัว ไม่ใช่ตัวเลขล้วน)</li>
+      <li>เปิดตัวแก้ไข Apps Script เลือกฟังก์ชัน <b>syncUsers</b> แล้วกด <b>Run</b> — ระบบเข้ารหัสรหัสผ่านแล้ว<b>ล้างช่อง NewPassword ทันที</b> ดูผลที่ Execution log</li>
+    </ol>
+  </div>
+  <div class="tw"><table class="t">
+    <thead><tr><th>Role</th><th>ชื่อบทบาท</th><th>ทำได้</th></tr></thead>
+    <tbody>
+      <tr><td><code>staff</code></td><td>เจ้าหน้าที่ปฏิบัติงาน</td><td>ดูวัสดุ · เบิก · ประวัติ</td></tr>
+      <tr><td><code>lead</code></td><td>หัวหน้างาน</td><td>ดูวัสดุ · เบิก · แดชบอร์ด · ประวัติ</td></tr>
+      <tr><td><code>store</code></td><td>เจ้าหน้าที่พัสดุ</td><td>ดูวัสดุ · รับเข้า · เพิ่ม/แก้วัสดุ · แดชบอร์ด · ประวัติ</td></tr>
+      <tr><td><code>admin</code></td><td>ผู้ดูแลระบบ</td><td>เหมือน store</td></tr>
+      <tr><td><code>viewer</code></td><td>ผู้บริหาร / ผู้ตรวจสอบ</td><td>ดูวัสดุ · แดชบอร์ด · ประวัติ (ดูอย่างเดียว)</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box warn">
+    <ul>
+      <li><b>ระงับบัญชี</b>: เปลี่ยน Status เป็น <code>disabled</code> — ผู้ใช้หลุดจากระบบทันทีในคำสั่งถัดไป</li>
+      <li><b>ลืมรหัสผ่าน</b>: พิมพ์รหัสใหม่ในช่อง NewPassword แล้วรัน syncUsers อีกครั้ง (เซสชันเดิมของผู้ใช้นั้นใช้ไม่ได้ทันที)</li>
+      <li>อย่าแก้คอลัมน์ PasswordHash / Salt เอง · ประวัติการเข้าสู่ระบบอยู่ที่แท็บ <b>Login_Logs</b></li>
+      <li>เปิดการอ่านใบส่งของด้วย AI: ตั้ง Script Property <code>GEMINI_API_KEY</code> แล้วรันฟังก์ชัน <b>testGemini</b> หนึ่งครั้งก่อนเผยแพร่เว็บ</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== คำถามที่พบบ่อย ===================== -->
+<section class="part" id="faq">
+  <div class="ph"><span class="no">?</span><div><h2>คำถามที่พบบ่อย</h2></div></div>
+  <details><summary>เข้าสู่ระบบไม่ได้</summary><p>ตรวจชื่อผู้ใช้ (ตัวพิมพ์เล็ก) และรหัสผ่าน ถ้าขึ้นว่าบัญชีถูกระงับหรือยังไม่ได้กำหนดบทบาท ให้ติดต่อผู้ดูแลระบบ</p></details>
+  <details><summary>ลืมรหัสผ่าน</summary><p>ติดต่อผู้ดูแลระบบเพื่อตั้งรหัสผ่านใหม่ให้</p></details>
+  <details><summary>ไม่มีแท็บ “เบิก” / เบิกไม่ได้</summary><p>การเบิกทำได้เฉพาะเจ้าหน้าที่ปฏิบัติงานและหัวหน้างาน ต้องเลือกสนาม / อาคาร ใส่จำนวนไม่เกินคงเหลือ และถ่ายรูปอย่างน้อย 1 รูป ถ้าวัสดุหมด ให้แจ้งเจ้าหน้าที่พัสดุเพื่อรับเข้า</p></details>
+  <details><summary>เบิกผิดจำนวน ทำอย่างไร</summary><p>ใบเบิกที่ส่งแล้วแก้ไม่ได้ (เพื่อให้ประวัติเป็นหลักฐาน) หากคืนวัสดุ ให้เจ้าหน้าที่พัสดุบันทึกรับเข้าพร้อมหมายเหตุ “คืนจากใบเบิก …”</p></details>
+  <details><summary>AI อ่านใบส่งของผิด / อ่านไม่ได้</summary><p>กดไอคอนครอปบนรูปเอกสารเพื่อซูมให้ตารางเต็มกรอบแล้วอ่านใหม่ หรือแก้ในตารางเอง · ตรวจแถวแดงเทียบกับเอกสารทุกครั้งก่อนยืนยัน</p></details>
+  <details><summary>ส่งไม่ได้ ขึ้นให้ถ่ายรูป</summary><p>การรับเข้าและการเบิกต้องมีรูปวัสดุอย่างน้อย 1 รูป รองรับ JPG / PNG / WebP</p></details>
+  <details><summary>จะออกจากระบบอย่างไร</summary><p>กดปุ่ม <b>ออกจากระบบ</b> มุมขวาบน · ถ้าใช้เครื่องส่วนกลาง ควรออกจากระบบทุกครั้ง</p></details>
+</section>
+</main>
+
+<footer><div class="wrap">คู่มือการใช้งานระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม · ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ<br>ภาพประกอบเป็นหน้าจอตัวอย่างของระบบ (ข้อมูลและชื่อเป็นข้อมูลทดลอง) · ปรับปรุงล่าสุด 15 ต.ค. 2569</div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="ดูภาพขยาย"><img alt=""></div>
+<script>
+const lb=document.getElementById('lb'),li=lb.querySelector('img');
+document.addEventListener('click',e=>{const im=e.target.closest('.step img');if(im){li.src=im.src;li.alt=im.alt;lb.classList.add('on')}else if(lb.classList.contains('on'))lb.classList.remove('on')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+</script>
+</body>
+</html>
