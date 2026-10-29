@@ -901,6 +901,7 @@ function vIn() {
     '<div class="photos">' + docs + addDoc + '</div>' +
     (S.ai ? '<div class="scanbar"><button class="btn" data-act="scan"' + (S.scanning || !pending ? ' disabled' : '') + '>' + (S.scanning ? '<span class="spin"></span> กำลังอ่านเอกสาร…' : IC.sparkle + ' อ่านเอกสารด้วย Gemini' + (pending > 1 ? ' (' + pending + ' หน้า)' : '')) + '</button>' + (!d.docs.length ? '<span class="muted xs">เพิ่มรูปเอกสารก่อน แล้วกดอ่านด้วย Gemini</span>' : !pending && !S.scanning ? '<span class="muted xs">อ่านครบทุกหน้าแล้ว — กดไอคอนครอปที่หน้าใดเพื่ออ่านหน้านั้นใหม่</span>' : '') + '</div>' : '') +
     (d.demo ? '<div class="note xs">ผลจำลองสำหรับทดลอง flow — ตรวจเทียบกับเอกสารจริงทุกครั้ง</div>' : '') +
+    (d.ocr ? '<div class="note xs"><b>Gemini ไม่ว่าง — อ่านด้วย OCR สำรอง</b> จับคู่ได้เฉพาะวัสดุที่มีในสต็อก ตรวจหัวเอกสารและทุกแถวเทียบกับเอกสารจริง</div>' : '') +
     legend +
     '<div class="f3"><div><label class="lbl">Supplier</label><input type="text" class="' + hfc('supplier') + '" data-b="dIn.supplier" value="' + esc(d.supplier) + '"></div><div><label class="lbl">เลขที่เอกสาร</label><input type="text" class="' + hfc('docNo') + '" data-b="dIn.docNo" value="' + esc(d.docNo) + '"></div><div><label class="lbl">วันที่เอกสาร</label><input type="date" class="' + hfc('date') + '" data-b="dIn.date" value="' + esc(d.date) + '"></div></div></div>' +
     '<div class="card"><div class="row"><h3>2. รายการวัสดุ (' + d.lines.length + ')</h3><button class="btn sm" data-act="addline" data-w="dIn">' + IC.plus + ' เพิ่มรายการ</button></div>' + (d.scanned ? '<div class="muted xs" style="margin-top:4px">แถวเขียว = AI อ่านได้ชัด · แถวแดง = อ่านไม่ชัด กรุณาเทียบกับเอกสารแล้วแก้ในช่อง หรือกด "ตรวจแล้ว ถูกต้อง" · ตารางเลื่อนซ้าย-ขวาได้บนมือถือ</div>' : '') + '<div class="tbl" style="margin-top:10px">' + (d.lines.length ? '<table class="lt"><thead><tr><th>#</th><th>ชื่อวัสดุ</th><th>ตรงกับวัสดุในสต็อก</th><th>ตามเอกสาร</th><th>รับจริง</th><th>หน่วย</th><th>สถานะ</th><th></th></tr></thead><tbody>' + lines + '</tbody></table>' : '<div class="muted sm">ยังไม่มีรายการ</div>') + '</div></div>' +
@@ -1214,12 +1215,12 @@ function doScan() {
     chain = chain.then(function () {
       return scanDoc(d.docs[i].img, i + 1).then(function (r) {
         mergeHeader(d, r); skipped += mergeLines(d, r, i + 1);
-        d.docs[i].done = true; d.scanned = true; d.demo = !!r.demo; render();
+        d.docs[i].done = true; d.scanned = true; d.demo = !!r.demo; if (r.ocr) d.ocr = true; render();
       });
     });
   });
   chain.then(function () {
-    if (!d.lines.length) toast('Gemini ไม่พบรายการวัสดุในรูป — ลองครอปให้เห็นตารางชัดขึ้น หรือกรอกเอง', 'err');
+    if (!d.lines.length) toast((d.ocr ? 'OCR สำรอง' : 'Gemini') + 'ไม่พบรายการวัสดุในรูป — ลองครอปให้เห็นตารางชัดขึ้น หรือกรอกเอง', 'err');
     else if (skipped) toast('ข้ามรายการซ้ำระหว่างหน้า ' + skipped + ' รายการ');
   }).catch(function (e) { toast(e.message, 'err'); }).then(function () { S.scanning = false; render(); });
 }function receivePayload(d) { return { docs: d.docs.map(function (x) { return x.img; }), supplier: d.supplier, docNo: d.docNo, date: d.date, note: d.note, photos: d.photos, lines: d.lines }; }
