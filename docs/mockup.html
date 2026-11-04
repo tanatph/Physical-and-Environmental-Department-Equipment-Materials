@@ -386,7 +386,7 @@ function areaOpts(sel) {
   }).join('');
 }
 function catOpts(sel) { return CATS.map(function (c) { return '<option value="' + esc(c) + '"' + (c === sel ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join(''); }
-function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; S.hist = null; if (typeof d.ai === 'boolean') S.ai = d.ai; if (d.perms !== undefined) S.perms = d.perms; }
+function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; S.hist = null; phPrune(); if (typeof d.ai === 'boolean') S.ai = d.ai; if (d.perms !== undefined) S.perms = d.perms; }
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
@@ -395,20 +395,38 @@ function lsGet(k) { try { return localStorage.getItem(k) || ''; } catch (e) { re
 function lsSet(k, v) { try { if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) {} }
 function thDate(s) { if (!s) return ''; var p = String(s).slice(0, 10).split('-'); return p.length === 3 ? p[2] + '/' + p[1] + '/' + (Number(p[0]) + 543) : s; }
 var GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACw=';
-var PH = {}, PHQ = {}, PHF = {};
-function photoSrc(p) { p = String(p); if (p.indexOf('data:') === 0) return p; return PH[p] || GIF + '#' + p; }
+var PH = {}, PHQ = {}, PHF = {}, PHK = 'pem_ph_';
+/* รูปวัสดุ (เฉพาะรูปของรายการวัสดุ ไม่รวมรูปใบส่งของ / รูปประกอบการเบิก) จำไว้ใน localStorage — เปิดครั้งต่อไปขึ้นทันที · id ไฟล์ Drive เดิม = รูปเดิม */
+function phGet(id) {
+  if (PH[id]) return PH[id];
+  try { var v = localStorage.getItem(PHK + id); if (v) PH[id] = v; return v || ''; } catch (e) { return ''; }
+}
+function phKeep(id, v) {
+  PH[id] = v;
+  if (v.length > 120000 || !S.items.some(function (x) { return x.img === id; })) return;
+  try { localStorage.setItem(PHK + id, v); } catch (e) {}
+}
+function phPrune() {
+  try {
+    var keep = {}, drop = [];
+    S.items.forEach(function (x) { if (x.img) keep[PHK + x.img] = 1; });
+    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf(PHK) === 0 && !keep[k]) drop.push(k); }
+    drop.forEach(function (k) { localStorage.removeItem(k); });
+  } catch (e) {}
+}
+function photoSrc(p) { p = String(p); if (p.indexOf('data:') === 0) return p; return phGet(p) || GIF + '#' + p; }
 function hydrate() {
   var need = [];
   Array.prototype.forEach.call(document.querySelectorAll('img[src^="' + GIF + '#"]'), function (im) {
     var id = im.getAttribute('src').split('#')[1];
-    if (PH[id]) im.src = PH[id];
+    if (phGet(id)) im.src = PH[id];
     else if (!PHQ[id] && !PHF[id] && need.indexOf(id) < 0) need.push(id);
   });
   for (var i = 0; i < need.length; i += 10) {
     (function (chunk) {
       chunk.forEach(function (id) { PHQ[id] = 1; });
       api('apiGetPhotos', { ids: chunk }).then(function (r) {
-        chunk.forEach(function (id) { delete PHQ[id]; if (r.ok && r.data[id]) PH[id] = r.data[id]; else PHF[id] = 1; });
+        chunk.forEach(function (id) { delete PHQ[id]; if (r.ok && r.data[id]) phKeep(id, r.data[id]); else PHF[id] = 1; });
         hydrate();
       });
     })(need.slice(i, i + 10));
