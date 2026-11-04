@@ -296,7 +296,7 @@ var AREAS = ['อาคารกีฬา 1', 'อาคารกีฬา 2', '
 var MON = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 var MONF = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
 var DOW = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
-var S = { tok: '', role: '', name: '', tab: 'stock', items: [], txs: [], q: '', low: false, busy: false, scanning: false, dIn: null, dOut: null, flow: [], cat: '', dp: { mode: 'week', off: 0, cat: '', area: '', view: 'line', cview: 'bar' }, ed: null };
+var S = { tok: '', role: '', name: '', tab: 'stock', items: [], txs: [], q: '', low: false, busy: false, scanning: false, dIn: null, dOut: null, flow: [], cat: '', hm: '', hist: null, dp: { mode: 'week', off: 0, cat: '', area: '', view: 'line', cview: 'bar', rkAll: false, arAll: false }, ed: null };
 
 var IC = {
   box: '<svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
@@ -386,7 +386,7 @@ function areaOpts(sel) {
   }).join('');
 }
 function catOpts(sel) { return CATS.map(function (c) { return '<option value="' + esc(c) + '"' + (c === sel ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join(''); }
-function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; if (typeof d.ai === 'boolean') S.ai = d.ai; if (d.perms !== undefined) S.perms = d.perms; }
+function setData(d) { S.items = d.items; S.txs = d.txs; S.flow = d.flow || []; S.hist = null; if (typeof d.ai === 'boolean') S.ai = d.ai; if (d.perms !== undefined) S.perms = d.perms; }
 
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 function num(v) { var n = parseFloat(v); return isFinite(n) ? n : 0; }
@@ -478,7 +478,7 @@ function checkIssue(p) {
 }
 
 /* ---- API: page name -> server function (gas/02_Api_Stock.js) ---- */
-var SERVER_FN = { apiGetData: 'apiStockData', apiGetPhotos: 'apiStockPhotos', apiScanDoc: 'apiStockScan', apiAddItem: 'apiStockAddItem', apiUpdateItem: 'apiStockUpdateItem', apiReceive: 'apiStockReceive', apiIssue: 'apiStockIssue' };
+var SERVER_FN = { apiGetData: 'apiStockData', apiGetPhotos: 'apiStockPhotos', apiScanDoc: 'apiStockScan', apiAddItem: 'apiStockAddItem', apiUpdateItem: 'apiStockUpdateItem', apiReceive: 'apiStockReceive', apiIssue: 'apiStockIssue', apiGetHistory: 'apiStockHistory' };
 function ssGet(k) { try { return sessionStorage.getItem(k) || ''; } catch (e) { return ''; } }
 function ssSet(k, v) { try { if (v) sessionStorage.setItem(k, v); else sessionStorage.removeItem(k); } catch (e) {} }
 function gasCall(name, args) {
@@ -907,9 +907,9 @@ function vDash() {
       '<div class="row" style="flex-wrap:wrap;justify-content:flex-start;margin-top:6px"><span class="lgd"><i class="ln in"></i>รับเข้า</span><span class="lgd"><i class="ln"></i>เบิกออก</span><span class="muted xs">สูงสุดต่อช่วง ' + fmt(max) + ' · เลื่อนเมาส์/แตะที่กราฟเพื่อดูตัวเลข</span></div>' +
       line + '<div class="axis">' + axis + '</div>') + '</div>' +
     '<div class="card"><div class="row" style="flex-wrap:wrap"><div><h3>จัดอันดับของที่เบิกมากที่สุด → น้อยที่สุด</h3><div class="muted xs">' + (S.dp.area ? 'ที่ ' + esc(S.dp.area) + ' · ' : '') + 'เรียงตามจำนวนที่เบิก (หน่วยนับต่างกันตามวัสดุ)</div></div><select data-b="dp.cat" data-r="1" style="max-width:220px" aria-label="หมวดหมู่"><option value="">ทุกหมวดหมู่</option>' + catOpts(S.dp.cat) + '</select></div><div style="margin-top:8px">' +
-    (rank.length ? rank.map(function (x, i) { return '<div class="rk"><span class="no ' + (i < 3 ? 'top' : '') + '">' + (i + 1) + '</span>' + thumb(x.it, 'sm') + '<div style="flex:1;min-width:0"><div class="row"><b class="sm">' + esc(x.it.name) + '</b><span class="b">' + fmt(x.q) + ' <span class="muted sm" style="font-weight:400">' + esc(x.it.unit) + '</span></span></div><div class="bar"><i style="width:' + Math.round(x.q / rmax * 100) + '%"></i></div><div class="muted xs">' + esc(x.it.cat) + ' · เบิก ' + x.n + ' ครั้ง</div></div></div>'; }).join('') : '<div class="muted sm" style="padding:12px 0">ไม่มีการเบิกในช่วงนี้</div>') + '</div></div>' +
+    (rank.length ? topN(rank, 'rkAll', function (x, i) { return '<div class="rk"><span class="no ' + (i < 3 ? 'top' : '') + '">' + (i + 1) + '</span>' + thumb(x.it, 'sm') + '<div style="flex:1;min-width:0"><div class="row"><b class="sm">' + esc(x.it.name) + '</b><span class="b">' + fmt(x.q) + ' <span class="muted sm" style="font-weight:400">' + esc(x.it.unit) + '</span></span></div><div class="bar"><i style="width:' + Math.round(x.q / rmax * 100) + '%"></i></div><div class="muted xs">' + esc(x.it.cat) + ' · เบิก ' + x.n + ' ครั้ง</div></div></div>'; }) : '<div class="muted sm" style="padding:12px 0">ไม่มีการเบิกในช่วงนี้</div>') + '</div></div>' +
     '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><div class="card"><h3>เบิกตามสนาม / อาคาร</h3><div class="muted xs">จำนวนใบเบิก</div><div style="margin-top:6px">' +
-    (areas.length ? areas.map(function (x) { return '<div class="rk"><div style="flex:1;min-width:0"><div class="row"><span class="sm">' + esc(x.a) + '</span><b>' + x.n + '</b></div><div class="bar"><i style="width:' + Math.round(x.n / amax * 100) + '%"></i></div><details><summary>เบิกอะไรบ้าง</summary>' + Object.keys(x.q).sort(function (p, q) { return x.q[q] - x.q[p]; }).map(function (id) { var it = itemById(id); return '<div class="row sm" style="padding:3px 0"><span>' + esc(it ? it.name : id) + '</span><b>' + fmt(x.q[id]) + ' ' + esc(it ? it.unit : '') + '</b></div>'; }).join('') + '</details></div></div>'; }).join('') : '<div class="muted sm" style="padding:12px 0">ไม่มีข้อมูล</div>') + '</div></div>' +
+    (areas.length ? topN(areas, 'arAll', function (x) { return '<div class="rk"><div style="flex:1;min-width:0"><div class="row"><span class="sm">' + esc(x.a) + '</span><b>' + x.n + '</b></div><div class="bar"><i style="width:' + Math.round(x.n / amax * 100) + '%"></i></div><details><summary>เบิกอะไรบ้าง</summary>' + Object.keys(x.q).sort(function (p, q) { return x.q[q] - x.q[p]; }).map(function (id) { var it = itemById(id); return '<div class="row sm" style="padding:3px 0"><span>' + esc(it ? it.name : id) + '</span><b>' + fmt(x.q[id]) + ' ' + esc(it ? it.unit : '') + '</b></div>'; }).join('') + '</details></div></div>'; }) : '<div class="muted sm" style="padding:12px 0">ไม่มีข้อมูล</div>') + '</div></div>' +
     '<div class="card"><div class="row" style="flex-wrap:wrap"><h3>สรุปตามหมวดหมู่</h3>' + vt('cview', [['bar', 'กราฟแท่ง'], ['table', 'ตาราง']]) + '</div>' +
     (!cats.length ? '<div class="muted sm" style="padding:12px 0">ไม่มีข้อมูล</div>' : S.dp.cview === 'table' ?
       '<div class="tbl" style="margin-top:8px"><table><thead><tr><th>หมวดหมู่</th><th class="n">รับเข้า</th><th class="n">เบิกออก</th></tr></thead><tbody>' + cats.map(function (c) { return '<tr><td>' + esc(c) + '</td><td class="n">' + fmt(D.cat[c].in) + '</td><td class="n">' + fmt(D.cat[c].out) + '</td></tr>'; }).join('') + '</tbody></table></div>' :
@@ -978,10 +978,43 @@ function vOut() {
     '<button class="btn primary block big" data-act="submitout">' + IC.up + ' ส่งใบเบิก</button>';
 }
 
+/* ---- ประวัติรายเดือน: โหลดจากเซิร์ฟเวอร์ทีละเดือน (ครบทั้งเดือน ไม่จำกัดแค่รายการล่าสุด) ---- */
+function thisMonth() { return ymd(new Date()).slice(0, 7); }
+function monthLabel(k) { var p = String(k).split('-'); return MONF[Number(p[1]) - 1] + ' ' + (Number(p[0]) + 543); }
+function loadHist() {
+  var m = S.hm || thisMonth();
+  if (S.histBusy === m) return;
+  S.histBusy = m;
+  api('apiGetHistory', { month: m }).then(function (r) {
+    S.histBusy = '';
+    if (!r.ok) { toast(r.error, 'err'); return; }
+    if ((S.hm || thisMonth()) !== r.data.month) return;
+    S.hist = r.data; if (S.tab === 'hist') render();
+  });
+}
+function txById(id) { return S.txs.concat(S.hist ? S.hist.txs : []).filter(function (x) { return x.id === id; })[0]; }
+/** แสดง 10 อันดับแรก + ปุ่มดูเพิ่มเติม / ย่อ (S.dp[key] = แสดงทั้งหมด) */
+function topN(list, key, row) {
+  var all = S.dp[key];
+  return (all ? list : list.slice(0, 10)).map(row).join('') + (list.length > 10 ? '<button class="btn ghost block sm" style="margin-top:8px" data-act="dmore" data-k="' + key + '" aria-expanded="' + (all ? 'true' : 'false') + '">' + (all ? 'ย่อเหลือ 10 อันดับแรก' : 'ดูเพิ่มเติม (ทั้งหมด ' + list.length + ' รายการ)') + '</button>' : '');
+}
 function vHist() {
-  var txs = S.txs;
-  if (!txs.length) return '<div class="card muted" style="text-align:center">ยังไม่มีรายการ</div>';
-  return '<div class="gap">' + txs.map(function (t) {
+  var m = S.hm || thisMonth(), h = S.hist && S.hist.month === m ? S.hist : null;
+  if (!h) loadHist();
+  var months = ((S.hist && S.hist.months) || []).slice();
+  if (months.indexOf(thisMonth()) < 0) months.push(thisMonth());
+  if (months.indexOf(m) < 0) months.push(m);
+  months.sort().reverse();
+  var i = months.indexOf(m), older = months[i + 1], newer = months[i - 1];
+  var nIn = h ? h.txs.filter(function (t) { return t.type === 'in'; }).length : 0, nOut = h ? h.txs.length - nIn : 0;
+  var head = '<div class="card"><div class="pnav"><button class="btn sm" data-act="hnav" data-m="' + esc(older || '') + '" aria-label="เดือนก่อนหน้า"' + (older ? '' : ' disabled') + '>' + IC.left + '</button>' +
+    '<select data-b="hm" data-r="1" aria-label="เลือกเดือน" style="flex:1;width:auto;min-width:150px">' + months.map(function (k) { return '<option value="' + esc(k) + '"' + (k === m ? ' selected' : '') + '>' + esc(monthLabel(k)) + '</option>'; }).join('') + '</select>' +
+    '<button class="btn sm" data-act="hnav" data-m="' + esc(newer || '') + '" aria-label="เดือนถัดไป"' + (newer ? '' : ' disabled') + '>' + IC.right + '</button>' +
+    (m !== thisMonth() ? '<button class="btn sm ghost" data-act="hnav" data-m="' + thisMonth() + '">เดือนนี้</button>' : '') + '</div>' +
+    (h ? '<div class="sm muted" style="margin-top:8px">' + (h.txs.length ? 'ทั้งหมด ' + h.txs.length + ' รายการ · รับเข้า ' + nIn + ' · เบิกออก ' + nOut : 'ไม่มีรายการในเดือนนี้') + '</div>' : '') + '</div>';
+  if (!h) return head + '<div class="card muted" style="text-align:center">กำลังโหลด…</div>';
+  if (!h.txs.length) return head;
+  return head + '<div class="gap">' + h.txs.map(function (t) {
     var isIn = t.type === 'in';
     var short = isIn ? t.lines.filter(function (l) { return l.docQty != null && l.qty < l.docQty; }).length : 0;
     return '<div class="card"><div class="row"><div><span class="chip ' + (isIn ? 'c-green' : 'c-brand') + '">' + (isIn ? 'รับเข้า' : 'เบิกออก') + '</span> ' + (t.area ? '<span class="chip c-gray">' + esc(t.area) + '</span> ' : '') + (short ? '<span class="chip c-red">รับขาด ' + short + ' รายการ</span>' : '') + '</div><span class="muted xs">' + IC.clock.replace('<svg', '<svg style="width:14px;height:14px;vertical-align:-2px"') + ' ' + esc(t.at) + '</span></div>' +
@@ -1014,7 +1047,7 @@ function load(then) {
 function logout() {
   var t = S.tok;
   if (t) rpc('apiLogout', [t]);
-  S.tok = ''; S.role = ''; S.realRole = ''; S.name = ''; S.user = ''; S.mustChange = false; S.perms = undefined; S.adm = null; S.loaded = false; S.dIn = null; S.dOut = null;
+  S.tok = ''; S.role = ''; S.realRole = ''; S.name = ''; S.user = ''; S.mustChange = false; S.perms = undefined; S.adm = null; S.loaded = false; S.dIn = null; S.dOut = null; S.hm = ''; S.hist = null;
   ssSet('pem_ses', ''); closeSheet(); render();
 }
 function saveSes() { ssSet('pem_ses', JSON.stringify({ token: S.tok, role: S.realRole, name: S.name, user: S.user, mustChange: !!S.mustChange })); }
@@ -1030,7 +1063,7 @@ function sendWrite(fn, payload, okMsg, reset) {
   return api(fn, payload).then(function (r) {
     S.busy = false;
     if (!r.ok) { toast(r.error, 'err'); return; }
-    setData(r.data); reset(); S.tab = 'hist'; render(); toast(okMsg);
+    setData(r.data); reset(); S.tab = 'hist'; S.hm = ''; render(); toast(okMsg);
   });
 }
 
@@ -1073,8 +1106,10 @@ document.addEventListener('click', function (e) {
   if (a === 'additem') return addItemSheet();
   if (a === 'saveitem') return saveItem();
   if (a === 'itemdet') return itemSheet(el.getAttribute('data-id'));
+  if (a === 'dmore') { var dk = el.getAttribute('data-k'); S.dp[dk] = !S.dp[dk]; render(); return; }
+  if (a === 'hnav') { var hm = el.getAttribute('data-m'); if (hm) { S.hm = hm; render(); } return; }
   if (a === 'viewph') {
-    var t = S.txs.filter(function (x) { return x.id === el.getAttribute('data-t'); })[0], kk = el.getAttribute('data-k').split(':'), i = Number(kk[1]), isDoc = kk[0] === 'd';
+    var t = txById(el.getAttribute('data-t')), kk = el.getAttribute('data-k').split(':'), i = Number(kk[1]), isDoc = kk[0] === 'd';
     var src = isDoc ? docsOf(t)[i] : t.photos[i];
     openSheet('<div class="row" style="margin-bottom:10px"><h3>' + (isDoc ? 'ใบรับวัสดุ' + (docsOf(t).length > 1 ? ' หน้า ' + (i + 1) : '') : 'รูปวัสดุ') + '</h3><button class="x-close" data-act="close" aria-label="ปิด">' + IC.x + '</button></div><img id="vimg" class="doc" style="max-height:70vh" src="' + esc(photoSrc(src)) + '" alt="รูปขยาย">');
     loadFull(src);
@@ -1570,6 +1605,13 @@ var MOCK = (function () {
     },
     apiResetPerms: function (tok) { var s = who(tok, ['admin']); db.perms = {}; db.plog.push({ time: nowStr(), by: s.user, role: 'all', key: 'reset', value: true }); save(); return { perms: perms() }; },
     apiStockData: function (tok) { return view(who(tok)); },
+    apiStockHistory: function (tok, p) {
+      who(tok);
+      var m = String(p && p.month || ''), months = {};
+      if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(m)) throw new Error('เดือนไม่ถูกต้อง');
+      db.txs.forEach(function (t) { if (t.d) months[t.d.slice(0, 7)] = 1; });
+      return clone({ month: m, txs: db.txs.filter(function (t) { return t.d.slice(0, 7) === m; }).reverse(), months: Object.keys(months).sort().reverse() });
+    },
     apiStockPhotos: function (tok, p) { who(tok); var o = {}; (p.ids || []).forEach(function (id) { if (String(id).indexOf('data:') === 0) o[id] = id; }); return o; },
     apiStockAddItem: function (tok, p) {
       var s = mgr(tok, 'เพิ่มวัสดุ', 'item'), v = checkItem(p);
