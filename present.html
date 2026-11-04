@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>นำเสนอระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</title>
+<title>นำเสนอ iSTOCK ระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -108,7 +108,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
 <section class="slide cover">
   <div class="lg"><img src="https://vxfozsxudrkxrjphttxm.supabase.co/storage/v1/object/public/Photo/Thai_color01_0_0.png" alt="มหาวิทยาลัยศรีนครินทรวิโรฒ"></div>
   <span class="tag">งานกายภาพและสิ่งแวดล้อม · ศูนย์กีฬาสิรินธร มหาวิทยาลัยศรีนครินทรวิโรฒ</span>
-  <h1>ระบบสต็อกวัสดุอุปกรณ์<br>งานกายภาพและสิ่งแวดล้อม</h1>
+  <h1>iSTOCK ระบบสต็อกวัสดุอุปกรณ์<br>งานกายภาพและสิ่งแวดล้อม</h1>
   <p>รู้ว่าวัสดุเหลือเท่าไร เบิกไปใช้ที่ไหน รับเข้าเมื่อไร — สาธิตด้วยหน้าจอจริงที่กดใช้งานได้ในทุกหน้า</p>
   <div class="chips">
     <span><svg class="ic"><use href="#i-box"/></svg>6 หมวดวัสดุ</span>
@@ -266,7 +266,7 @@ p,li{font-size:clamp(15px,1.7vw,21px);line-height:1.55}
 <section class="slide cover">
   <div class="lg"><img src="https://vxfozsxudrkxrjphttxm.supabase.co/storage/v1/object/public/Photo/Thai_color01_0_0.png" alt="มหาวิทยาลัยศรีนครินทรวิโรฒ"></div>
   <h1>ขอบคุณครับ / ค่ะ</h1>
-  <p>ระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</p>
+  <p>iSTOCK ระบบสต็อกวัสดุอุปกรณ์ งานกายภาพและสิ่งแวดล้อม ศูนย์กีฬาสิรินธร มศว</p>
   <p style="font-size:17px"><a href="manual-video/overview.mp4" target="_blank" rel="noopener">▶ ดูวิดีโอนำเสนอระบบ (มีเสียงบรรยาย)</a> · <a href="manual.html" target="_blank" rel="noopener">คู่มือการใช้งาน</a> · <a href="mockup.html" target="_blank" rel="noopener">ทดลองใช้ระบบ</a></p>
 </section>
 
@@ -297,7 +297,7 @@ const load=(s,force)=>{const fr=s&&s.querySelector('iframe');if(!fr)return;if(!f
 const go=n=>{const prev=i;i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,k)=>s.classList.toggle('on',k===i));load(S[i],prev!==i);load(S[i+1]);
   document.getElementById('pg').textContent=(i+1)+' / '+S.length;document.getElementById('pbar').style.width=((i+1)/S.length*100)+'%';try{history.replaceState(null,'','#'+(i+1))}catch(e){}};
 document.getElementById('next').onclick=()=>go(i+1);document.getElementById('prev').onclick=()=>go(i-1);
-document.getElementById('reset').onclick=()=>{try{sessionStorage.clear();localStorage.removeItem('pem_mock_v2')}catch(e){}document.querySelectorAll('iframe[src]').forEach(fr=>fr.contentWindow.location.reload())};
+document.getElementById('reset').onclick=()=>{try{sessionStorage.clear();localStorage.removeItem('pem_mock_v3')}catch(e){}document.querySelectorAll('iframe[src]').forEach(fr=>fr.contentWindow.location.reload())};
 addEventListener('keydown',e=>{if(['ArrowRight','PageDown'].includes(e.key)||(e.key===' '&&document.activeElement===document.body)){e.preventDefault();go(i+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(i-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(S.length-1);else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
 let x0=null;document.querySelector('.deck').addEventListener('touchstart',e=>{if(!e.target.closest('.frame'))x0=e.touches[0].clientX});addEventListener('touchend',e=>{if(x0==null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)go(i+(d<0?1:-1));x0=null});
 go((parseInt(location.hash.slice(1),10)||1)-1);
