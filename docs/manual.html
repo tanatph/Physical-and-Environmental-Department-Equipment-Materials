@@ -155,7 +155,7 @@ footer .by{display:flex;flex-wrap:wrap;justify-content:center;align-items:center
   <div class="steps">
     <article class="step"><figure><img src="manual-img/stock.jpg" alt="รายการวัสดุและคงเหลือ" loading="lazy"></figure>
       <div><div class="t"><span class="n">1</span><h3>ภาพรวมคงเหลือ</h3></div>
-        <ul><li><span class="mk">1</span> สรุปจำนวนรายการวัสดุ ใกล้หมด และหมดสต็อก</li><li><span class="mk">2</span> เลือก<b>หมวดหมู่</b>จากรายการเพื่อกรอง หรือพิมพ์ค้นหาชื่อวัสดุ · กด <b>เฉพาะใกล้หมด/หมด</b> เพื่อดูรายการที่ต้องจัดซื้อ</li><li><span class="mk">3</span> ป้ายสถานะ: <b>ปกติ</b> / <b>ใกล้หมด</b> (เหลือไม่เกินจำนวนขั้นต่ำ) / <b>หมด</b></li><li><span class="mk">4</span> เมนูด้านล่าง — แท็บที่เห็นขึ้นกับบทบาทของคุณ</li></ul></div></article>
+        <ul><li><span class="mk">1</span> สรุปจำนวนรายการวัสดุ ใกล้หมด หมดสต็อก และ<b>ค้างคืน</b> (การ์ดสีเหลือง — แตะเพื่อเลื่อนไปดูรายละเอียดค้างคืนท้ายหน้า)</li><li><span class="mk">2</span> เลือก<b>หมวดหมู่</b>จากรายการเพื่อกรอง หรือพิมพ์ค้นหาชื่อวัสดุ · กด <b>เฉพาะใกล้หมด/หมด</b> เพื่อดูรายการที่ต้องจัดซื้อ</li><li><span class="mk">3</span> ป้ายสถานะ: <b>ปกติ</b> / <b>ใกล้หมด</b> (เหลือไม่เกินจำนวนขั้นต่ำ) / <b>หมด</b></li><li><span class="mk">4</span> เมนูด้านล่าง — แท็บที่เห็นขึ้นกับบทบาทของคุณ</li></ul></div></article>
     <article class="step"><figure><img src="manual-img/item.jpg" alt="รายละเอียดวัสดุ" loading="lazy"></figure>
       <div><div class="t"><span class="n">2</span><h3>แตะการ์ดเพื่อดูรายละเอียด</h3></div>
         <ul><li><span class="mk">1</span> จำนวนคงเหลือ และจำนวนขั้นต่ำที่ตั้งไว้</li><li><span class="mk">2</span> ความเคลื่อนไหวล่าสุด — รับเข้า (+) / เบิกออก (−) พร้อมวันเวลาและพื้นที่</li></ul>
@@ -180,6 +180,14 @@ footer .by{display:flex;flex-wrap:wrap;justify-content:center;align-items:center
       <div><div class="t"><span class="n">3</span><h3>ยืนยันการเบิก</h3></div>
         <p>ตรวจสรุปจำนวนรายการ พื้นที่ และจำนวนรูป แล้วกด <b>ส่งใบเบิก</b> <span class="mk">1</span> — จำนวนคงเหลือถูกหักทันที แล้วระบบพาไปที่แท็บ “ประวัติ”</p>
         <div class="note warn">ใบเบิกที่ส่งแล้วแก้ไขไม่ได้ (เพื่อให้ประวัติเป็นหลักฐาน) — ตรวจให้ถูกต้องก่อนยืนยัน</div></div></article>
+    <article class="step"><figure><img src="manual-img/ret1.jpg" alt="แท็บย่อยคืน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">4</span><h3>เครื่องมือ / อุปกรณ์ที่ต้องคืน</h3></div>
+        <p>วัสดุที่เจ้าหน้าที่พัสดุตั้งเป็น <b>ต้องคืน</b> (เช่น สว่าน บันได) มีป้าย “ต้องคืน” ที่การ์ดวัสดุ และตอนเบิกระบบเตือนว่าต้องนำมาคืน</p>
+        <ul><li><span class="mk">1</span> ที่แท็บ <b>เบิก</b> เลือกแท็บย่อย <b>คืน</b> (ตัวเลขในวงเล็บ = จำนวนรายการที่คุณยังค้างคืน)</li><li><span class="mk">2</span> แต่ละใบเบิกแสดงวันเวลา พื้นที่ และจำนวนที่ค้าง — กด <b>คืน</b> ที่ใบที่จะคืน</li></ul><div class="note tip">หน้าวัสดุอุปกรณ์แสดงจำนวน <b>ค้างคืน</b> ของทุกคน และรายละเอียด (ไฮไลต์สีเหลือง) ท้ายหน้า · เจ้าหน้าที่พัสดุบันทึกคืนแทนผู้ยืมได้ทุกใบที่แท็บ <b>รับเข้า → รับคืน</b> (หรือกดคืนจากการ์ดในแท็บ “ประวัติ”)</div></div></article>
+    <article class="step"><figure><img src="manual-img/ret2.jpg" alt="บันทึกการคืน" loading="lazy"></figure>
+      <div><div class="t"><span class="n">5</span><h3>บันทึกการคืน</h3></div>
+        <ul><li><span class="mk">1</span> ใส่จำนวนที่คืน (ตั้งต้นเท่าที่ค้าง — คืนบางส่วนได้ ที่เหลือยังค้างคืนต่อ)</li><li><span class="mk">2</span> ถ่ายรูปของที่คืนอย่างน้อย 1 รูป (จำเป็น) ให้เห็นสภาพตอนคืน</li><li><span class="mk">3</span> กด <b>ยืนยันคืน</b> — จำนวนคงเหลือเพิ่มกลับทันที และแท็บ “ประวัติ” มีรายการ “คืน”</li></ul>
+        <div class="note tip">คืนเกินจำนวนที่ค้างไม่ได้ · ใบเบิกในประวัติแสดงป้าย “ค้างคืน” หรือ “คืนครบแล้ว”</div></div></article>
   </div>
 </section>
 
@@ -198,7 +206,7 @@ footer .by{display:flex;flex-wrap:wrap;justify-content:center;align-items:center
         <div class="note tip">ใช้วางแผนจัดซื้อและงบประมาณ: ดูรายปีเพื่อเทียบปริมาณการใช้แต่ละหมวด</div></div></article>
     <article class="step"><figure><img src="manual-img/hist.jpg" alt="ประวัติการรับเข้าและเบิกออก" loading="lazy"></figure>
       <div><div class="t"><span class="n">3</span><h3>ตรวจดูที่แท็บ “ประวัติ”</h3></div>
-        <ul><li><span class="mk">1</span> เลือกเดือนที่ต้องการดู (เริ่มที่เดือนปัจจุบัน) — กดลูกศรเพื่อเลื่อนไปเดือนก่อนหน้า / ถัดไป หรือกด <b>เดือนนี้</b> เพื่อกลับมาเดือนปัจจุบัน · ใต้ช่องเลือกแสดงจำนวนรายการรับเข้า / เบิกออกของเดือนนั้น</li><li><span class="mk">2</span> ทุกรายการแสดงประเภท (รับเข้า / เบิกออก) พื้นที่ วันเวลา <b>ชื่อผู้เบิก / ผู้รับเข้า</b> จำนวน และรูป — แตะรูปเพื่อดูภาพใหญ่</li><li><span class="mk">3</span> แท็บ <b>ประวัติ</b> ที่เมนูด้านล่าง</li></ul>
+        <ul><li><span class="mk">1</span> เลือกเดือนที่ต้องการดู (เริ่มที่เดือนปัจจุบัน) — กดลูกศรเพื่อเลื่อนไปเดือนก่อนหน้า / ถัดไป หรือกด <b>เดือนนี้</b> เพื่อกลับมาเดือนปัจจุบัน · ใต้ช่องเลือกแสดงจำนวนรายการรับเข้า / เบิกออกของเดือนนั้น</li><li><span class="mk">2</span> ทุกรายการแสดงประเภท (รับเข้า / เบิกออก / คืน) พื้นที่ วันเวลา <b>ชื่อผู้เบิก / ผู้รับเข้า</b> จำนวน และรูป — แตะรูปเพื่อดูภาพใหญ่</li><li><span class="mk">3</span> แท็บ <b>ประวัติ</b> ที่เมนูด้านล่าง</li></ul>
         <p>ป้าย <b>รับขาด</b> แสดงเมื่อรับจริงน้อยกว่าที่ระบุในเอกสาร</p></div></article>
   </div>
 </section>
@@ -226,7 +234,7 @@ footer .by{display:flex;flex-wrap:wrap;justify-content:center;align-items:center
         <ul><li><span class="mk">1</span> ที่แท็บ <b>วัสดุอุปกรณ์</b> กด <b>เพิ่มวัสดุ</b> — หรือแตะการ์ดวัสดุแล้วกด <b>แก้ไขวัสดุ / เปลี่ยนรูป</b></li><li><span class="mk">2</span> แท็บ <b>รับเข้า</b> อยู่ที่เมนูด้านล่าง</li></ul></div></article>
     <article class="step"><figure><img src="manual-img/additem.jpg" alt="ฟอร์มเพิ่มวัสดุ" loading="lazy"></figure>
       <div><div class="t"><span class="n">5</span><h3>กรอกข้อมูลวัสดุ</h3></div>
-        <ul><li>เพิ่มรูปวัสดุ (ไม่บังคับ)</li><li><span class="mk">1</span> ชื่อวัสดุ</li><li><span class="mk">2</span> หมวดหมู่</li><li><span class="mk">3</span> หน่วยนับ และ <b>แจ้งเตือนเมื่อเหลือ ≤</b> (จำนวนขั้นต่ำที่จะขึ้นป้ายใกล้หมด)</li><li><span class="mk">4</span> กด <b>บันทึก</b></li></ul>
+        <ul><li>เพิ่มรูปวัสดุ (ไม่บังคับ)</li><li><span class="mk">1</span> ชื่อวัสดุ</li><li><span class="mk">2</span> หมวดหมู่</li><li><span class="mk">3</span> หน่วยนับ และ <b>แจ้งเตือนเมื่อเหลือ ≤</b> (จำนวนขั้นต่ำที่จะขึ้นป้ายใกล้หมด)</li><li><span class="mk">4</span> สวิตช์ <b>ต้องคืนหลังใช้งาน</b> — เปิดสำหรับเครื่องมือ / อุปกรณ์ที่ยืมไปใช้แล้วต้องนำมาคืน</li><li><span class="mk">5</span> กด <b>บันทึก</b></li></ul>
         <div class="note tip">วัสดุใหม่เริ่มที่คงเหลือ 0 — เพิ่มจำนวนด้วยการรับเข้า</div></div></article>
   </div>
 </section>
