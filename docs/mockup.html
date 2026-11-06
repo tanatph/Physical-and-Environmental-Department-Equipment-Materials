@@ -61,6 +61,15 @@
   .btn{white-space:nowrap}
   .btn.sm{height:32px;padding:0 var(--s3);font-size:12px;border-radius:var(--r-sm)}
   .btn.block{width:100%}
+  .tbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .tbar input{flex:2 1 240px;min-width:0}
+  .tbar select{flex:1 1 220px;min-width:0;max-width:360px}
+  .tbar .acts{display:flex;gap:8px;margin-left:auto}
+  .dbar .tabs{flex:none;min-width:220px}
+  .dbar select{flex:1 1 260px;max-width:none}
+  .dbar .pnav{margin-left:auto;flex-wrap:nowrap}
+  .dbar .pnav .btn:not(.ghost){width:40px;padding:0}
+  @media(max-width:640px){.dbar .tabs{flex:1 1 100%}.dbar .pnav{margin-left:0;width:100%;justify-content:space-between}.tbar select{max-width:none}.tbar .acts{margin-left:0;width:100%}.tbar .acts .btn{flex:1}}
   .btn.big{height:52px;font-size:16px}
 
   .card{background:var(--card);border:1px solid var(--neutral-200);border-radius:var(--r-xl);padding:var(--s4);text-align:left;width:100%;display:block;transition:150ms cubic-bezier(.2,.7,.2,1)}
@@ -134,10 +143,6 @@
   .th svg{width:28px;height:28px}
   .th.sm{width:44px;height:44px} .th.sm svg{width:22px;height:22px}
   .th.lg{width:100%;height:200px;border-radius:var(--r-lg)} .th.lg svg{width:56px;height:56px}
-  .fil{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
-  .fil button{height:32px;padding:0 12px;border-radius:var(--r-pill);border:1px solid var(--neutral-200);background:#fff;font-size:13px;white-space:nowrap;flex:none}
-  .fil button.on{background:var(--swu-50);border-color:var(--accent);color:var(--swu-700);font-weight:700}
-  .fil button:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus-ring)}
   .lgd{display:inline-flex;align-items:center;gap:6px;font-size:13px;margin-right:12px}
   .lgd i{width:12px;height:12px;border-radius:var(--r-sm);display:inline-block}
   .chart{display:flex;gap:3px;border-bottom:1px solid var(--neutral-200);margin-top:12px}
@@ -289,7 +294,20 @@ function ymd(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slic
 function parseYmd(t) { var p = t.split('-'); return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2])); }
 var TODAY = ymd(new Date());
 var CATS = ['งานระบบไฟฟ้าและอิเล็กทรอนิกส์', 'งานระบบประปาและสุขาภิบาล', 'งานโครงสร้างและอาคารสถานที่', 'งานระบบปรับอากาศและระบายอากาศ', 'เครื่องมือช่างและวัสดุสิ้นเปลืองทั่วไป', 'อื่น ๆ'];
-var AREAS = ['อาคารกีฬา 1', 'อาคารกีฬา 2', 'ศูนย์ออกกำลัง มศว (อาคารกีฬา 2)', 'อาคารกีฬา 3', 'สนามกีฬากลาง', 'อาคารฝึกปฏิบัติการกีฬาทางน้ำ', 'สนามแข่งขันซอฟท์บอล', 'สนามฟุตซอล', 'สนามกีฬากลางแจ้ง', 'สนามเทนนิส', 'อาคารศูนย์กีฬาสิรินธร', 'อาคารนวัตกรรมกีฬาและการออกกำลังกาย'];
+var AREAS = ['อาคารกีฬา 1', 'อาคารกีฬา 2', 'ศูนย์ออกกำลัง มศว (อาคารกีฬา 2)', 'อาคารกีฬา 3', 'สนามกีฬากลาง', 'อาคารฝึกปฏิบัติการกีฬาทางน้ำ', 'สนามแข่งขันซอฟท์บอล', 'สนามฟุตซอล', 'สนามกีฬากลางแจ้ง', 'สนามเทนนิส', 'อาคารศูนย์กีฬาสิรินธร', 'อาคารนวัตกรรมกีฬาและการออกกำลังกาย', 'อาคารนวัตกรรมแห่งความยั่งยืน (ISB)'];
+var AREA_GROUPS = [
+  { id: 'pe', staff: 'นายไพศาล คงสอน', unit: 'งานกายภาพและสิ่งแวดล้อม คณะพลศึกษา', areas: ['อาคารศูนย์กีฬาสิรินธร', 'อาคารนวัตกรรมกีฬาและการออกกำลังกาย', 'อาคารนวัตกรรมแห่งความยั่งยืน (ISB)'] },
+  { id: 'sc', staff: 'นายณัฐพล กริ่มใจ', unit: 'ศูนย์กีฬาสิรินธร', areas: null }
+];
+AREA_GROUPS.forEach(function (g) { if (!g.areas) g.areas = AREAS.filter(function (a) { return !AREA_GROUPS.some(function (o) { return o.areas && o.areas.indexOf(a) >= 0; }); }); });
+function areaGroup(v) { return v && v.indexOf('g:') === 0 ? AREA_GROUPS.filter(function (g) { return 'g:' + g.id === v; })[0] || null : null; }
+function areaIn(a, v) { var g = areaGroup(v); return g ? g.areas.indexOf(a) >= 0 : a === v; }
+function areaLabel(v) { var g = areaGroup(v); return g ? g.unit + ' · ' + g.staff : v; }
+function dashAreaOpts(sel) {
+  var o = function (v, t) { return '<option value="' + esc(v) + '"' + (v === sel ? ' selected' : '') + '>' + esc(t) + '</option>'; };
+  return o('', 'ทุกสนาม / อาคาร') + '<optgroup label="ตามส่วนงาน · ผู้ดูแลพื้นที่">' + AREA_GROUPS.map(function (g) { return o('g:' + g.id, g.unit + ' · ' + g.staff + ' (' + g.areas.length + ' แห่ง)'); }).join('') + '</optgroup>' +
+    AREA_GROUPS.map(function (g) { return '<optgroup label="' + esc(g.unit) + '">' + g.areas.map(function (a) { return o(a, a); }).join('') + '</optgroup>'; }).join('');
+}
 var MON = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
 var MONF = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
 var DOW = ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'];
@@ -833,9 +851,8 @@ function vStock() {
   return '<div class="stats"><div class="card stat"><div class="muted sm">วัสดุทั้งหมด</div><div class="v">' + items.length + '</div></div>' +
     '<div class="card stat"><div class="muted sm">ใกล้หมด</div><div class="v">' + (low.length - out.length) + '</div></div>' +
     '<div class="card stat"><div class="muted sm">หมดสต็อก</div><div class="v" style="color:var(--red)">' + out.length + '</div></div></div>' +
-    '<div class="fil" role="group" aria-label="หมวดหมู่">' + [''].concat(CATS).map(function (c) { return '<button class="' + (S.cat === c ? 'on' : '') + '" data-act="catf" data-c="' + esc(c) + '">' + (c || 'ทั้งหมด') + ' (' + cnt(c) + ')</button>'; }).join('') + '</div>' +
-    '<div class="row" style="flex-wrap:wrap"><input type="text" id="q" placeholder="ค้นหาวัสดุ" value="' + esc(S.q) + '" data-b="q" style="max-width:340px">' +
-    '<div class="row" style="gap:6px"><button class="btn ' + (S.low ? 'primary' : 'ghost') + ' sm" data-act="lowtgl">เฉพาะใกล้หมด/หมด</button>' + (S.role === 'store' && canDo('item') ? '<button class="btn sm" data-act="additem">' + IC.plus + ' เพิ่มวัสดุ</button>' : '') + '</div></div>' +
+    '<div class="tbar"><input type="text" id="q" placeholder="ค้นหาวัสดุ" value="' + esc(S.q) + '" data-b="q" aria-label="ค้นหาวัสดุ"><select id="catf" data-b="cat" data-r="1" aria-label="หมวดหมู่">' + [''].concat(CATS).map(function (c) { return '<option value="' + esc(c) + '"' + (S.cat === c ? ' selected' : '') + '>' + esc(c || 'ทุกหมวดหมู่') + ' (' + cnt(c) + ')</option>'; }).join('') + '</select>' +
+    '<div class="acts"><button class="btn ' + (S.low ? 'primary' : 'ghost') + '" data-act="lowtgl" aria-pressed="' + !!S.low + '">เฉพาะใกล้หมด/หมด</button>' + (S.role === 'store' && canDo('item') ? '<button class="btn" data-act="additem">' + IC.plus + ' เพิ่มวัสดุ</button>' : '') + '</div></div>' +
     (list.length ? '<div class="grid">' + list.map(function (i) {
       var pct = i.min > 0 ? Math.min(100, Math.round(i.qty / (i.min * 2) * 100)) : (i.qty > 0 ? 100 : 0);
       return '<button class="card" data-act="itemdet" data-id="' + esc(i.id) + '"><div class="row" style="align-items:flex-start;justify-content:flex-start;gap:12px">' + thumb(i) +
@@ -872,7 +889,7 @@ function dashData() {
   var D = { r: r, B: B, qin: 0, qout: 0, xin: {}, xout: {}, item: {}, area: {}, cat: {} };
   S.flow.forEach(function (f) {
     if (f.d < r.st || f.d > r.en) return;
-    if (S.dp.area && (f.t === 'in' || f.a !== S.dp.area)) return;
+    if (S.dp.area && (f.t === 'in' || !areaIn(f.a, S.dp.area))) return;
     var b = B[idx[S.dp.mode === 'year' ? f.d.slice(0, 7) : f.d]]; if (!b) return;
     var it = itemById(f.i), c = it ? it.cat : 'อื่น ๆ';
     b[f.t] += f.q;
@@ -911,16 +928,16 @@ function vDash() {
   var amax = areas.length ? areas[0].n : 1;
   var cats = CATS.filter(function (c) { return D.cat[c]; }), cmax = 1; cats.forEach(function (c) { cmax = Math.max(cmax, D.cat[c].in, D.cat[c].out); });
   var nIn = Object.keys(D.xin).length, nOut = Object.keys(D.xout).length;
-  return '<div class="card gap"><div class="row" style="flex-wrap:wrap"><div class="tabs" role="tablist" style="min-width:240px">' + [['week', 'สัปดาห์'], ['month', 'เดือน'], ['year', 'ปี']].map(function (t) { return '<button role="tab" class="' + (m === t[0] ? 'on' : '') + '" data-act="dmode" data-m="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>' +
-    '<div class="pnav"><button class="btn sm" data-act="dnav" data-d="-1" aria-label="ก่อนหน้า">' + IC.left + '</button><b style="min-width:150px;text-align:center">' + esc(D.r.title) + '</b><button class="btn sm" data-act="dnav" data-d="1" aria-label="ถัดไป"' + (S.dp.off >= 0 ? ' disabled' : '') + '>' + IC.right + '</button>' + (S.dp.off ? '<button class="btn sm ghost" data-act="dnav" data-d="0">ปัจจุบัน</button>' : '') + '</div></div>' +
-    '<div class="row" style="flex-wrap:wrap;justify-content:flex-start;margin-top:10px"><label class="lbl" style="margin:0" for="dparea">พื้นที่</label><select id="dparea" data-b="dp.area" data-r="1" style="max-width:320px"><option value="">ทุกสนาม / อาคาร</option>' + AREAS.map(function (a) { return '<option value="' + esc(a) + '"' + (a === S.dp.area ? ' selected' : '') + '>' + esc(a) + '</option>'; }).join('') + '</select>' + (S.dp.area ? '<span class="muted xs">แสดงเฉพาะการเบิกของพื้นที่นี้ — การรับเข้าไม่ผูกกับพื้นที่</span>' : '') + '</div></div>' +
+  return '<div class="card gap"><div class="tbar dbar"><select id="dparea" data-b="dp.area" data-r="1" aria-label="พื้นที่">' + dashAreaOpts(S.dp.area) + '</select><div class="tabs" role="tablist">' + [['week', 'สัปดาห์'], ['month', 'เดือน'], ['year', 'ปี']].map(function (t) { return '<button role="tab" class="' + (m === t[0] ? 'on' : '') + '" data-act="dmode" data-m="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>' +
+    '<div class="pnav"><button class="btn" data-act="dnav" data-d="-1" aria-label="ก่อนหน้า">' + IC.left + '</button><b style="min-width:150px;text-align:center">' + esc(D.r.title) + '</b><button class="btn" data-act="dnav" data-d="1" aria-label="ถัดไป"' + (S.dp.off >= 0 ? ' disabled' : '') + '>' + IC.right + '</button>' + (S.dp.off ? '<button class="btn ghost" data-act="dnav" data-d="0">ปัจจุบัน</button>' : '') + '</div></div>' +
+    (S.dp.area ? '<div class="muted xs">' + (areaGroup(S.dp.area) ? 'พื้นที่: ' + esc(areaGroup(S.dp.area).areas.join(', ')) + ' · ' : '') + 'นับเฉพาะการเบิก (การรับเข้าไม่ผูกกับพื้นที่)</div>' : '') + '</div>' +
     '<div class="stats"><div class="card stat"><div class="muted sm">ใบรับเข้า</div><div class="v">' + nIn + '</div><div class="muted xs">ใบ</div></div><div class="card stat"><div class="muted sm">ใบเบิก</div><div class="v">' + nOut + '</div><div class="muted xs">ใบ</div></div>' +
     '<div class="card stat"><div class="muted sm">ปริมาณรับเข้า</div><div class="v" style="color:var(--in)">' + fmt(D.qin) + '</div><div class="muted xs">รวมทุกหน่วยนับ</div></div><div class="card stat"><div class="muted sm">ปริมาณเบิกออก</div><div class="v" style="color:var(--brand)">' + fmt(D.qout) + '</div><div class="muted xs">รวมทุกหน่วยนับ</div></div></div>' +
     '<div class="card"><div class="row" style="flex-wrap:wrap"><h3>แนวโน้มการรับเข้า / เบิกออก</h3>' + vt('view', [['line', 'กราฟเส้น'], ['table', 'ตาราง']]) + '</div>' +
     (S.dp.view === 'table' ? table :
       '<div class="row" style="flex-wrap:wrap;justify-content:flex-start;margin-top:6px"><span class="lgd"><i class="ln in"></i>รับเข้า</span><span class="lgd"><i class="ln"></i>เบิกออก</span><span class="muted xs">สูงสุดต่อช่วง ' + fmt(max) + ' · เลื่อนเมาส์/แตะที่กราฟเพื่อดูตัวเลข</span></div>' +
       line + '<div class="axis">' + axis + '</div>') + '</div>' +
-    '<div class="card"><div class="row" style="flex-wrap:wrap"><div><h3>จัดอันดับของที่เบิกมากที่สุด → น้อยที่สุด</h3><div class="muted xs">' + (S.dp.area ? 'ที่ ' + esc(S.dp.area) + ' · ' : '') + 'เรียงตามจำนวนที่เบิก (หน่วยนับต่างกันตามวัสดุ)</div></div><select data-b="dp.cat" data-r="1" style="max-width:220px" aria-label="หมวดหมู่"><option value="">ทุกหมวดหมู่</option>' + catOpts(S.dp.cat) + '</select></div><div style="margin-top:8px">' +
+    '<div class="card"><div class="row" style="flex-wrap:wrap"><div><h3>จัดอันดับของที่เบิกมากที่สุด → น้อยที่สุด</h3><div class="muted xs">' + (S.dp.area ? (areaGroup(S.dp.area) ? '' : 'ที่ ') + esc(areaLabel(S.dp.area)) + ' · ' : '') + 'เรียงตามจำนวนที่เบิก (หน่วยนับต่างกันตามวัสดุ)</div></div><select data-b="dp.cat" data-r="1" style="max-width:220px" aria-label="หมวดหมู่"><option value="">ทุกหมวดหมู่</option>' + catOpts(S.dp.cat) + '</select></div><div style="margin-top:8px">' +
     (rank.length ? topN(rank, 'rkAll', function (x, i) { return '<div class="rk"><span class="no ' + (i < 3 ? 'top' : '') + '">' + (i + 1) + '</span>' + thumb(x.it, 'sm') + '<div style="flex:1;min-width:0"><div class="row"><b class="sm">' + esc(x.it.name) + '</b><span class="b">' + fmt(x.q) + ' <span class="muted sm" style="font-weight:400">' + esc(x.it.unit) + '</span></span></div><div class="bar"><i style="width:' + Math.round(x.q / rmax * 100) + '%"></i></div><div class="muted xs">' + esc(x.it.cat) + ' · เบิก ' + x.n + ' ครั้ง</div></div></div>'; }) : '<div class="muted sm" style="padding:12px 0">ไม่มีการเบิกในช่วงนี้</div>') + '</div></div>' +
     '<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><div class="card"><h3>เบิกตามสนาม / อาคาร</h3><div class="muted xs">จำนวนใบเบิก</div><div style="margin-top:6px">' +
     (areas.length ? topN(areas, 'arAll', function (x) { return '<div class="rk"><div style="flex:1;min-width:0"><div class="row"><span class="sm">' + esc(x.a) + '</span><b>' + x.n + '</b></div><div class="bar"><i style="width:' + Math.round(x.n / amax * 100) + '%"></i></div><details><summary>เบิกอะไรบ้าง</summary>' + Object.keys(x.q).sort(function (p, q) { return x.q[q] - x.q[p]; }).map(function (id) { var it = itemById(id); return '<div class="row sm" style="padding:3px 0"><span>' + esc(it ? it.name : id) + '</span><b>' + fmt(x.q[id]) + ' ' + esc(it ? it.unit : '') + '</b></div>'; }).join('') + '</details></div></div>'; }) : '<div class="muted sm" style="padding:12px 0">ไม่มีข้อมูล</div>') + '</div></div>' +
@@ -1112,7 +1129,6 @@ document.addEventListener('click', function (e) {
   if (a === 'scan') return doScan();
   if (a === 'submitin') return submitIn();
   if (a === 'submitout') return submitOut();
-  if (a === 'catf') { S.cat = el.getAttribute('data-c'); render(); return; }
   if (a === 'dview') { S.dp[el.getAttribute('data-k')] = el.getAttribute('data-v'); render(); return; }
   if (a === 'dmode') { S.dp.mode = el.getAttribute('data-m'); S.dp.off = 0; render(); return; }
   if (a === 'dnav') { var dd = Number(el.getAttribute('data-d')); S.dp.off = dd === 0 ? 0 : Math.min(0, S.dp.off + dd); render(); return; }
